@@ -1,0 +1,262 @@
+
+<!DOCTYPE html>
+<!--[if lt IE 8]><script>window.location.href="/zhihu/error/"</script><![endif]-->
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/bootstrap-theme.min.css">
+  <link rel="stylesheet" href="css/jquery-ui.min.css">
+  <link rel="stylesheet" href="css/jquery-ui.theme.min.css">
+  <link rel="stylesheet" href="uEditor/uEditor.css">
+  <link rel="stylesheet" href="css/style.css">
+  <script type="text/javascript" src="js/jquery-3.2.0.min.js"></script>
+  <script type="text/javascript" src="js/jquery-ui.min.js"></script>
+  <script type="text/javascript" src="js/jquery.validate.min.js"></script>
+  <script type="text/javascript" src="js/jquery.form.min.js"></script>
+  <script type="text/javascript" src="js/jquery.cookie.js"></script>
+  <script type="text/javascript" src="js/jquery-migrate-1.2.1.js"></script>
+  <script type="text/javascript" src="uEditor/uEditor.js"></script>
+  <script type="text/javascript" src="js/index.js"></script>
+  <title>知问首页</title>
+</head>
+<body>
+  <div class="container">
+    <!-- 导航部分  -->
+    <nav class="navbar navbar-default" role="navigation">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#"></a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="navbar">
+          <ul class="nav navbar-nav">
+            <li class="active navtitle"><a href="#">知乎</a></li>
+            <li><a href="#">分享你的“知道”，寻找你“未知”的答案</a></li>
+          </ul>
+          <ul class="navbar-form navbar-right navlogin">
+            <button class="btn btn-primary" id="nav_login"><span class="glyphicon glyphicon-log-in"></span> 登录</button>
+            <button class="btn" id="nav_username"><span class="glyphicon glyphicon-user"></span> 用户名</button>
+            <button class="btn btn-default" id="nav_reg" ><span class="glyphicon glyphicon-education"></span> 注册</button>
+            <button class="btn btn-danger" id="nav_logout"><span class="glyphicon glyphicon-log-out"></span> 退出</button>
+          </ul>
+          <form class="navbar-form navbar-right" role="search">
+            <div class="form-group">
+              <input type="text" class="form-control" placeholder="请输入关键字">
+            </div>
+            <button type="submit" class="btn btn-default search_btn"><span class="glyphicon glyphicon-search"></span> 搜索</button>
+            <button type="button" class="btn btn-default add_question_btn"><span class="glyphicon glyphicon-question-sign"></span> 提问</button>
+          </form>
+        </div><!-- /.navbar-collapse -->
+      </div><!-- /.container-fluid -->
+    </nav>
+
+    <!-- article部分  -->
+    <article class="article_content row">
+      <section class="section_left col-md-10">
+        <div class="content_tabs" id="content_tabs">
+          <ul>
+            <li><a href="hots.html">最热问题</a></li>
+            <li><a href="tuijian.html">博主推荐</a></li>
+            <li><a href="news.html">最多评论</a></li>
+          </ul>
+          <div id="tabs_content1"></div>
+          <div id="tabs_content2"></div>
+          <div id="tabs_content3"></div>
+        </div>
+        <div class="content">
+        </div>
+      </section>
+
+      <section class="section_right col-md-2">
+        <div id="content_accordion">
+          <h1>关注我的人</h1>
+          <div>
+            <dl>
+              <dd>Tom</dd>
+              <dd>Jerry</dd>
+            </dl>
+          </div>
+          <h1>我关注的人</h1>
+          <div>
+            <dl>
+              <dd>Tom</dd>
+              <dd>Jerry</dd>
+            </dl>
+          </div>
+          <h1>我的提问</h1>
+          <div>
+            <dl>
+              <dd><a href="#">为什么我这么帅？</a></dd>
+              <dd><a href="#">为什么我这么帅？</a></dd>
+              <dd><a href="#">为什么我这么帅？</a></dd>
+            </dl>
+          </div>
+          <h1>我的回答</h1>
+          <div>
+            <dl>
+              <dd><a href="#">为什么我这么帅？</a></dd>
+              <dd><a href="#">为什么我这么帅？</a></dd>
+              <dd><a href="#">为什么我这么帅？</a></dd>
+            </dl>
+          </div>
+          <h1>我的评论</h1>
+          <div>
+            <dl>
+              <dd><a href="#">以我看来，这个问题有更深层的原因</a></dd>
+              <dd><a href="#">以我看来，这个问题有更深层的原因</a></dd>
+              <dd><a href="#">以我看来，这个问题有更深层的原因</a></dd>
+            </dl>
+          </div>
+        </div>
+      </section>
+    </article>
+  </div>
+
+  <!-- 注册页面的dialog -->
+  <div class="dialog_area" title="注册帐号">
+    <div class="container-fluid">
+      <form class="form-horizontal" id="reg_form" action="add.php" method="post">
+          <div class="form-group">
+            <label class="col-md-3 control-label" for="reg_account" >帐 号</label>
+            <div class="col-md-8">
+                <input type="text" class="form-control" id="reg_account" name="user">
+            </div>
+            <label class="col-md-1 control-label requredstar" for="reg_account">*</label>
+          </div>
+
+          <div class="form-group">
+            <label class="col-md-3 control-label" for="reg_password">密 码</label>
+            <div class="col-md-8">
+                <input type="password" class="form-control" id="reg_password" name="password">
+            </div>
+            <label class="col-md-1 control-label requredstar" for="reg_password">*</label>
+          </div>
+
+          <div class="form-group">
+            <label class="col-md-3 control-label" for="reg_email">邮 箱</label>
+            <div class="col-md-8">
+                <input type="email" class="form-control" id="reg_email" name="email">
+            </div>
+            <label class="col-md-1 control-label requredstar" for="reg_email">*</label>
+          </div>
+
+          <div class="form-group">
+            <label class="control-label col-md-3">性 别</label>
+            <div class="col-md-8">
+              <label class="radio-inline"><input type="radio"  name="sex" value="male" checked="checked">男</label>
+              <label class="radio-inline"><input type="radio"  name="sex" value="female">女</label>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="col-md-3 control-label" for="reg_birthday">生 日</label>
+            <div class="col-md-8">
+                <input type="birthday" class="form-control"  id="reg_birthday" readonly="readonly" name="birthday">
+            </div>
+            <label class="col-md-1 control-label requredstar" for="reg_birthday"></label>
+          </div>
+
+          <hr>
+
+          <div class="form-group reg_btn">
+            <div class="col-md-12">
+              <p class="reg_btn_group">
+                <input type="submit" class="btn btn-primary" id="reg_submit" value="注 册">
+                <input type="reset" class="btn btn-default" value="重 置 ">
+              </p>
+            </div>
+          </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- loading动画的dialog -->
+  <div id="loading_area">
+      数据提交中...
+  </div>
+
+  <!-- error时dialog -->
+  <div id="error">
+      请登录后在进行操作
+  </div>
+
+  <!-- 登录页面dialog -->
+  <div class="login_dialog_area" title="登录帐号">
+    <div class="container-fluid">
+      <form class="form-horizontal" id="login_form" action="login.php" method="post">
+          <div class="form-group">
+            <label class="col-md-3 control-label" for="login_account" >帐 号</label>
+            <div class="col-md-8">
+                <input type="text" class="form-control" id="login_account" name="login_user">
+            </div>
+            <label class="col-md-1 control-label requredstar" for="login_account"></label>
+          </div>
+
+          <div class="form-group">
+            <label class="col-md-3 control-label" for="login_password">密 码</label>
+            <div class="col-md-8">
+                <input type="password" class="form-control" id="login_password" name="login_password">
+            </div>
+            <label class="col-md-1 control-label requredstar" for="login_password"></label>
+          </div>
+
+          <div class="form-gorup">
+            <div class="col-md-12 login_checkbox">
+              <input type="checkbox" id="login_checkbox" name="login_checkbox" checked="checked">
+              <label for="login_radio">登录有效期一周</label>
+            </div>
+          </div>
+
+          <div class="form-group login_btn">
+            <div class="col-md-12">
+              <p class="login_btn_group">
+                <input type="submit" class="btn btn-primary" id="login_submit" value="登 录">
+                <input type="reset" class="btn btn-default" value="重 置">
+              </p>
+            </div>
+          </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- 提问dialog  -->
+  <div class="question_dialog_area" title="新增问题">
+      <div class="container-fluid">
+        <form class="form-horizontal" id="question_form" action="add_content.php" method="post">
+            <div class="form-group">
+              <label class="col-md-2 control-label" for="question_title" >问题标题</label>
+              <div class="col-md-10">
+                  <input type="text" class="form-control" id="question_title" name="title">
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="col-md-2 control-label" for="login_account" >问题描述</label>
+              <div class="col-md-10">
+                <textarea class="question_content" name="uEditor_content" rows="8" cols="80" style="width:423px;"></textarea>
+              </div>
+            </div>
+
+            <div class="form-group question_btn">
+              <div class="col-md-12">
+                <p class="question_btn_group">
+                  <input type="submit" class="btn btn-primary" id="question_submit" value="提 交">
+                  <input type="reset" class="btn btn-default" value="重 置">
+                </p>
+              </div>
+            </div>
+        </form>
+      </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,226 @@
+ #mycarousel {
+     margin: 0;
+ }
+
+ body {
+     margin-top: 50px;
+     font-family: "Helvetica Neue", Helvetica, Arial, "Microsoft YaheiUI", "Microsoft YaHei", SimHei, "\5B8B\4F53", simsun, sans-serif;
+ }
+
+ .tab-h2 {
+     font-size: 20px;
+     color: #0059B2;
+     text-align: center;
+     letter-spacing: 1px;
+ }
+
+ .tab-p {
+     font-size: 15px;
+     color: #999;
+     text-align: center;
+     letter-spacing: 1px;
+     margin: 20px 0 40px 0;
+ }
+
+ .item img {
+     margin: 0 auto;
+ }
+
+ .carousel-inner .item:first-child {
+     background-color: #223240;
+ }
+
+ .carousel-inner .item:nth-child(2) {
+     background-color: #F5E4DC;
+ }
+
+ .carousel-inner .item:last-child {
+     background-color: #DE2A2D;
+ }
+
+ .content_1 {
+     margin-top: 20px;
+ }
+
+ .media {
+     margin-bottom: 10px;
+ }
+
+.content_2,.content_3{
+  margin-top: 20px;
+  padding : 30px 20px;
+}
+
+.content_2 {
+  background-color: #eee
+}
+
+.jumbotron {
+  text-align: center;
+  background-image :  url(../img/bg.jpg);
+  color: #ccc;
+}
+
+#page_one,#page_two{
+  background-color: #eee;
+  padding-bottom: 10px;
+}
+
+.part,.page_one_flash{
+  background-color: #fff;
+  box-shadow: 2px 2px 3px #ccc;
+  margin: 5px;
+}
+
+.page_one_flash{
+  padding : 10px;
+}
+.page_one_all img{
+  padding: 15px 0 15px 0;
+}
+
+.page_one_all .text{
+  line-height: 1.6;
+}
+
+.page_one_content .text p{
+  font-size: 13px;
+}
+
+.page_one_content .text h3{
+  font-size: 22px;
+}
+
+
+.page_one_flash .text h3{
+    font-size: 16px;
+}
+/*单行显示*/
+.page_one_content .text h3{
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+
+}
+
+#page_two{
+  text-align: center;
+}
+
+#page_two .thumbnail{
+  margin-top: 20px;
+}
+
+#page_three {
+  background-color: #263238;
+}
+
+.login_box {
+  width: 360px;
+  margin: 0 auto;
+  padding: 100px 5px 100px 5px;
+  color: #666;
+}
+
+.login_logo{
+  margin: 0 auto 50px auto;
+}
+
+.login_logo img{
+  display: block;
+  margin: 5px auto;
+}
+
+/* footer 居中*/
+#footer {
+    padding: 10px 0 10px 0;
+}
+#footer p {
+  text-align: center;
+  margin: 10px 0 20 0;
+}
+
+/* 响应式布局*/
+
+ /* 小屏幕（平板，大于等于 768px） */
+
+ @media (min-width: 768px) {
+     .tab-h2 {
+         font-size: 26px;
+     }
+     .tab-p {
+         font-size: 16px;
+     }
+
+     .page_one_content .text p{
+       font-size: 14px;
+     }
+
+     .page_one_content .text h3{
+       font-size: 22px;
+     }
+
+
+ }
+ /* 中等屏幕（桌面显示器，大于等于 992px） */
+
+ @media (min-width: 992px) {
+     .tab-h2 {
+         font-size: 28px;
+     }
+     .tab-p {
+         font-size: 17px;
+     }
+
+     .content_2 .content-img {
+       float: right;
+     }
+
+     .content-text .content-text-title{
+       font-size: 24px;
+     }
+
+     .content-text .content-text-p{
+       font-size: 16px;
+     }
+
+     .page_one_content .text p{
+       font-size: 15px;
+     }
+
+     .page_one_content .text h3{
+       font-size: 24px;
+     }
+
+ }
+ /* 大屏幕（大桌面显示器，大于等于 1200px） */
+
+ @media (min-width: 1200px) {
+     .tab-h2 {
+         font-size: 30px;
+     }
+     .tab-p {
+         font-size: 18px;
+     }
+
+     .content_2 .content-img {
+       float: right;
+     }
+
+     .content-text .content-text-title{
+       font-size: 26px;
+     }
+
+     .content-text .content-text-p{
+       font-size: 18px;
+     }
+
+     .page_one_content .text p{
+       font-size: 16px;
+     }
+
+     .page_one_content .text h3{
+       font-size: 26px;
+     }
+
+ }

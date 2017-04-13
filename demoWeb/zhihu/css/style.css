@@ -1,0 +1,216 @@
+/* 设置nav中知问字体 充当图标 */
+.collapse .navtitle{
+  font-size: 20px;
+  padding: 0 15px;
+}
+
+.collapse .navlogin{
+  padding-left: 15px;
+}
+
+
+/*  调整搜索输入框的上边距  */
+.navbar-form .form-control{
+  padding-top: 1px;
+}
+
+
+/* nav中查询按钮中的放大镜图标 top值重设，使对齐 */
+.navbar .glyphicon{
+  top : 2px;
+}
+
+/* dialog title 重设字体大小及居中 */
+.ui-dialog-title {
+  font-size: 18px;
+  text-align: center;
+}
+
+/* 必填项标志*号颜色及边距设置 */
+.requredstar{
+  color: maroon;
+  padding-left: 0;
+}
+
+/* dialog 中表单区设置上边距 */
+.dialog_area .form-horizontal,.login_dialog_area .form-horizontal,.question_dialog_area .form-horizontal{
+  margin-top: 15px;
+}
+
+/* dialog按钮居中及边距 */
+
+.reg_btn,.login_btn,.question_btn{
+  margin-top: 20px;
+}
+
+.reg_btn_group,.login_btn_group,.question_btn_group{
+  text-align: center;
+}
+
+.reg_btn_group input,.login_btn_group input,.question_btn_group input{
+  margin-left: 30px;
+  margin-right:30px;
+  padding-left: 25px;
+  padding-right:25px;
+}
+
+/*.question_dialog_area textarea{
+  margin-top: 10px;
+}*/
+
+/* loading样式 */
+
+#loading_area,#error{
+  background:url(../img/loading.gif) no-repeat 20px center;
+  line-height:36px;
+  font-size:14px;
+  font-weight:bold;
+  text-indent:40px;
+  color:#666;
+}
+
+
+/* tooltip被截断修复  设置最小宽度即可 */
+
+.ui-tooltip-content{
+  min-width: 134px;
+}
+
+
+/* validate提示语样式设置 */
+
+#reg_form label.error{
+  padding : 0;
+  text-align: left;
+  margin-top: 2px;
+  margin-bottom: 2px;
+  color: maroon;
+}
+
+/* 登录有效期一周样式 */
+.login_checkbox{
+  padding-bottom: 10px;
+}
+
+.login_checkbox input{
+  position: relative;
+  top : 2px;
+  margin: 0 3px 0 13px;
+}
+
+/* content 样式*/
+
+.content_tabs {
+  border: none;
+}
+
+.content_tabs ul li  {
+  margin-right: 5px;
+  width: 100px;
+}
+
+.content_tabs ul li a {
+  width: 100%;
+  text-align: center;
+}
+
+/*#tabs_content1, #tabs_content2, #tabs_content3 {
+  padding:10px;
+  border:1px solid #aaa;
+  border-top:none;
+  position:relative;
+  top:-2px
+}*/
+
+
+/* uEditor */
+
+.uEditor{
+  width: 423px;
+}
+
+.uEditor ul.uEditorToolbar{
+  height: 25px;
+}
+
+/* content */
+.content{
+  margin-top: 10px;
+  padding: 5px 3px;
+}
+
+.content h4 {
+	color:#666;
+	font-weight:normal;
+}
+.content h3 {
+	color:#369;
+}
+.editor {
+	line-height:180%;
+	color:#333;
+}
+.content .bottom {
+	padding:5px 0 0 0;
+}
+.content hr {
+	color:#ccc;
+	height:1px;
+}
+.content .up {
+	float:right;
+	color:#369;
+	cursor:pointer;
+}
+.content .down {
+	font-weight:normal;
+	color:#369;
+	cursor:pointer;
+}
+
+.content .comment {
+	color:#369;
+	cursor:pointer;
+}
+.content .comment_list {
+	border:1px solid #ccc;
+	border-radius:4px;
+	padding:5px 10px;
+	display:none;
+}
+.content .comment_list dl {
+	margin:0;
+	padding:3px 0px 5px 0;
+}
+.content .comment_list dl dt {
+	margin:0;
+	padding:5px 0 0 0;
+	color:#369;
+}
+.content .comment_list dl dd {
+	margin:0;
+	padding:0;
+	color:#333;
+	line-height:180%;
+}
+.content .comment_list dl dd.date {
+	color:#666;
+}
+.content .comment_list dl.comment_content {
+	border-bottom:1px solid #ccc;
+}
+.content .comment_add {
+	text-align:right;
+}
+.content .comment_add textarea {
+  height: 100px;
+	width:100%;
+	border:1px solid #ccc;
+	border-radius:4px;
+	background:#fff;
+	padding:5px;
+	font-size:12px;
+	color:#666;
+	margin:0 0 5px 0;
+	resize:none;
+}
