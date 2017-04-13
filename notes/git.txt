@@ -48,3 +48,24 @@
 	现在你有两个选择，一是确实要从版本库中删除该文件，那就用命令git rm删掉，并且git commit
 	另一种情况是删错了，因为版本库里还有呢，所以可以很轻松地把误删的文件恢复到最新版本，$ git checkout -- test.txt   ；git checkout其实是用版本库里的版本替换工作区的版本，无论工作区是修改还是删除，都可以“一键还原”
 	
+9、添加远程仓库
+	
+	本地已有库，需要关联到github中的库，然后推送内容到网站
+	
+	1）本地先生成$ ssh-keygen -t rsa -C "youremail@example.com"   shh Key  (一切顺利的话，可以在用户主目录里找到.ssh目录，里面有id_rsa和id_rsa.pub两个文件，这两个就是SSH Key的秘钥对，id_rsa是私钥，不能泄露出去，id_rsa.pub是公钥)
+	2) 在github网站上settings中添加公钥
+	3）在github中新建一个版本库，并与本地版本库进行关联 git remote add origin https://github.com/leichangchun/learningNotes.git  添加后，远程库的名字就是origin，这是Git默认的叫法，也可以改成别的
+                                   关联之后 git push -u origin master  把本地库中的内容推送到远程库中
+								   此后，每次本地提交后，只要有必要，就可以使用命令 git push origin master推送最新修改
+	
+	
+	
+
+	
+	从零开发，那么最好的方式是先创建远程库，然后，从远程库克隆。首先，登陆GitHub，创建一个新的仓库，名字叫gitskills
+	
+	1）勾选Initialize this repository with a README，这样GitHub会自动为我们创建一个README.md文件。创建完毕后，可以看到README.md文件
+	2）git clone git@github.com:michaelliao/gitskills.git
+	
+
+	
