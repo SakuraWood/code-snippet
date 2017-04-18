@@ -29,6 +29,28 @@
 
  <br>
 
+  <div id="testComputed">
+    <p>"{{message}}"</p>
+    <p>Computed : {{reversedMessage}}</p>
+  </div>
+
+  <script>
+  new Vue({
+    el : '#testComputed',
+    data : {
+      message : "Computed"
+    },
+    computed : {
+      reversedMessage : function(){
+        return this.message.split('').reverse().join('')
+        
+      }
+    }
+  })
+  </script>
+
+  <br>
+
   <script src="js/vueDemo.js"></script>
 </body>
 </html>
