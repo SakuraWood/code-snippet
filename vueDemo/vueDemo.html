@@ -30,20 +30,56 @@
  <br>
 
   <div id="testComputed">
-    <p>"{{message}}"</p>
-    <p>Computed : {{reversedMessage}}</p>
+    <!-- v-bind 可以动态绑定class 根据class名后的判断条件来确定是否添加  类名中有特殊字符需要用引号-->
+    <!-- v-bind 也可以绑定对象-->
+    <!-- v-bind 也可以绑定对象的计算属性-->
+    <!-- v-bind 还可以绑定数组，三元表达式 详见vue.js中文文档-->
+    <p v-bind:class="{active : isActive, 'test-error' : hasError}">"{{message}}"</p>
+    <p v-bind:class="classObject">Computed : {{reversedMessage}}</p>
+    <p v-bind:class="computedClass">{{fullname}}</p>
   </div>
 
   <script>
-  new Vue({
+  var vm = new Vue({
     el : '#testComputed',
     data : {
-      message : "Computed"
+      message : "Computed",
+      firstName : "Lei",
+      lastName : "Changchun",
+
+      //定义两个 boolean 值用来动态的绑定class
+      isActive : true,
+      hasError : false,
+
+      //定义一个class对象
+      classObject : {
+        active : true,
+        'test-error' : false
+      }
     },
     computed : {
+      //计算属性的getter
       reversedMessage : function(){
-        return this.message.split('').reverse().join('')
-        
+        return this.message.split('').reverse().join('');
+      },
+      // 有getter 和 setter的
+      fullname : {
+        get : function(){
+          return this.firstName + ' ' + this.lastName;
+        },
+      // 在控制台给fullname传值 会更新
+        set : function(newName){
+          var names = newName.split(' ');
+          this.firstName = names[0];
+          this.lastName = names[names.length - 1];
+        }
+      },
+
+      computedClass : function(){
+        return {
+          active :  this.isActive && !this.hasError,
+          'test-error' : !this.isActive && this.hasError
+        }
       }
     }
   })
