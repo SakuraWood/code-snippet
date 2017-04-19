@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>闭包</title>
+</head>
+<body>
+  <script type="text/javascript">
+
+/*
+    //错误写法
+    //setTimeout中输出的i是全局变量i, 输出的都是最后一次 i++ 也就是10
+    for(var i = 0;i<10;i++){
+        setTimeout(function(){
+          console.log(i);
+        },1000)
+    };
+*/
+
+/*
+    //正确写法一
+    //将i当作参数传递给匿名函数，然后立即执行，每次传入的参数都不一样，输出1到10
+    for(var i = 0;i<10;i++){
+      (function(temp){
+        setTimeout(function(){
+          console.log(temp);
+        },1000)
+      })(i)
+    };
+  */
+
+  //正确写法二
+  //使用 let
+  //变量i是let声明的，当前的i只在本轮循环有效，所以每一次循环的i其实都是一个新的变量
+  //你可能会问，如果每一轮循环的变量i都是重新声明的，那它怎么知道上一轮循环的值，从而计算出本轮循环的值？
+  //这是因为 JavaScript 引擎内部会记住上一轮循环的值，初始化本轮的变量i时，就在上一轮循环的基础上进行计算。
+
+  for(let i = 0; i < 10;i++ ){
+      setTimeout(function(){
+        console.log(i);
+      },1000)
+  };
+
+  </script>
+</body>
+</html>

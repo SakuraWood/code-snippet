@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>函数相关记录</title>
+</head>
+<body>
+  <script type="text/javascript">
+
+    //函数声明方式定义的函数 只能通过 myFunction(str)方式调用
+    //函数声明方式定义的函数 可以在声明之前调用，应为javascript在解析的时候会“函数声明提升“当前执行环境中的函数声明
+    myFuntion("我是函数声明方式定义的函数的调用！")
+
+    // 函数声明 方式定义函数
+    function myFuntion(str){
+      console.log(str);
+    };
+
+    /*
+    //函数表达式方式的函数 无法在声明之前调用   在此处只提前了声明，但是没有还没有定义
+    myFuntion2("函数表达式方式的函数，在声明之前调用，会报错");
+    */
+
+    //函数表达式方式（将匿名函数赋值给一个变量）定义函数
+    var myFuntion2 = function(str){
+      console.log(str);
+    };
+    /*
+    //可以在后面加上()，解析到的时候会立即执行
+    var myFuntion2 = function(str){
+      console.log(str);
+    }("我是函数表达式方式定义的函数，立即执行方式调用！");
+    */
+
+    //通过 fnName的方式调用
+    myFuntion2("我是函数表达式方式定义的函数，通过fnName方式调用！");
+
+
+    //声明一个全局变量a
+    var a = 1;
+
+    //匿名函数
+    //立即调用
+    (function(str){
+
+      console.log(a);   //此处输出a为undefined  因为在匿名函数作用域中对a的声明提升了，但是此处还没有执行定义，所以是undefined
+      var a = 2;
+      console.log(a);  //此处输入为 2 为局部变量的值
+      console.log(str);
+    })("我是匿名函数，立即调用！")
+
+    console.log(a);   //此处输入为 1 为全局变量的值
+
+  </script>
+</body>
+</html>
