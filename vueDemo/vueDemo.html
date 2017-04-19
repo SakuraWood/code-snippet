@@ -37,12 +37,20 @@
     <p v-bind:class="{active : isActive, 'test-error' : hasError}">"{{message}}"</p>
     <p v-bind:class="classObject">Computed : {{reversedMessage}}</p>
     <p v-bind:class="computedClass">{{fullname}}</p>
+
+    <br>
+
+    <!-- 事件绑定 -->
+
+    <button v-on:click="greet">点击我</button>
+
   </div>
 
   <script>
   var vm = new Vue({
     el : '#testComputed',
     data : {
+      name : "vue.js",
       message : "Computed",
       firstName : "Lei",
       lastName : "Changchun",
@@ -80,6 +88,13 @@
           active :  this.isActive && !this.hasError,
           'test-error' : !this.isActive && this.hasError
         }
+      }
+    },
+
+    methods : {
+      greet : function(event){
+        alert("Hello "+ this.name + " !");
+        alert(event.target.tagName);
       }
     }
   })
