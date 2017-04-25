@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="lib/vue.js"></script>
+  <script src="lib/vue-router-dev/dist/vue-router.js"></script>
+  <script src="lib/babel.min.js"></script>
+  <title>vue-router-test</title>
+</head>
+<body>
+  <div id="my-router">
+    <h1>Hello vue-router</h1>
+    <ul>
+      <li><router-link to="/a">组件A</router-link></li>
+      <li><router-link to="/b">组件B</router-link></li>
+      <li><router-link to="/c">组件C</router-link></li>
+    </ul>
+    <router-view></router-view>
+  </div>
+
+  <script>
+    new Vue({
+        el : "#my-router",
+      })
+  </script>
+
+  <!-- <script type="text/babel">
+    import componentA from '/forRouter/component-a.js'
+    import componentB from '/forRouter/component-b.js'
+    import componentC from '/forRouter/component-c.js'
+
+    const routes = [
+      {path : '/a',component : componentA},
+      {path : '/b',component : componentB},
+      {path : '/c',component : componentC}
+    ]
+
+    const router = new VueRouter({
+      routes
+    })
+
+    var my-router = new Vue({
+      el : "#my-router",
+      router
+    })
+  </script> -->
+</body>
+</html>
