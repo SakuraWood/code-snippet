@@ -7,14 +7,24 @@
   <link rel="stylesheet" href="css/vueDemo.css">
   <script type="text/javascript" src="lib/jquery-3.2.0.min.js"></script>
   <script src="lib/vue.js"></script>
+  <style>
+    .title{
+      background-color: #ddd;
+      font-size: 20px;
+    }
+  </style>
   <title>Component</title>
 </head>
 <body>
-
+  <div class="title"><p>创建组件 props获取父组件数据</p></div>
   <div id="example-1">
+    <input type="text" v-model="inputvalue">
     <!-- div#example-1 挂载了vue实例 所以可以使用组件 -->
     <my-component></my-component>
-    <componentfor1></componentfor1>
+    <!-- 要动态地绑定父组件的数据到子模板的props，与绑定到任何普通的HTML特性相类似，就是用 v-bind。每当父组件的数据变化时，该变化也会传导给子组件 -->
+    <!-- prop 是单向绑定的：当父组件的属性变化时，将传导给子组件，但是不会反过来。 -->
+    <componentfor1 my-props="传入props" v-bind:v-bind-props="inputvalue"></componentfor1>
+    <span>修改子组件的porps 控制台会警告，且不会传递给父组件</span>
   </div>
 
   <div id="example-2">
@@ -22,10 +32,17 @@
     <my-component></my-component>
   </div>
 
+
+  <div class="title"><p>自定义事件的方式 子组件向父组件传递消息</p></div>
+
   <div id="example-3">
     <my-component></my-component>
     <!-- 局部的组件只能在父模版中使用，在这里使用会报错 -->
     <!-- <componentfor1></componentfor1> -->
+    <br>
+    <p>监听事件触发的次数 : {{count}}</p>
+    <my-button v-on:increment="incrementForEvent"></my-button>
+    <my-button v-on:increment="incrementForEvent"></my-button>
   </div>
 
   <script src="js/component.js"></script>
