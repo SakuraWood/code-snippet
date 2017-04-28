@@ -20,31 +20,27 @@
     <router-view></router-view>
   </div>
 
-  <script>
-    new Vue({
-        el : "#my-router",
-      })
-  </script>
 
-  <!-- <script type="text/babel">
-    import componentA from '/forRouter/component-a.js'
-    import componentB from '/forRouter/component-b.js'
-    import componentC from '/forRouter/component-c.js'
 
-    const routes = [
+  <script type="text/javascript">
+    var componentA = {  template : "<h3>component-a!</h3>"};
+    var componentB = {  template : "<h3>component-b!</h3>"};
+
+    var componentC = {  template : "<h3>component-c!</h3>"};
+    var routes = [
       {path : '/a',component : componentA},
       {path : '/b',component : componentB},
       {path : '/c',component : componentC}
-    ]
+    ];
 
-    const router = new VueRouter({
+    var router = new VueRouter({
       routes
-    })
+    });
 
     var my-router = new Vue({
       el : "#my-router",
       router
     })
-  </script> -->
+  </script>
 </body>
 </html>
