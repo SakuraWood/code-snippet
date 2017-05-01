@@ -6,11 +6,37 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>webStorageDemo</title>
   <style>
+    .container{
+      margin: 0 auto;
+      width: 80%;
+    }
 
+    .addressBook,.findArea,.showArea{
+      width: 400px;
+      margin: 10px auto;
+      background-color: #eee;
+    }
+    .showArea ul {
+      list-style-type: none;
+      font-size: 14px;
+    }
+
+    label{
+      display: block;
+      margin: 0 0 5px;
+    }
   </style>
 </head>
 <body>
   <div class="container">
+    <p>学习这几个API</p>
+    <p>
+      保存数据：localStorage.setItem(key,value);
+      读取数据：localStorage.getItem(key);
+      删除单个数据：localStorage.removeItem(key);
+      删除所有数据：localStorage.clear();
+      得到某个索引的key：localStorage.key(index);
+    </p>
     <div class="addressBook">
       <label>姓名 ： <input type="text" id="userName"></label>
       <label>电话 ： <input type="text" id="phoneNum"></label>
@@ -24,13 +50,95 @@
     </div>
 
     <div class="showArea">
-
     </div>
 
   </div>
 
   <script type="text/javascript">
 
+    //绑定onload事件
+    window.onload = initSet;
+
+    //常用的DOM元素
+    var userNameDom = document.getElementById('userName');
+    var phoneNumDom = document.getElementById('phoneNum');
+    var emailDom = document.getElementById('email');
+    var findDom = document.getElementById('findUserName');
+
+    function initSet(){
+        //绑定各个按钮点击事件
+        document.getElementById('newAddBtn').onclick = save;
+        document.getElementById('findBtn').onclick = findAndShow;
+        document.getElementById('findAllBtn').onclick = showAll;
+    }
+
+    function save(){
+      if(isEmpty(userNameDom)){
+        alert('请输入联系人名称！');
+        return false;
+      };
+      if(isEmpty(phoneNumDom)){
+        alert('请输入联系人电话！');
+        return false;
+      };
+      if(isEmpty(emailDom)){
+        alert('请输入联系人邮箱！');
+        return false;
+      };
+
+      var username = userNameDom.value;
+      var contact = addContact();
+
+      //保存数据：localStorage.setItem(key,value);
+      localStorage.setItem(username,contact);
+    };
+
+    function findAndShow(){
+      if(isEmpty(findDom)){
+        alert('请输入关键字！');
+        return false;
+      }
+
+      //读取数据：localStorage.getItem(key);
+      var contactJson = JSON.parse(localStorage.getItem(findDom.value));
+      var result = document.createElement('ul');
+      result.innerHTML = '<li>姓名 ：' + contactJson.username + ' </li><li>电话 ： ' + contactJson.phonenum + '</li><li>邮箱 ： ' + contactJson.email + '</li>'
+      document.getElementsByClassName('showArea')[0].appendChild(result);
+    };
+
+    function showAll(){
+      var i = 0;
+      for(i;i<localStorage.length;i++){
+
+        //得到某个索引的key：localStorage.key(index);
+        var contactJson = JSON.parse(localStorage.getItem(localStorage.key(i)));
+        var result = document.createElement('ul');
+        result.innerHTML = '<li>姓名 ：' + contactJson.username + ' </li><li>电话 ： ' + contactJson.phonenum + '</li><li>邮箱 ： ' + contactJson.email + '</li>'
+        document.getElementsByClassName('showArea')[0].appendChild(result);
+      }
+    };
+
+    function addContact(){
+      var username = userNameDom.value;
+      var phonenum = phoneNumDom.value;
+      var email = emailDom.value;
+
+      var newcontact = {
+        'username' : username,
+        'phonenum' : phonenum,
+        'email' : email
+      };
+
+      return JSON.stringify(newcontact);
+    };
+
+    function isEmpty(domElement){
+      if(domElement.value == ""){
+        return true;
+      }else{
+        return false;
+      };
+    };
   </script>
 </body>
 </html>
