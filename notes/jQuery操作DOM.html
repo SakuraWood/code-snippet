@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="src/dist/css/bootstrap.css">
+  <script type="text/javascript" src="src/jquery-3.2.0.min.js"></script>
+  <script type="text/javascript" src="src/dist/js/bootstrap.js"></script>
+  <title>jQuery 操作DOM</title>
+  <style>
+    .container{
+      padding-top: 10px;
+    }
+    .btn-area label{
+      margin-right: 5px;
+    }
+
+    .show-area{
+      margin-top: 20px;
+      border: 1px solid #999;
+      border-radius: 5px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="btn-area">
+      <label>内容 ：<input type="text" id="addcontent"></label><button id="addbtn">新增</button> <br>
+      <label>序号 ：<input type="text" id="changeindex"></label><label>新内容 ：<input type="text" id="newcontent"></label><button id="changebtn">改变</button> <br>
+      <label>任务一 ：<input type="text" id="insert1"></label><label>任务二 ：<input type="text" id="insert2"></label><button id="insertbtn">交换位置</button> <br>
+      <label>序号 ：<input type="text" id="deleteindex"></label><button id="deletebtn">删除</button>
+    </div>
+    <div class="show-area">
+      <ol class="main-area">
+        <h3>任务列表为空！</h3>
+      </ol>
+    </div>
+  </div>
+
+  <script type="text/javascript" src="src/jQuery-DOM-Dome.js"></script>
+</body>
+</html>
