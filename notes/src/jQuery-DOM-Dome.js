@@ -8,6 +8,7 @@ $(function(){
   var insertbtnDom = $('#insertbtn');
   var deleteindex = $('#deleteindex');
   var deletebtnDom = $('#deletebtn');
+  var deleteAllDom = $('#deleteAllbtn');
 
   addbtnDom.click(function(){
     if(addcontent.val() === ''){
@@ -16,7 +17,6 @@ $(function(){
       var newDom = $('<li>' + addcontent.val() + '</li>');
       //在showareaDom对象内部后面 增加 一个 li对象
       showareaDom.append(newDom);
-
       addcontent.val('');
     }
     changeTitle();
@@ -31,16 +31,22 @@ $(function(){
     }
   });
 
-
   insertbtnDom.click(function(){
     var insertindex1 = $('#insert1');
     var insertindex2 = $('#insert2');
     if(insertindex1.val()===''||insertindex2.val()===''){
       alert("请输入需交换的任务序号！");
     }else {
+      var num1 = sortNum(insertindex1.val()-1,insertindex2.val()-1)[0];
+      var num2 = sortNum(insertindex1.val()-1,insertindex2.val()-1)[1];
 
+      var temp =$('ol.main-area li:eq('+ num1 +')');
+
+      //将target对象 插入到目标元素前/后 before/after
+      //也可以用来移动已存在的对象
+      $('ol.main-area li:eq('+ num1 +')').after($('ol.main-area li:eq('+ num2 +')'));
+      $('ol.main-area li:eq('+ num2 +')').after($('ol.main-area li:eq('+ num1 +')'));
     }
-
   });
 
   deletebtnDom.click(function(){
@@ -56,15 +62,26 @@ $(function(){
     changeTitle();
   });
 
+  deleteAllDom.click(function(){
+    $('ol.main-area').empty();
+    changeTitle();
+  });
+
+
+
   function changeTitle(){
     if($('ol.main-area li').length > 0){
-      $('ol.main-area h3').html("未完成任务列表");
+      $('.show-area h3').html("未完成任务列表");
     }else(
-      $('ol.main-area h3').html("任务列表为空！")
+      $('.show-area h3').html("任务列表为空！")
     );
   }
 
-  function domSwitch(parentDom,index1,index2){
-      
+  function sortNum(num1,num2){
+
+    var temp = [];
+    temp.push(num1,num2);
+    return temp.sort();
+
   }
 });
