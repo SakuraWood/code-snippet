@@ -22,7 +22,7 @@
     this.picViewArea = this.popupDom.find('.lightbox-pic-view');
     this.captionArea = this.popupDom.find('.lightbox-pic-caption');
 
-    this.imgDom = this.popupDom.find('.lightbox-pic-caption');
+    this.imgDom = this.popupDom.find('.lightbox-img');
     this.prevBtnDom = this.popupDom.find('.lightbox-prev-btn');
     this.nextBtnDom = this.popupDom.find('.lightbox-next-btn');
 
@@ -54,6 +54,7 @@
     //弹出遮罩和弹框
     showMaskAndPopup:function(src,id,caption){
 
+      var self = this;
       //遮罩淡出
       this.maskDom.fadeIn();
 
@@ -78,7 +79,6 @@
         'top' : '50%',
       },function(){
         //过渡动画完成之后 加载图片
-
         self.loadPicSize(src);
 
       });
@@ -106,12 +106,59 @@
 
       //
     },
+    //展示图片，调整大小
+    changePic:function(picSource){
 
-    //获取图片大小，调整弹框
+      //获取图片的大小
+      var self = this,
+          img = new Image();
+      img.src = picSource;
+
+      var imgHeight = img.height,
+          imgWidth  = img.width;
+
+      //根据窗口大小，调整弹出框大小
+      var scale = Math.min((imgHeight+10)/$(window).height(),(imgWidth+10)/$(window).width(),1);
+
+      imgHeight *= scale;
+      imgWidth *= scale;
+
+      //调整 弹出框 及 imgView 大小
+      self.popupDom.animate({
+        'height' : imgHeight+10,
+        'width' : imgWidth+10,
+        'margin-left' : -(imgWidth+10)/2,
+        'margin-top' : -(imgHeight+10)/2,
+      });
+
+      self.picViewArea.animate({
+        'height' : imgHeight,
+        'width' : imgWidth,
+      });
+
+      //展示图片
+      self.imgDom.attr({
+        'src' : picSource,
+      }).fadeIn();
+
+    },
+    //加载图片
     loadPicSize : function(picSource){
 
-      
+      var self = this;
+      //图片加载完成后执行
+      this.preLoadImg(picSource);
+    },
+    //图片完成加载后执行
+    preLoadImg : function(picSource){
 
+      var self = this,
+          img = new Image();
+      img.src = picSource;
+
+      img.onload = function(){
+        self.changePic(picSource);
+      };
     },
     //获取索引
     getIndex:function(dataId){

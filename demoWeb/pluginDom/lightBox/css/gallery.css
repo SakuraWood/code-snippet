@@ -17,11 +17,11 @@
   border-radius: 5px;
   padding: 5px;
   position: fixed;
+  top : 50%;
   left : 50%;
   background: #fff url('../src/icon/loading.gif') no-repeat center center;
   z-index: 10001;
   display: none;
-  margin-left:
 }
 #lightbox-popup .lightbox-pic-view{
   position: relative;
@@ -52,6 +52,7 @@
 #lightbox-popup .lightbox-pic-view .lightbox-img{
   display: block;
   width: 100%;
+  height: 100%;
 }
 
 #lightbox-popup .lightbox-pic-caption{
