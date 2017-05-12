@@ -52,9 +52,12 @@
   LightBox.prototype = {
 
     //弹出遮罩和弹框
-    showMaskAndPopup:function(src,id,caption){
+    showMaskAndPopup:function(src,id){
 
+      this.targetIndex = this.getIndex(id);
+      console.log('初始化 ：' + this.targetIndex);
       var self = this;
+
       //遮罩淡出
       this.maskDom.fadeIn();
 
@@ -65,46 +68,27 @@
       //中间过渡状态 的样式及动画效果
       this.imgDom.hide();
       this.captionArea.hide();
+      this.nextBtnDom.removeClass('lightbox-next-btn-show');
+      this.prevBtnDom.removeClass('lightbox-prev-btn-show');
 
       this.picViewArea.css({
-        'height' : (winHeight/2+10),
-        'width' : (winWidth/2+10),
+        'height' : (winHeight/2-10),
+        'width' : (winWidth/2-10),
       });
 
       this.popupDom.css({
-        'top' : -3*(winHeight/2+10)/2,
-        'margin-left' : -(winWidth/2+10)/2,
-        'margin-top' : -(winHeight/2+10)/2
+        'height' : (winHeight/2),
+        'width' : (winWidth/2),
+        'top' : '-30%',
+        'margin-left' : -winWidth/4,
+        'margin-top' : -winHeight/4
       }).fadeIn().animate({
         'top' : '50%',
+        'margin-top' : -winHeight/4
       },function(){
         //过渡动画完成之后 加载图片
         self.loadPicSize(src);
-
       });
-
-      //初始化弹出框
-
-      //判断图片切换按钮是否展示
-      var targetIndex = this.getIndex(id);
-
-      if(this.groupData.length === 1){
-        this.prevBtnDom.addClass("disableShow");
-        this.nextBtnDom.addClass("disableShow");
-      }else {
-        if(targetIndex === 0){
-          this.prevBtnDom.addClass("disableShow");
-          this.nextBtnDom.removeClass("disableShow");
-        }else if (targetIndex === this.groupData.length-1) {
-          this.prevBtnDom.removeClass("disableShow");
-          this.nextBtnDom.addClass("disableShow");
-        }else {
-          this.prevBtnDom.removeClass("disableShow");
-          this.nextBtnDom.removeClass("disableShow");
-        }
-      }
-
-      //
     },
     //展示图片，调整大小
     changePic:function(picSource){
@@ -125,22 +109,20 @@
 
       //调整 弹出框 及 imgView 大小
       self.popupDom.animate({
-        'height' : imgHeight+10,
-        'width' : imgWidth+10,
-        'margin-left' : -(imgWidth+10)/2,
-        'margin-top' : -(imgHeight+10)/2,
-      });
-
-      self.picViewArea.animate({
         'height' : imgHeight,
         'width' : imgWidth,
+        'margin-left' : -(imgWidth)/2,
+        'margin-top' : -(imgHeight)/2,
+      },function(){
+        self.picViewArea.css({
+          'height' : imgHeight-10,
+          'width' : imgWidth-10,
+        });
+        //展示图片
+        self.imgDom.attr({
+          'src' : picSource,
+        }).fadeIn();
       });
-
-      //展示图片
-      self.imgDom.attr({
-        'src' : picSource,
-      }).fadeIn();
-
     },
     //加载图片
     loadPicSize : function(picSource){
@@ -148,6 +130,77 @@
       var self = this;
       //图片加载完成后执行
       this.preLoadImg(picSource);
+
+      //初始化切换按钮和数据
+        //判断图片切换按钮是否展示
+
+        if(this.groupData.length === 1){
+          this.prevBtnDom.addClass("disableShow");
+          this.nextBtnDom.addClass("disableShow");
+        }else {
+          if(this.targetIndex === 0){
+            this.prevBtnDom.addClass("disableShow");
+            this.nextBtnDom.removeClass("disableShow");
+          }else if (this.targetIndex === (this.groupData.length-1)) {
+            this.prevBtnDom.removeClass("disableShow");
+            this.nextBtnDom.addClass("disableShow");
+          }else {
+            this.prevBtnDom.removeClass("disableShow");
+            this.nextBtnDom.removeClass("disableShow");
+          }
+        }
+
+        //展示区域数据
+
+        this.picdescText.text(this.groupData[this.targetIndex].caption);
+        this.picIndexText.text('当前索引 ：' + (this.targetIndex+1) + ' of ' + this.groupData.length);
+
+        this.captionArea.fadeIn();
+
+        //绑定关闭按钮及遮罩点击事件
+
+        this.maskDom.click(function(){
+          self.maskDom.fadeOut();
+          self.popupDom.fadeOut();
+        });
+
+        this.closeBtn.click(function(){
+          self.maskDom.fadeOut();
+          self.popupDom.fadeOut();
+        });
+
+        //展示切换按钮
+        if(!this.nextBtnDom.hasClass('disableShow')){
+          this.nextBtnDom.addClass('lightbox-next-btn-show').click(function(){
+            self.gotoPic('next');
+          });
+        }else {
+          this.nextBtnDom.removeClass('lightbox-next-btn-show');
+        }
+
+        if(!this.prevBtnDom.hasClass('disableShow')){
+          this.prevBtnDom.addClass('lightbox-prev-btn-show').click(function(){
+            self.gotoPic('prev');
+          });
+        }else{
+          this.prevBtnDom.removeClass('lightbox-prev-btn-show');
+        }
+    },
+
+    //切换图片
+
+    gotoPic : function(str){
+
+      if(str === 'next'){
+        this.targetIndex++;
+        console.log('next :' + this.targetIndex);
+      }
+      if(str === 'prev'){
+        this.targetIndex--;
+        console.log('prev :' + this.targetIndex);
+      }
+      var picSrc = this.groupData[this.targetIndex].src;
+      this.loadPicSize(picSrc);
     },
     //图片完成加载后执行
     preLoadImg : function(picSource){
@@ -169,10 +222,9 @@
 
       var self = this,
           sourceSrc = targetObj.attr('data-source'),
-          sourceId = targetObj.attr('data-id'),
-          sourceCaption = targetObj.attr('data-caption');
+          sourceId = targetObj.attr('data-id');
 
-      this.showMaskAndPopup(sourceSrc,sourceId,sourceCaption);
+      this.showMaskAndPopup(sourceSrc,sourceId);
     },
     //获取同组元素，及元素对应的数据
     getGroup : function(){
@@ -197,7 +249,7 @@
       //弹框内部元素保存为字符串
       var strDom = '<div class="lightbox-pic-view">'+
                 '<span class="lightbox-btn lightbox-prev-btn"></span>'+
-                '<img  src="" class="lightbox-img" alt="">'+
+                '<img  src="" class="lightbox-img">'+
                 '<span class="lightbox-btn lightbox-next-btn"></span>'+
               '</div>'+
               '<div class="lightbox-pic-caption">'+
