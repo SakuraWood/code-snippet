@@ -63,10 +63,10 @@
 #lightbox-popup .lightbox-pic-caption .lightbox-caption-area{
   color: #eee;
   padding: 10px 5px;
-  line-height: 0.5;
+  line-height: normal;
 }
 #lightbox-popup .lightbox-pic-caption .light-close-btn{
-  cursor: pointer;;
+  cursor: pointer;
   background: url('../src/icon/close.png') no-repeat center center;
   height: 27px;
   width: 27px;
