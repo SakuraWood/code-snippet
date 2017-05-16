@@ -1,3 +1,4 @@
+//app.vue 作为应用的初始化组件
 <template>
   <div id="wrapper">
     <nav class="navbar navbar-default">
