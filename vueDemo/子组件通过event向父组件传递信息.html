@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script type="text/javascript" src="lib/vue.js"></script>
+  <title>通过event传递信息</title>
+</head>
+<body>
+  <div class="container-fluid">
+    <div class="container" id="vue1">
+      <p>根实例中的次数统计 : {{count}}</p>
+      <my-button v-on:eventname="addCount"></my-button>
+      <my-button v-on:eventname="addCount"></my-button>
+    </div>
+  </div>
+
+  <script>
+
+  var vm = new Vue({
+    el : '#vue1',
+    data : {
+      count : 0,
+    },
+    methods : {
+      addCount : function(){
+        this.count++;
+      },
+    },
+    components : {
+      'my-button' : {
+        template : '<button v-on:click="selfCountAdd">子组件 {{count}}</button>',
+        //组件中的data 需要使用函数的形式，不然会报错
+        data : function(){
+          return {
+            count : 0
+          }
+        },
+        methods : {
+          selfCountAdd : function(){
+            this.count++;
+            this.$emit('eventname')
+          }
+        }
+      }
+    },
+  });
+
+  </script>
+</body>
+</html>

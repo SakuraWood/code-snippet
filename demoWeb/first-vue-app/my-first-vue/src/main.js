@@ -29,6 +29,7 @@ const routes = [{
 },{
   path : '/time-entries',
   component : TimeEntries,
+  //嵌套路由， 当 /time-entries/log-time 匹配成功时， LogTime.vue 会被渲染在  TimeEntries组件的 router-view 中
   children : [{
     path : 'log-time',
     // 懒加载
