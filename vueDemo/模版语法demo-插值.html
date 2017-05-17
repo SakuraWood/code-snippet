@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="lib/bootstrap.css">
+  <script type="text/javascript" src="lib/vue.js"></script>
+  <title>模版语法-插值</title>
+</head>
+<body>
+  <div class="container-fluid">
+    <!-- 用来渲染组件 -->
+    <div class="container" id="vue1">
+      <p>文本方式 ： {{htmldemo}}</p>
+      <p v-html="htmldemo"></p>
+      <button :disabled="flag">v-bind绑定属性条件求值</button>
+      <p>javascript表达式： {{num+1}}</p>
+      <p>javascript表达式：{{flag ? 'true' : 'false'}}</p>
+      <p>javascript表达式：{{strdemo.split('').reverse().join('')}}</p>
+      <p>注意javascript语句和流控制都不会生效</p>
+      <my-component></my-component>
+    </div>
+  </div>
+
+  <script>
+
+  var vm = new Vue({
+    el : '#vue1',
+    // template : '',
+    data : {
+      num : 0,
+      flag : false,
+      htmldemo : '<b>html</b>',
+      strdemo : 'abcdefg',
+    },
+    methods : {
+
+    },
+    components : {
+      'my-component' : {
+        //v-once一次性插值,当数据改变时，插值处不会更新
+        template : '<button @click="addCount" v-once>v-once一次性插值 {{count}}</button>',
+        //组件中的data 需要使用函数的形式，不然会报错
+        data : function(){
+          return {
+              count : 0,
+          }
+        },
+        methods : {
+          addCount : function(){
+            this.count++;
+          }
+        }
+      }
+    },
+  });
+
+  </script>
+</body>
+</html>
