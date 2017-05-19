@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="lib/bootstrap.css">
+  <script type="text/javascript" src="lib/vue.js"></script>
+  <title>绑定class和style</title>
+  <style>
+    .selfclass{
+      font-size: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container-fluid">
+    <!-- 用来渲染组件 -->
+    <div class="container" id="vue1">
+      <p v-bind:class="{'text-danger' : isDanger}">简单传入class,带短线的类名，一定要带引号</p>
+      <p v-bind:class="{'text-danger' : isDanger , selfclass : isSelf}">传入多个class</p>
+      <p v-bind:class="classObj">传入一个 class对象</p>
+      <p v-bind:class="computedClass">传入一个 计算属性返回的class对象</p>
+      <p v-bind:class="[colorClass,fontClass]">传入一个对象数组</p>
+      <p :class="[isDanger ? 'text-danger' : 'selfclass']">数组中使用三元运算符,根据条件判断切换class</p>
+      <p :class="[{'text-danger' : isDanger},selfclass]">数据中使用对象语法</p>
+      <my-component v-bind:class="{'text-danger' : isDanger , selfclass : isSelf}"></my-component>
+      <hr>
+
+      <p v-bind:style="{color : 'blue' , 'font-size' : '20px' }">绑定style 内联样式</p>
+      <p v-bind:style="{color : colorStyle , 'font-size' : fontStyle + 'px' }">绑定style 内联样式</p>
+      <p :style="styleObj">绑定内联样式对象</p>
+
+    </div>
+  </div>
+
+  <script>
+  var vm = new Vue({
+    el : '#vue1',
+    // template : '',
+    data : {
+      //style数据
+      colorStyle : 'blue',
+      fontStyle : '20',
+
+      //style对象
+      styleObj : {
+        color : 'blue' ,
+       'font-size' : '20px'
+     },
+
+      //class数据， value是class名
+      colorClass : 'text-danger',
+      fontClass : 'selfclass',
+
+      //两个boolean值，用来判断class是否生效
+      isDanger : true,
+      isSelf : true,
+
+      //class对象
+      classObj : {
+        'text-danger' : true,
+        selfclass : false,
+      },
+    },
+    computed : {
+      computedClass : function(){
+        return {
+          'text-danger' : this.isDanger,
+          selfclass : this.isSelf
+        }
+      },
+    },
+    methods : {
+
+    },
+    components : {
+      'my-component' : {
+        template : '<p class="bg-primary"> 组件已有class，再v-bind绑定，则都会生效</p>',
+        //组件中的data 需要使用函数的形式，不然会报错
+        data : function(){
+          return {
+            isBg : true
+          }
+        },
+        methods : {
+
+        }
+      }
+    },
+  });
+
+  </script>
+</body>
+</html>

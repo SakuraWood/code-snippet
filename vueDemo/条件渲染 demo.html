@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="lib/bootstrap.css">
+  <script type="text/javascript" src="lib/vue.js"></script>
+  <title>条件渲染demo</title>
+  <style>
+    .selfclass{
+      font-size: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container-fluid">
+    <!-- 用来渲染组件 -->
+    <div class="container" id="vue1">
+      <p>使用 v-if v-else指令 进行条件渲染 通常会复用已有元素 可以通过key属性来设置，不同的key 不会复用</p>
+      <template v-if="loginStyle === 'username'">
+        <label>Username : <input type="text" placeholder="please input your username" key="1"></label>
+      </template>
+      <template v-else>
+        <label>Email : <input type="text" placeholder="please input your email" key="1"></label>
+      </template>
+      <button @click="changeLoginStyle">toggle</button>
+    </div>
+  </div>
+
+  <script>
+  var vm = new Vue({
+    el : '#vue1',
+    // template : '',
+    data : {
+      loginStyle : 'username',
+    },
+    computed : {
+
+    },
+    methods : {
+      changeLoginStyle : function(){
+        switch (this.loginStyle) {
+          case 'username': this.loginStyle = 'email';
+            break;
+          case 'email' : this.loginStyle = 'username';
+            break;
+        }
+      },
+    },
+    components : {
+      'my-component' : {
+        template : '',
+        //组件中的data 需要使用函数的形式，不然会报错
+        data : function(){
+          return {
+
+          }
+        },
+        methods : {
+
+        }
+      }
+    },
+  });
+
+  </script>
+</body>
+</html>

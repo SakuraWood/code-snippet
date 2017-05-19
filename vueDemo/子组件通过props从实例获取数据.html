@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="lib/bootstrap.css">
+  <script type="text/javascript" src="lib/vue.js"></script>
+  <title>表单控件绑定</title>
+</head>
+<body>
+  <div class="container-fluid">
+    <!-- 用来渲染组件 -->
+    <div class="container" id="vue1">
+      <input type="number" v-model.number="value1">
+      <my-component :childvalue="value1"></my-component>
+    </div>
+  </div>
+
+  <script>
+
+  var vm = new Vue({
+    el : '#vue1',
+    // template : '',
+    data : {
+      value1 : '',
+    },
+    methods : {
+
+    },
+    components : {
+      'my-component' : {
+        //v-once一次性插值,当数据改变时，插值处不会更新
+        template : '<p>子组件 ： {{childvalue}}</p>',
+        //组件中的data 需要使用函数的形式，不然会报错
+        data : function(){
+          return {
+
+          }
+        },
+        props : {
+          childvalue : {
+            type : Number,
+            default : 100,
+          }
+        },
+        methods : {
+
+        }
+      }
+    },
+  });
+
+  </script>
+</body>
+</html>

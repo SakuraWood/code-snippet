@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="lib/bootstrap.css">
+  <script type="text/javascript" src="lib/vue.js"></script>
+  <title>表单控件绑定</title>
+</head>
+<body>
+  <div class="container-fluid">
+    <!-- 用来渲染组件 -->
+    <div class="container" id="vue1">
+      <p>input : {{inputValue}}</p>
+      <input type="text" v-model="inputValue">
+
+      <p>input.lazy : {{inputValue}}</p>
+      <input type="text" v-model.lazy="inputValue">
+
+      <p>textarea  : {{textareaValue}}</p>
+      <textarea id="" cols="30" rows="10" v-model="textareaValue"></textarea>
+
+      <p>radio : {{radioValue}}</p>
+      <input type="radio" name="sex" value="man" id="radio1" v-model="radioValue">
+      <label for="radio1">男</label>
+      <input type="radio" name="sex" value="women" id="radio2" v-model="radioValue">
+      <label for="radio2">女</label>
+
+      <p>radio : {{checkboxValue}}</p>
+      <input type="checkbox" name="1" value="apple" id="checkbox1" v-model="checkboxValue">
+      <label for="checkbox1">苹果</label>
+      <input type="checkbox" name="1" value="li" id="checkbox2" v-model="checkboxValue">
+      <label for="checkbox2">梨子</label>
+      <input type="checkbox" name="1" value="ju" id="checkbox3" v-model="checkboxValue">
+      <label for="checkbox3">橘子</label>
+
+      <p>select : {{selectValue}}</p>
+      <select  id="select1" v-model="selectValue">
+        <option value="a">A</option>
+        <option value="b">B</option>
+        <option value="c">C</option>
+        <option value="d">D</option>
+        <option value="e">E</option>
+      </select>
+
+      <p>select 多选 {{selectsValue}}</p>
+      <select  id="select2" v-model="selectsValue" multiple="multiple">
+        <option value="a">A</option>
+        <option value="b">B</option>
+        <option value="c">C</option>
+        <option value="d">D</option>
+        <option value="e">E</option>
+      </select>
+    </div>
+  </div>
+
+  <script>
+
+  var vm = new Vue({
+    el : '#vue1',
+    // template : '',
+    data : {
+      inputValue : '',
+      textareaValue : '',
+      radioValue : '',
+      checkboxValue : [],
+      selectValue : '',
+      selectsValue : [],
+    },
+    methods : {
+
+    },
+    components : {
+      'my-component' : {
+        //v-once一次性插值,当数据改变时，插值处不会更新
+        template : '',
+        //组件中的data 需要使用函数的形式，不然会报错
+        data : function(){
+          return {
+
+          }
+        },
+        methods : {
+
+        }
+      }
+    },
+  });
+
+  </script>
+</body>
+</html>
