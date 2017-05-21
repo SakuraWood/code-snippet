@@ -12,8 +12,9 @@
   <div class="container-fluid">
     <!-- 用来渲染组件 -->
     <div class="container" id="vue1">
+      <!-- 此处的value1 在data中定义的时候需要为number 不然.number之后仍是string类型 -->
       <input type="number" v-model.number="value1">
-      <my-component :childvalue="value1"></my-component>
+      <my-component v-bind:childvalue="value1"></my-component>
     </div>
   </div>
 
@@ -23,7 +24,7 @@
     el : '#vue1',
     // template : '',
     data : {
-      value1 : '',
+      value1 : 0,
     },
     methods : {
 
@@ -42,7 +43,7 @@
           childvalue : {
             type : Number,
             default : 100,
-          }
+          },
         },
         methods : {
 
