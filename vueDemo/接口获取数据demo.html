@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="lib/bootstrap.css">
+  <script type="text/javascript" src="lib/vue.js"></script>
+  <title>接口获取数据</title>
+</head>
+<body>
+  <div class="container-fluid">
+    <!-- 用来渲染组件 -->
+    <div class="container" id="vue1">
+      <button @click="getData">获取数据</button>
+    </div>
+  </div>
+
+  <script>
+
+  var apiUrl = 'https://api.github.com/repos/vuejs/vue/commits?per_page=5&sha=master';
+
+  var vm = new Vue({
+    el : '#vue1',
+    // template : '',
+    data : {
+      commits : null,
+    },
+    methods : {
+      getData : function(){
+        var xhr = new XMLHttpRequest();
+        var self = this;
+        xhr.open('GET',apiUrl);
+        xhr.onload = function(){
+          self.commits = JSON.parse(xhr.responseText);
+          console.log('type : ' + typeof self.commits);
+          console.log(self.commits);
+        };
+        xhr.send();
+      }
+
+    },
+    components : {
+      'my-component' : {
+        //v-once一次性插值,当数据改变时，插值处不会更新
+        template : '',
+        //组件中的data 需要使用函数的形式，不然会报错
+        data : function(){
+          return {
+
+          }
+        },
+        methods : {
+        }
+      }
+    },
+  });
+
+  </script>
+</body>
+</html>
