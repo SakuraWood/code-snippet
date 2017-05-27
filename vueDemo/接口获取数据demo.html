@@ -18,27 +18,34 @@
 
   <script>
 
-  var apiUrl = 'https://api.github.com/repos/vuejs/vue/commits?per_page=5&sha=master';
+  var apiUrl = 'https://api.github.com/repos/vuejs/vue/commits?per_page=5&sha=';
 
   var vm = new Vue({
     el : '#vue1',
     // template : '',
     data : {
+      currentbranch : 'master',
       commits : null,
     },
     methods : {
       getData : function(){
         var xhr = new XMLHttpRequest();
         var self = this;
-        xhr.open('GET',apiUrl);
+        //建立一个get请求
+        xhr.open('GET',apiUrl+self.currentbranch);
+
+        //设定返回数据类型
+        // xhr.responseType = 'json';
+
+        //请求完成 的事件
         xhr.onload = function(){
           self.commits = JSON.parse(xhr.responseText);
-          console.log('type : ' + typeof self.commits);
-          console.log(self.commits);
+          console.log(self.commits[0].html_url);
         };
+
+        //发送请求
         xhr.send();
       }
-
     },
     components : {
       'my-component' : {

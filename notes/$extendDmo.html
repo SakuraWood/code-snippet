@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script type="text/javascript" src="src/jquery-3.2.1.js"></script>
+  <title>extendDome</title>
+</head>
+<body>
+  <p>jQuery.extend( target [, object1 ] [, objectN ] )</p>
+  <p>描述: 将两个或更多对象的内容合并到第一个对象。</p>
+  <p>jQuery.extend( [deep ], target, object1 [, objectN ] )</p>
+  <p>deep类型: Boolean,如果是true，合并成为递归（又叫做深拷贝）。</p>
+
+  <hr>
+
+  <p>jQuery.fn.extend( object ) 描述: 一个对象的内容合并到jQuery的原型，以提供新的jQuery实例方法。</p>
+
+  <script type="text/javascript">
+    $(function(){
+      var defaults = {
+        name : 'leichangchun',
+        age : 24,
+        food : {
+          fruit : 'apple',
+          bf : 'noodles',
+          dinner : 'meet'
+        }
+      };
+      var options = {
+        name : 'zhangying',
+        sex : 'women',
+        food : {
+          fruit : 'balala',
+          bf : 'noodles',
+        }
+      };
+
+      //将options和合并到defaults中  food对象会直接覆盖，不会递归合并
+      var settings = $.extend(defaults,options);
+      console.log(settings);
+      //defaults 内容已被改变
+      console.log(defaults.food);
+
+      /*
+      //将options和合并到defaults中  food对象不会直接覆盖，递归合并
+      var settings = $.extend(true,defaults,options);
+      console.log(settings);
+      //defaults 内容
+      console.log(defaults.food);
+
+      //插件开发常用方式 合并default和options 且不会改变default
+      var settings = $.extend({}, defaults, options);
+      */
+
+      var extendFunction = {
+        clickme : function(){
+          console.log($(this));
+        }
+      }
+
+      //合并到 $ 原型里
+      $.fn.extend(extendFunction);
+
+      //$实例可以直接调用 $原型中的方法
+      $(".btn").clickme();
+
+    });
+  </script>
+</body>
+</html>
