@@ -1,0 +1,42 @@
+.main-poster{
+
+  margin: 0 auto;
+  width: 900px;
+}
+
+.main-poster .main-list{
+  margin: 0;
+  position: relative;
+  list-style-type: none;
+  height: 270px;
+}
+
+.main-poster .main-list .list-item{
+  position: absolute;
+  top:0;
+  width: 640px;
+  height: 270px;
+}
+
+/* 祛除 img特性导致的5px下边距 */
+.main-poster .main-list .list-item a img{
+  display: block;
+}
+
+.main-poster .main-list .carousel-btn{
+  position: absolute;
+  top: 0;
+  z-index: 10;
+  width: 100px;
+  height : 270px;
+}
+
+.main-poster .main-list .carousel-prev-btn{
+  left : 0;
+  background: url('../img/btn_l.png') center center no-repeat;
+}
+
+.main-poster .main-list .carousel-next-btn{
+  right: 0;
+  background: url('../img/btn_r.png') center center no-repeat;
+}
