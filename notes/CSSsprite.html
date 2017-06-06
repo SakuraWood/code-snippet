@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>图片合并学习</title>
+</head>
+<style>
+  .img-container{
+    background-color: #fff;
+    width: 900px;
+    margin: 0 auto;
+    padding-top: 300px;
+  }
+
+  .img-item{
+   background-image: url("src/images/toolbar.png");
+   background-repeat: no-repeat;
+   background-origin: padding-box;
+   margin: 0 auto;
+   width: 52px;
+   height: 52px;
+   cursor: pointer;
+  }
+
+  .img-item-1{
+    background-position: 0 -427px;
+    /*transition: background-position 1s;
+    -webkit-transition : background-position 1s;*/
+  }
+  .img-item-1:hover{
+    background-position: 0 -489px;
+  }
+  .img-item-2{
+    background-position: 0 -551px;
+  }
+  .img-item-2:hover{
+    background-position: 0 -613px;
+  }
+  .img-item-3{
+    background-position: 0 -675px;
+  }
+  .img-item-3:hover{
+    background-position: 0 -737px;
+  }
+  .img-item-4{
+    background-position: 0 -800px;
+  }
+  .img-item-4:hover{
+    background-position: 0 -862px;
+  }
+</style>
+<body>
+
+    <div class="img-container">
+      <div class="img-item img-item-1">
+      </div>
+      <div class="img-item img-item-2"></div>
+      <div class="img-item img-item-3"></div>
+      <div class="img-item img-item-4"></div>
+    </div>
+
+</body>
+</html>
