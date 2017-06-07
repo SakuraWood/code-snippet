@@ -1,0 +1,47 @@
+*{
+  margin: 0;
+  padding: 0;
+}
+aside.toolbar{
+  position: fixed;
+  bottom: 5px;
+  right: 5px;
+  width: 52px;
+
+  a.toolbar-item{
+    display: block;
+    width: 52px;
+    height: 52px;
+    background-image: url("../images/toolbar.png");
+    background-repeat: no-repeat;
+    background-origin: padding-box;
+    cursor: pointer;
+  }
+
+  a.toolbar-item-fankui{
+    background-position: 0 -427px;
+    &:hover{
+      background-position: 0 -489px;
+    }
+  }
+
+  a.toolbar-item-download{
+    background-position: 0 -551px;
+    &:hover{
+      background-position: 0 -613px;
+    }
+  }
+
+  a.toolbar-item-weixin{
+    background-position: 0 -799px;
+    &:hover{
+      background-position: 0 -862px;
+    }
+  }
+  a.toolbar-item-gotop{
+    background-position: 0 -675px;
+    &:hover{
+      background-position: 0 -737px;
+    }
+  }
+}

@@ -1,0 +1,35 @@
+* {
+  margin: 0;
+  padding: 0; }
+
+aside.toolbar {
+  position: fixed;
+  bottom: 5px;
+  right: 5px;
+  width: 52px; }
+  aside.toolbar a.toolbar-item {
+    display: block;
+    width: 52px;
+    height: 52px;
+    background-image: url("../images/toolbar.png");
+    background-repeat: no-repeat;
+    background-origin: padding-box;
+    cursor: pointer; }
+  aside.toolbar a.toolbar-item-fankui {
+    background-position: 0 -427px; }
+    aside.toolbar a.toolbar-item-fankui:hover {
+      background-position: 0 -489px; }
+  aside.toolbar a.toolbar-item-download {
+    background-position: 0 -551px; }
+    aside.toolbar a.toolbar-item-download:hover {
+      background-position: 0 -613px; }
+  aside.toolbar a.toolbar-item-weixin {
+    background-position: 0 -799px; }
+    aside.toolbar a.toolbar-item-weixin:hover {
+      background-position: 0 -862px; }
+  aside.toolbar a.toolbar-item-gotop {
+    background-position: 0 -675px; }
+    aside.toolbar a.toolbar-item-gotop:hover {
+      background-position: 0 -737px; }
+
+/*# sourceMappingURL=index.css.map */
