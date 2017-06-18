@@ -1,0 +1,29 @@
+.imgbox-container {
+  width: 100%; }
+  .imgbox-container img {
+    display: block;
+    margin: 0 auto;
+    width: 90%; }
+  .imgbox-container div.btn-container {
+    margin-top: 10px;
+    padding: 0 40%; }
+    .imgbox-container div.btn-container button.change-img-button:first-child {
+      float: left; }
+    .imgbox-container div.btn-container button.change-img-button:last-child {
+      float: right; }
+  .imgbox-container div.loading-progress {
+    display: table;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: #ddd;
+    width: 100%;
+    height: 100%;
+    z-index: 10; }
+    .imgbox-container div.loading-progress p {
+      display: table-cell;
+      font-size: 30px;
+      text-align: center;
+      vertical-align: middle; }
+
+/*# sourceMappingURL=index.css.map */

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>清除浮动demo</title>
+  <style>
+    .container{
+      width: 1000px;
+      margin: 0 auto;
+      border: 1px solid red;
+    }
+
+    .container .item{
+      width: 200px;
+      height: 200px;
+      margin-left: 20px;
+      float: left;
+      background-color: #ccc;
+
+    }
+
+    .clearfloat{
+      overflow: hidden;
+      *zoom : 1;
+    }
+
+    .clearfloat::after{
+      display: block;
+      content: " ";
+      clear: both;
+      height: 0;
+      visibility: hidden;
+    }
+  </style>
+</head>
+<body>
+  <div class="container clearfloat">
+    <div class="item"></div>
+    <div class="item"></div>
+    <div class="item"></div>
+  </div>
+</body>
+</html>

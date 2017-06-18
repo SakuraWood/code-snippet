@@ -14,7 +14,24 @@ aside.toolbar {
     background-image: url("../images/toolbar.png");
     background-repeat: no-repeat;
     background-origin: padding-box;
-    cursor: pointer; }
+    cursor: pointer;
+    position: relative; }
+    aside.toolbar a.toolbar-item span.toolbar-item-qrcode {
+      position: absolute;
+      width: 160px;
+      right: 52px;
+      bottom: 1px;
+      background-image: url("../images/toolbar.png");
+      background-repeat: no-repeat;
+      background-origin: padding-box;
+      box-shadow: 1px 1px 1px #ccc;
+      transform: scale(0.01, 0.01);
+      transform-origin: bottom right;
+      opacity: 0;
+      transition: transform 1s,opacity 1s; }
+    aside.toolbar a.toolbar-item:hover span.toolbar-item-qrcode {
+      transform: scale(1, 1);
+      opacity: 1; }
   aside.toolbar a.toolbar-item-fankui {
     background-position: 0 -427px; }
     aside.toolbar a.toolbar-item-fankui:hover {
@@ -23,10 +40,16 @@ aside.toolbar {
     background-position: 0 -551px; }
     aside.toolbar a.toolbar-item-download:hover {
       background-position: 0 -613px; }
+    aside.toolbar a.toolbar-item-download span.toolbar-item-qrcode-download {
+      height: 180px;
+      background-position: -7px -225px; }
   aside.toolbar a.toolbar-item-weixin {
     background-position: 0 -799px; }
     aside.toolbar a.toolbar-item-weixin:hover {
       background-position: 0 -862px; }
+    aside.toolbar a.toolbar-item-weixin span.toolbar-item-qrcode-weixin {
+      height: 200px;
+      background-position: -7px -2px; }
   aside.toolbar a.toolbar-item-gotop {
     background-position: 0 -675px; }
     aside.toolbar a.toolbar-item-gotop:hover {

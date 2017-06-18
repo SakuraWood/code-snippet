@@ -1,3 +1,16 @@
+@mixin background-item($url){
+  background-image: url($url);
+  background-repeat: no-repeat;
+  background-origin: padding-box;
+}
+
+@mixin background-position-item($height1,$height2) {
+  background-position: 0 $height1;
+  &:hover{
+    background-position: 0 $height2;
+  }
+}
+
 *{
   margin: 0;
   padding: 0;
@@ -12,36 +25,51 @@ aside.toolbar{
     display: block;
     width: 52px;
     height: 52px;
-    background-image: url("../images/toolbar.png");
-    background-repeat: no-repeat;
-    background-origin: padding-box;
+    @include background-item("../images/toolbar.png");
     cursor: pointer;
+    position: relative;
+
+    span.toolbar-item-qrcode{
+      position: absolute;
+      width: 160px;
+      right: 52px;
+      bottom: 1px;
+      @include background-item("../images/toolbar.png");
+      box-shadow: 1px 1px 1px #ccc;
+      transform: scale(0.01,0.01);
+      transform-origin : bottom right;
+      opacity: 0;
+      transition: transform 1s,opacity 1s;
+    }
+
+    &:hover{
+      span.toolbar-item-qrcode{
+        transform: scale(1,1);
+        opacity: 1;
+      }
+    }
   }
 
   a.toolbar-item-fankui{
-    background-position: 0 -427px;
-    &:hover{
-      background-position: 0 -489px;
-    }
+    @include background-position-item(-427px,-489px);
   }
 
   a.toolbar-item-download{
-    background-position: 0 -551px;
-    &:hover{
-      background-position: 0 -613px;
+    @include background-position-item(-551px,-613px);
+    span.toolbar-item-qrcode-download{
+      height: 180px;
+      background-position: -7px -225px;
     }
-  }
+   }
 
   a.toolbar-item-weixin{
-    background-position: 0 -799px;
-    &:hover{
-      background-position: 0 -862px;
+    @include background-position-item(-799px,-862px);
+    span.toolbar-item-qrcode-weixin{
+      height: 200px;
+      background-position: -7px -2px;
     }
   }
   a.toolbar-item-gotop{
-    background-position: 0 -675px;
-    &:hover{
-      background-position: 0 -737px;
-    }
+    @include background-position-item(-675px,-737px);
   }
 }
