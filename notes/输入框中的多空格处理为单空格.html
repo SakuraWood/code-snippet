@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>用repalece处理多空格</title>
+</head>
+<body>
+  <p>replace() : 返回根据正则表达式进行文字替换后的字符串的复制;stringObj.replace(rgExp, replaceText)</p>
+  <input type="text" id="inputTest">
+
+  <script type="text/javascript">
+    window.onload = function(){
+      document.getElementById('inputTest').onblur = function(){
+        // 获取输入框内容
+        var inputValue = this.value;
+        //创建一个 匹配多空格的正则表达式
+        var checkValue = /\s{2,}/g;
+        this.value = inputValue.replace(checkValue," ");
+      }
+    }
+  </script>
+</body>
+</html>

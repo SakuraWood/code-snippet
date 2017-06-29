@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script type="text/javascript" src="src/jquery-3.2.0.min.js"></script>
+  <title>屏幕/浏览器/页面等尺寸的获取</title>
+</head>
+<body>
+  <h3>屏幕尺寸</h3>
+  <p>屏幕高度width ： <span id="sreen-width"></span></p>
+  <p>屏幕高度height ： <span id="sreen-height"></span></p>
+  <p>屏幕可用高度(不包括任务栏)availHeight ：<span id="screen-availHeight"></span></p>
+  <p>屏幕可用宽度 availWidth ：<span id="screen-availWidth"></span></p>
+  <h3>浏览器尺寸</h3>
+  <p>窗口的外部高度，包含工具条与滚动条outerHeight : <span id="window-outerHeight"></span></p>
+  <p>窗口的外部宽度，包含滚动条outerWidth : <span id="window-outerWidth"></span></p>
+  <p>窗口的内部高度，不包含工具条与滚动条innerHeight : <span id="window-innerHeight"></span></p>
+  <p>窗口的内部宽度，不包含滚动条innerWidth : <span id="window-innerWidth"></span></p>
+  <h3>文档（body元素）尺寸</h3>
+  <p>可视高度（不包括边框，边距或滚动条) clientHeight : <span id="body-clientHeight"></span></p>
+  <p>可视宽度（不包括边框，边距或滚动条) clientWidth : <span id="body-clientWidth"></span></p>
+  <p>高度包括边框和填充 offsetHeight : <span id="body-offsetHeight"></span></p>
+  <p>宽度包括边框和填充 offsetWidht : <span id="body-offsetWidth"></span></p>
+  <p>页面的整个高度（包括带滚动条的隐蔽的地方）scrollHeight ： <span id="body-scrollHeight"></span></p>
+  <p>页面的整个宽度（包括带滚动条的隐蔽的地方）scrollWidth ： <span id="body-scrollwidth"></span></p>
+  <h4>jQuery获取</h4>
+  <p>浏览器可视区域 $(window).height() : <span id="jquery-window-height"></span> $(window).width() : <span id="jquery-window-width"></span></p>
+  <p>页面的文档尺寸 $(document).height() : <span id="jquery-document-height"></span> $(document).width() : <span id="jquery-document-width"></span></p>
+  <p>当前窗口文档body的尺寸 $(document.body).height() : <span id="jquery-document-body-height"></span> $(document.body).width() : <span id="jquery-document-body-width"></span></p>
+  <p>滚动条到顶部的垂直高度 (即网页被卷上去的高度) $(document).scrollTop() : <span id="jquery-document-scrolltop"></span> $(document).scrollLeft() : <span id="jquery-document-scrollleft"></span></p>
+  <h3>鼠标点击的位置</h3>
+  <p>相对应可视区clientX : <span id="e-clientX"></span></p>
+  <p>clientY : <span id="e-clientY"></span></p>
+  <p>相对于文档pageX : <span id="e-pageX"></span></p>
+  <p>pageY : <span id="e-pageY"></span></p>
+  <p>相对于屏幕screenX : <span id="e-screenX"></span></p>
+  <p>screenY : <span id="e-screenY"></span></p>
+</body>
+<script>
+  window.onload = init;
+
+  function init(){
+    getInfo();
+
+    document.addEventListener('click',function(e){
+      document.getElementById('e-clientX').innerHTML = e.clientX;
+      document.getElementById('e-clientY').innerHTML = e.clientY;
+      document.getElementById('e-pageX').innerHTML = e.pageX;
+      document.getElementById('e-pageY').innerHTML = e.pageY;
+      document.getElementById('e-screenX').innerHTML = e.screenX;
+      document.getElementById('e-screenY').innerHTML = e.screenY;
+    })
+
+    window.addEventListener('resize',function(){
+      getInfo();
+    })
+  }
+
+  function getInfo(){
+    document.getElementById("sreen-width").innerHTML = window.screen.width;
+    document.getElementById("sreen-height").innerHTML = window.screen.height;
+    document.getElementById("screen-availHeight").innerHTML = window.screen.availHeight;
+    document.getElementById("screen-availWidth").innerHTML = window.screen.availWidth;
+
+    document.getElementById("window-outerHeight").innerHTML = window.outerHeight;
+    document.getElementById("window-outerWidth").innerHTML = window.outerWidth;
+    document.getElementById("window-innerHeight").innerHTML = window.innerHeight;
+    document.getElementById("window-innerWidth").innerHTML = window.innerWidth;
+
+    $("#jquery-window-height").html($(window).height());
+    $("#jquery-window-width").html($(window).width());
+    $("#jquery-document-height").html($(document).height());
+    $("#jquery-document-width").html($(document).width());
+    $("#jquery-document-body-height").html($(document.body).height());
+    $("#jquery-document-body-width").html($(document.body).width());
+    $("#jquery-document-scrolltop").html($(document).scrollTop());
+    $("#jquery-document-scrollleft").html($(document).scrollLeft());
+
+    document.getElementById("body-clientHeight").innerHTML = document.body.clientHeight;
+    document.getElementById("body-clientWidth").innerHTML = document.body.clientWidth;
+    document.getElementById("body-offsetHeight").innerHTML = document.body.offsetHeight;
+    document.getElementById("body-offsetWidth").innerHTML = document.body.offsetWidth;
+    document.getElementById("body-scrollHeight").innerHTML = document.body.scrollHeight;
+    document.getElementById("body-scrollwidth").innerHTML = document.body.scrollWidth;
+
+  }
+</script>
+</html>

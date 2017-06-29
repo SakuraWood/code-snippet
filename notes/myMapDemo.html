@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0 , user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>MapDemo</title>
+</head>
+<style>
+  body{
+    width: 100%;
+
+  }
+  div.container{
+    position: relative;
+    width:100%;
+  }
+
+  div.target,div.desc{
+    height: 120px;
+    padding: 15px;
+  }
+  div.mapArea{
+    width: 100%;
+    height: 400px;
+  }
+
+  span#mark_pic{
+    display: none;
+    position: absolute;
+    top: 490px;
+    left: 50%;
+    width: 24px;
+    height: 24px;
+    margin-left: -12px;
+    background: url("src/marker_red_sprite.png") no-repeat;
+    z-index: 10;
+  }
+</style>
+<body>
+  <div class="container">
+    <div class="desc">
+      <h3>目标</h3>
+      <p>一、获取当前设备位置，并以此位置为中心定位在百度地图中，同时展示定位图标</p>
+      <p>二、地图可拖动，定位图标不动，输入新位置 ，采集出省市区</p>
+    </div>
+    <div class="target">
+      <h3>输出结果</h3>
+      <p>当前经纬度 : <span id="map_points"></span></p>
+      <p>当前详细地址 : <span id="map_address"></span></p>
+    </div>
+
+    <div class="mapArea" id="baidu_map">
+    </div>
+    <span id="mark_pic"></span>
+  </div>
+
+  <script type="text/javascript">
+
+    var longitude = 121.491;
+    var latitude = 31.233;
+
+    function initialize() {
+
+      //创建map实例
+      var map = new BMap.Map('baidu_map');
+      //初始化地图中心点及地图级别
+      map.centerAndZoom(new BMap.Point(longitude, latitude), 14);
+      map.enableScrollWheelZoom();
+      // showMark();
+      updateAddress();
+      //监听拖动事件
+
+      map.addEventListener("dragend",function(){
+        var center = map.getCenter();
+        longitude = center.lng;
+        latitude = center.lat;
+        updatePoints();
+        updateAddress();
+
+
+        map.clearOverlays();
+        var marker = new BMap.Marker(new BMap.Point(longitude,latitude));
+        map.addOverlay(marker);
+        map.penTo(new BMap.Point(longitude,latitude))
+      });
+      /*
+      //添加导航控件
+      var navigationControl = new BMap.NavigationControl({
+        // 靠左上角位置
+        anchor: BMAP_ANCHOR_TOP_LEFT,
+        // LARGE类型
+        type: BMAP_NAVIGATION_CONTROL_LARGE,
+        // 启用显示定位
+        enableGeolocation: true
+      });
+      map.addControl(navigationControl);
+      */
+
+
+      /*
+      // 添加定位控件
+      var geolocationControl = new BMap.GeolocationControl();
+      geolocationControl.addEventListener("locationSuccess", function(e){
+        // 定位成功事件
+        var address = '';
+        address += e.addressComponent.province;
+        address += e.addressComponent.city;
+        address += e.addressComponent.district;
+        address += e.addressComponent.street;
+        address += e.addressComponent.streetNumber;
+        console.log("当前定位地址为：" + address);
+      });
+      geolocationControl.addEventListener("locationError",function(e){
+        // 定位失败事件
+        alert(e.message);
+      });
+      map.addControl(geolocationControl);
+
+      */
+
+
+    }
+
+    //使用H5 api获取当前位置经纬度
+    function getCurPosition(){
+      //getCurrentPosition函数的options
+      var options = {
+        //允许使用高精度定位方式
+        enableHighAccuracy : true,
+        //超时时间
+        timeout : 60000,
+        //获取到的位置的缓存时间
+        maximum : 20000
+      }
+
+      //判断浏览器是否支持定位Api
+      if(navigator.geolocation){
+        navigator.geolocation.getCurrentPosition(getPositionSuc,getPositionErr,options);
+
+      }else{
+        alert("请检查您的浏览器是否支持定位！")
+      }
+
+      function getPositionSuc(position){
+        //定位成功，更新经纬度
+        longitude = position.coords.longitude;
+        latitude = position.coords.latitude;
+
+        updatePoints();
+        loadScript();
+      }
+
+      function getPositionErr(error){
+        switch (error.code) {
+          case 1:
+              alert("位置服务被拒绝");
+          break;
+
+          case 2:
+              alert("暂时获取不到位置信息");
+          break;
+
+          case 3:
+              alert("获取信息超时");
+          break;
+
+          case 4:
+              alert("未知错误");
+          break;
+        }
+      }
+    }
+
+    //异步加载百度地图Api
+    function loadScript() {
+      var script = document.createElement("script");
+      script.src = "http://api.map.baidu.com/api?v=2.0&ak=sKAte9gxKGkngzVfkibZQ6n8RSVM7qmr&callback=initialize";//此为v2.0版本的引用方式
+      // http://api.map.baidu.com/api?v=1.4&ak=您的密钥&callback=initialize"; //此为v1.4版本及以前版本的引用方式
+      document.body.appendChild(script);
+    }
+
+    //更新经纬度到结果区
+    function updatePoints(){
+      var pointSpan = document.getElementById('map_points');
+      pointSpan.innerHTML = "(" + longitude + "," + latitude + ")";
+
+    }
+
+    //更新地址信息
+    function updateAddress(){
+        var addressSpan = document.getElementById("map_address");
+
+        var geoc = new BMap.Geocoder();
+        geoc.getLocation(new BMap.Point(longitude, latitude), function(rs){
+  			var addComp = rs.addressComponents;
+
+        var address = addComp.province + " " + addComp.city  + " " +  addComp.district  + " " + addComp.street + " " + addComp.streetNumber ;
+        addressSpan.innerHTML = address;
+
+  		});
+
+    }
+
+    //展示 mark标志
+    function showMark(){
+      document.getElementById('mark_pic').style.display = "block";
+    }
+
+    window.onload = getCurPosition;
+
+    // window.onload = initialize;
+    //
+    // var getLocation = function(){
+    //   console.log(1);
+    // }
+    //
+    // var initialize = function(){
+    //   var script = document.createElement("script");
+    //   script.src = "http://api.map.baidu.com/api?v=2.0&ak=sKAte9gxKGkngzVfkibZQ6n8RSVM7qmr&callback=getLocation";
+    //   document.body.appendChild(script);
+    // }
+  </script>
+</body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="src/jquery-3.2.0.min.js"></script>
+  <title>jQuery获取各种宽高度</title>
+  <style>
+    div.contaienr{
+      margin: 0 auto;
+      padding: 0;
+      width: 1000px;
+    }
+
+    div.container div{
+      width: 200px;
+      height: 200px;
+      margin: 10px;
+      padding: 10px;
+      border: 5px solid #ccc;
+    }
+
+    div.demo1{
+      background-color: #ddd;
+      box-sizing: content-box;
+    }
+    div.demo2{
+      background-color: #bbb;
+      box-sizing: border-box;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="demo1">box-sizing为content-box;width和height设置为200px;padding设置为10px;border为5px;margin为10px;</div>
+    <div class="demo2">box-sizing为border-box;width和height设置为200px;padding设置为10px;border为5px;margin为10px;</div>
+  </div>
+
+  <div>
+    <h3>测试结论</h3>
+    <ul>
+      <li>css()方法设置/获取宽高时，和元素的box-sizing属性有关；content-box时，设置/获取的都是content；border-box时，设置和获取的都是实际宽高度（包括border和padding在内）</li>
+      <li>height()/width()方法设置/获取宽高时，和元素的box-sizing属性<b>无</b>关；设置和获取的都是content部分的大小</li>
+      <li>innerHeight/innerWidth 为 content+padding</li>
+      <li>outerHeight/outerWidth 为 content+padding+border</li>
+      <li>计算元素实际大小和margin无关，margin影响到元素的占用大小，但是不会改变元素的大小，一般都是透明的</li>
+      <p>数据见resultImg文件夹中截图</p>
+    </ul>
+  </div>
+
+</body>
+</html>

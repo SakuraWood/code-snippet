@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>绝对定位法</title>
+  <style>
+  html,body{
+    margin: 0;
+    padding: 0;
+    height: 100%;
+  }
+  div{
+    text-align: center;
+  }
+    div.left,div.right{
+      position: absolute;
+      top: 0;
+      width: 200px;
+      height: 100%;
+      background: #a0b3d6;
+    }
+    /*左栏和右栏通过绝对定位固定在两册*/
+    div.left{
+      left: 0;
+    }
+    div.right{
+      right: 0;
+    }
+    /*main设置margin*/
+    div.main{
+      height: 100%;
+      margin: 0 210px;
+      background-color: #FFE6B8;
+    }
+  </style>
+</head>
+<body>
+    <div class="left">我是左栏内容</div>
+    <div class="main">我是内容主体</div>
+    <div class="right">我是右栏内容</div>
+</body>
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>table-cell实现两栏自适应布局</title>
+</head>
+<style>
+  div.container{
+    margin: 50px 50px;
+    padding: 0;
+    background-color: #ccc;
+    /*text-align: center;*/
+  }
+
+  div.left{
+    float: left;
+    width: 200px;
+    background-color: red;
+  }
+
+  div.right{
+    margin-left: 210px;
+    background-color: green;
+  }
+
+  .wrapper1,.wrapper2{
+    margin: 0 10px;
+    padding: 0;
+    width: 100%;
+    background-color: #ccc;
+    display:table;
+  }
+
+  .label1,.left2{
+    display:table-cell;
+    background-color: red;
+    width: 100px;
+  }
+  .input1,.right2{
+    display: table-cell;
+    background-color: green;
+  }
+
+  .input1 > input{
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+
+</style>
+<body>
+  <div class="container">
+    <div class="left">我是左栏固定长度</div>
+    <div class="right">我是右栏自适应长度</div>
+  </div>
+
+  <div class="container">
+    <div class="wrapper1">
+      <label class="label1" for="">姓名 ： </label>
+      <!-- 不包裹一层时 无法生效  待研究-->
+      <div class="input1">
+        <input type="text">
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="wrapper2">
+      <div class="left2">table-cell</div>
+      <div class="right2">table-cell</div>
+    </div>
+  </div>
+</body>
+</html>
