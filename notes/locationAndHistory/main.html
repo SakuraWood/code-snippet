@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>我是主页面</title>
+</head>
+<style>
+h1{
+  text-align: center;
+}
+div{
+  margin-left: 50px;
+  background-color: #ccc;
+}
+button{
+  margin: 10px;
+}
+</style>
+<body>
+  <h1>location对象</h1>
+  <div>
+    <ul>
+      <li>assign(URL) 可以使窗口载入并显示你指定的URL中的文档，此时可以在新文档中通过浏览器返回按钮回到原始文档</li>
+      <li>replace(URL) 也可以载入指定的新文档，但是在载入新文档之前会从历史记录中把当前文档删除</li>
+      <li>reload(URL) 可以让浏览器重新载入当前文档。</li>
+      <li>location = "URL"  直接给location赋值也可以让实现页面的跳转</li>
+      <ul>
+        <li>URL可以是相对路径,相对于当前页面所在的目录来解析;</li>
+        <li>location赋值时可以为片段标识符（eg : "#top",跳转到文档中id为top的元素处，若找不到则回到页面顶部）</li>
+        <li>location赋值时也可以直接对location的URL分解属性赋值，可达到同样的效果</li>
+      </ul>
+    </ul>
+
+    <button id="assign">assign()</button>
+    <button id="replace">replace()</button>
+    <button id="reload">reload()</button>
+    <button id="location">location = "URL"</button>
+  </div>
+  <script type="text/javascript">
+    window.onload = function(){
+      document.getElementById("assign").addEventListener("click",function(e){
+        window.location.assign("test.html");
+      },false);
+
+      document.getElementById("replace").addEventListener("click",function(e){
+        window.location.replace("test.html");
+      },false);
+
+      document.getElementById("reload").addEventListener("click",function(e){
+        window.location.reload();
+      },false);
+
+      document.getElementById("location").addEventListener("click",function(e){
+        window.location = "test.html"
+      },false);
+    }
+  </script>
+</body>
+</html>

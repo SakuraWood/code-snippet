@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta http-equiv="Access-Control-Allow-Origin" content="*">
+  <script type="text/javascript" src="jquery-3.1.1.js"></script>
+  <title>Document</title>
+</head>
+<body>
+  <h1>模拟服务端返回数据</h1>
+  <script type="text/javascript">
+    $(function(){
+      $.ajax({
+        url : "http://localhost:8081/testget",
+        type : "GET",
+        success : function(data,status,xhr){
+          console.log(data);
+          console.log(status);
+          console.log(xhr);
+        }
+      });
+
+      $.ajax({
+        url : "http://localhost:8081/testpost",
+        type : "POST",
+        data : {
+          "why" : "nowhy",
+          "how" : "however"
+        },
+        success : function(data,status,xhr){
+          console.log(data);
+          console.log(status);
+          console.log(xhr);
+        }
+      });
+
+    })
+  </script>
+</body>
+</html>

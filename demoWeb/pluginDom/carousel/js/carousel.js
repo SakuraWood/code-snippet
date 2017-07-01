@@ -1,5 +1,4 @@
-;
-(function($) {
+;(function($) {
 
   var carousel = function(poster) {
     //将poster 存到对象下 方便使用

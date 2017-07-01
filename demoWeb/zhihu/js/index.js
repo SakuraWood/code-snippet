@@ -480,6 +480,7 @@ $(function(){
   });
 
    //登录页面
+
   $("#login_form").validate({
     rules : {
       login_user : {
