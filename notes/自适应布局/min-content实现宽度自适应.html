@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>宽度自适应</title>
+
+  <style>
+    figure{
+      margin : 10px auto;
+    }
+
+    figure.figure{
+      width: min-content;
+    }
+  </style>
+</head>
+<body>
+
+  <aside class="description">
+    <h3>width的新属性 ： fill-available, max-content, min-content, fit-content</h3>
+  </aside>
+
+  <figure>
+    <img src="../src/images/houyi.jpg" alt="测试使用图片">
+    <figcaption>我是王者农药中的后羿，我到这里来时为了测试，当文字宽度大于图片宽度时，页面的展现；此时未使用min-content</figcaption>
+  </figure>
+
+  <figure class="figure">
+    <img src="../src/images/houyi.jpg" alt="测试使用图片">
+    <figcaption>我是王者农药中的后羿，我到这里来时为了测试，当文字宽度大于图片宽度时，页面的展现；此时使用了min-content</figcaption>
+  </figure>
+</body>
+</html>
