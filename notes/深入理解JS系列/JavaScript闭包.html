@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>闭包</title>
+</head>
+<body>
+  <h3>基础理论（实例见日志）</h3>
+  <ul>
+    <li>JavaScript采用词法作用域，即函数的执行依赖于变量的作用域，这个<mark>作用域是在函数定义时决定的，而不是函数调用时决定的</mark>,为了实现这种词法作用域，JavaScript函数对象的内部状态不仅包含函数的代码逻辑，还必须引用当前的作用域链</li>
+    <li>函数对象可以通过作用域链互相关联起来，函数体内部的变量都可以保存在函数体作用域内，这种特性叫<mark>闭包</mark></li>
+    <li>作用域链是一个对象列表，每次调用JavaScript函数时，都会为之创建新的对象用来保存局部变量，把这个对象添加到作用域链中。当函数返回时，就从作用域链中将这个绑定变量的对象删除，如果不存在嵌套的函数，也没有其他的引用指向这个绑定对象，他就会被当作垃圾回收掉</li>
+    <li>如果定义了嵌套的函数，每个嵌套函数都<mark>各自对应一个作用域链</mark>，并且这个作用域链指向一个变量绑定对象</li>
+    <li>如果函数定义了嵌套函数，并将它作为返回值返回或者存储在某处的属性里，这事就会有一个外部引用指向这个嵌套的函数，它就不会被当作垃圾回收，并且它指向的变量绑定对象也不会被当作垃圾回收</li>
+  </ul>
+
+  <script type="text/javascript">
+
+    var scope = "global scope";
+
+    function checkscope1(){
+      var scope = "local scope";
+      function f(){
+        //想想此处的作用域链
+        return scope;
+      }
+      //返回 f()执行后的结果
+      //f()执行时，发现自己函数体作用域中没有 scope  就去作用域链的下一个找，发现 checkscope1函数体中有，就用了，然后执行，返回
+      return f();
+    }
+    console.log(checkscope1());
+
+    function checkscope2(){
+      var scope = "local scope";
+      function f(){
+        //想想此处的作用域链
+        return scope;
+      }
+
+      //返回的是函数体
+      return f;
+    }
+
+    //checkscope2()执行后返回f ,再执行f()
+    //不管在什么地方执行，他的作用域链都是定义时创建的，所以还是先去checkscope2中找
+    console.log(checkscope2()());
+
+
+    var uniqueInteger = (function(){
+        var count = 0;
+        return function(){
+          return ++count;
+        }
+    })();
+
+    //匿名函数返回一个嵌套的函数体后，就只有这个内部函数可以访问到count了
+    console.log(uniqueInteger());
+
+
+    function counter(){
+      var n = 0;
+      return {
+        count : function(){
+          return n++;
+        },
+        reset : function(){
+          n = 0;
+        }
+      }
+    }
+
+    //每次调用counter()都会创建一个新的作用域链和一个新的私有变量
+    //所以counter1和counter2不会相互影响
+    var counter1 = new counter();
+    var counter2 = new counter();
+
+    console.log(counter1.count());
+    console.log(counter2.count());
+    console.log(counter1.count());
+    console.log(counter2.count());
+    counter1.reset();
+    console.log(counter1.count());
+    console.log(counter2.count());
+
+    //错误的闭包使用
+    function constfuncs(){
+      var funcs = [];
+      for(var i = 0;i<10 ;i++){
+          funcs[i] = function(){
+          return i;
+        }
+      };
+      return funcs;
+    }
+
+    //所有的闭包都是在同一次调用函数的时候创建的，所以可以共享i 循环完成之后i为10  所以一直输出10
+    var funcs = constfuncs();
+    console.log(funcs[5]());
+
+
+    //修改上面错误
+    function constfuncs2(){
+      var funcs2 = [];
+      for(var i = 0;i<10 ;i++){
+          //加了一个立即执行的匿名函数，i是匿名函数中的参数，会在作用域中保存，每个funcs的作用域链上都有个不同的匿名函数的作用域，所以i的值各不相同
+          (function(i){
+            funcs2[i] = function(){
+              return i;
+            }
+          }(i));
+      };
+      return funcs2;
+    }
+    var funcs2 = constfuncs2();
+    console.log(funcs2[6]());
+
+
+  </script>
+</body>
+</html>

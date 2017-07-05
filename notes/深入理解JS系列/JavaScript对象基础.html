@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>对象基础</title>
+</head>
+<body>
+  <h2></h2>
+  <ul>
+    <li>创建对象的三种方式：对象直接量、关键字new + constructor、Object.create()函数</li>
+    <li></li>
+    <li></li>
+    <li></li>
+  </ul>
+
+
+  <script type="text/javascript">
+
+    //对象直接量创建函数
+    var test1 = {
+      title : "JavaScript",
+      "main title" : "属性名中有空格时需加引号",
+      "main-title" : "属性名中有连字符时需加引号",
+      "for" : "属性名是保留字符时需加引号",
+      author : {
+        name : "leichangchun",
+        age : 10
+      }
+    }
+
+    console.log(test1);
+    //对象属性读取的方式有两种
+    console.log(test1.title);
+    console.log(test1["main title"]);
+    //可新增属性
+    test1.money = "$1000";
+    test1.total = "$1000000";
+    //可修改属性
+    test1["for"] = "属性名是保留字符时需加引号-修改后 "
+    console.log(test1);
+
+    //new运算符创建并初始化一个新对象。关键字new后跟随一个函数调用，这里的函数称做构造函数（constructor）,constructor用来初始化一个函数
+    var date = new Date();
+
+    console.log(date);
+
+    //每一个JavaScript对象（null除外）都和另一个对象相关联。“另一个”对象就是我们熟知的原型，每一个对象都从原型继承属性
+    // Object.create() 他创建一个新对象，第一个参数就是这个对象的原型
+
+    var create1 = Object.create(Date.prototype);
+    var create2 = Object.create(Date);
+    console.log(create1);
+    console.log(create2);
+  </script>
+</body>
+</html>

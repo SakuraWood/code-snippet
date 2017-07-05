@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>变量/函数的声明和作用域</title>
+</head>
+<body>
+  <h1>结果查看日志</h1>
+
+  <script type="text/javascript">
+    //当声明了一个全局变量时，实际上时定义了全局对象的一个属性（使用var声明的的不可配置，无法使用delete运算符删除）
+    console.log(window);
+
+    //变量的声明会“提前”到函数体顶层（是在“预编译”阶段执行的），但是初始化必须代码执行到变量所在位置才会赋值
+    console.log("变量i的声明已提前，但是此时还没有初始化" + i);
+
+    //关键字function来声明的函数，不仅声明会“提前”，初始化也会提前。所以function声明的函数可以提前调用
+    //var声明的函数和变量一样，不会提前“赋值”
+    testVar();
+
+    //使用变量之前需先声明，使用var关键字（ES6 新增了let和const）
+    var i = 2017;   //变量声明 + 初始赋值
+    console.log("声明并初始赋值变量 i ：" + i);
+    //使用var 重复声明变量是合法且无害的
+    var i = 201707;
+    console.log("重复声明 i 是合法的 ： " + i);
+    //JavaScript变量可以是任意数据类型
+    i = "JavaScript";
+    console.log("JavaScript变量可以赋值任意类型 (i之前是整数，现在时字符串) : " + i);
+
+    var j;          //只有变量声明  在未赋值之前，初始值为undefined
+    console.log("声明了变量 j 却未赋值 ：" + j);
+    j = 2018;
+    console.log("变量 j 赋值之后 ：" + j);
+
+    //可同时声明多个变量
+    var m = "m",
+        n = 1,
+        x = function(){};
+    console.log("同时声明多个变量m , n , x : " + m + n + x);
+
+    //函数体外声明的时全局变量
+    var scope = "global";
+    console.log("定义了全局变量scope,用于测试 ： " + scope);
+
+
+
+    //JavaScript是函数级作用域，函数体内声明的是局部变量
+    function testVar(){
+
+        //由于局部变量的声明提前到了函数体顶层，此时遮盖了全局变量，但却没有初始化赋值
+        console.log("函数体外有全局变量scope,但是局部变量scope的声明提前到了函数体顶层，此时遮盖了全局变量，但却没有初始化赋值 ： " + scope);
+        //函数体内定义局部变量 scope ，局部变量的优先级高于全局变量
+        var scope = "local";
+        console.log("初始赋值之后的局部变量 scope : " + scope);
+
+        function scopeChain(){
+
+          //此处的作用域链为  定义scopeChain函数的参数及局部变量的对象 --> 定义testVar函数参数及局部变量的对象 -->全局对象
+          var scopechain = "scopechain";
+          console.log("函数体中有此变量则直接使用：" + scopechain);
+          console.log("函数体中没有此变量，则到作用域链上的下一个对象去找：" + scope);
+          console.log("函数体中没有此变量，作用域链上的下一个对象上也没有，则再到下一个去找：" + i);
+        }
+        scopeChain();
+    }
+
+
+    console.log("同名的局部变量并不会影响到全局变量 : " + scope);
+
+    //使用不存在的变量，报错 h is not defined
+    console.log("使用不存在的变量 : " + h);
+  </script>
+</body>
+</html>
