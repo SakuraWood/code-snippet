@@ -10,9 +10,17 @@
   <h2></h2>
   <ul>
     <li>创建对象的三种方式：对象直接量、关键字new + constructor、Object.create()函数</li>
-    <li></li>
-    <li></li>
-    <li></li>
+    <li>对象属性的读取的两种方式 object.x object["x"]</li>
+    <li>delete运算符可以删除对象的属性，它的操作数应当时一个属性访问表达式</li>
+    <li>判断某个属性是否存在于某个对象中 ： in运算符 hasOwnpreperty() prepertyIsenumerable()方法</li>
+    <li>遍历对象的属性: for/in可遍历对象所有的可枚举属性（包括自有属性和继承的属性） object.keys()返回对象中可枚举属性的自有属性的名称组成的数组  object.getOwnPropertyNames()返回对象所有的自有属性名称</li>
+    <li>getter和setter 定义"存储器属性" </li>
+    <li><ul>
+      <li>属性的特性：属性除了包含名字和值之外 还包含一些标识它们可写、可枚举、可配置的特性，ES5中可查询和设置这些属性特性</li>
+      <li>数据属性的4个特性分别时它的value writable enumerable configurable</li>
+      <li>存储器属性 get set enumerable configurable</li>
+    </ul></li>
+    <li>对象的原型属性时用来继承属性的   将对象作为参数传入Object.getPrototypeof()可以查询他的原型  想要检测一个对象是否是另一个对象的原型（或处于原型链中），可以使用isPrototypeof()(p.isPrototypeof(0) 检测p是否时o的原型)  _proto_属性可以查询/设置对象的原型（只有chrome和safari支持）</li>
   </ul>
 
 

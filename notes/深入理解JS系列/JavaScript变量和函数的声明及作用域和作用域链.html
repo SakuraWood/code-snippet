@@ -10,6 +10,11 @@
   <h1>结果查看日志</h1>
 
   <script type="text/javascript">
+
+    //var变量 的优先级高
+    var testPrototype = "testVar";
+    Object.prototype.testPrototype = "testPrototype";
+
     //当声明了一个全局变量时，实际上时定义了全局对象的一个属性（使用var声明的的不可配置，无法使用delete运算符删除）
     console.log(window);
 
@@ -55,6 +60,8 @@
         //函数体内定义局部变量 scope ，局部变量的优先级高于全局变量
         var scope = "local";
         console.log("初始赋值之后的局部变量 scope : " + scope);
+
+        console.log("有原型属性时： " + testPrototype );
 
         function scopeChain(){
 

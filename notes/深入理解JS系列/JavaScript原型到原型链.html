@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>原型到原型链</title>
+</head>
+<body>
+  <h2>原型到原型链</h2>
+  <ul>
+    <li>每个javascript对象（null除外）都和另一个对象相关联。“另一个”对象就是我们所熟知的原型，每一个对象都<mark>从原型继承属性！！！</mark></li>
+    <li>创建对象时，就会关联该对象的原型 从而可以使用该对象原型中的属性(多是方法)</li>
+    <li>constructor是用来初始化对象的，constructor的prototype属性就是对象的原型 （person._proto_ = Person.prototype,Person就是person的构造函数，Person的prototype属性就是person的实例原型 Person.prototype.constructor === Person） 函数才有constructor属性</li>
+    <li>本页面例子中的原型链  person._proto_=Person.prototype(person的原型) Person.prototype._proto_=Object.prototype(实例原型的原型) Object.prototype = null(Object.prototype没有原型)</li>
+    <li>实例继承的是原型中的属性（方法），而不是构造函数体内的；实例中需要属性A时，若实例中没有，则去原型中找，原型中也没有，则去原型的原型中找···· 直到找到顶层为止，若还没找到，则返回undefined</li>
+  </ul>
+  <script type="text/javascript">
+    function Person(){
+      var test = "PersonVarTest";
+    }
+    //Person中有属性test
+    Person.test = "PersonTest";
+
+    //Person.prototype中也有属性test
+    Person.prototype.test = "PersonPrototypeTest";
+    var person = new Person();
+
+    //person中没有test属性 则去原型中找（而不是Person中找）
+    console.log(person.test);   //PersonPrototypeTest
+  </script>
+</body>
+</html>
