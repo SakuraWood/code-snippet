@@ -24,13 +24,25 @@ body{
     .heart-wrapper{
       margin: auto;
       position: fixed;
-      left: 50%;
-      top : -250px;
-      margin-left: -140px;
       height: 230px;
       width: 280px;
-      -webkit-animation: jump 1s infinite 2s ease-out;
-              animation: jump 1s infinite 2s ease-out;
+      left: 50%;
+      margin-left: -140px;
+      top:0;
+      -webkit-transform: rotate(180deg) scale(0.3) ;
+              transform: rotate(180deg) scale(0.3) ;
+      -webkit-animation-name: fall,jump;
+              animation-name: fall,jump;
+      -webkit-animation-duration: 5s,1s;
+              animation-duration: 5s,1s;
+      -webkit-animation-timing-function: linear,ease-out;
+              animation-timing-function: linear,ease-out;
+      -webkit-animation-delay: 2s,7s;
+              animation-delay: 2s,7s;
+      -webkit-animation-fill-mode: forwards,none;
+              animation-fill-mode: forwards,none;
+      -webkit-animation-iteration-count: 1,infinite;
+              animation-iteration-count: 1,infinite;
 
       &::before{
         content: " ";
@@ -46,6 +58,7 @@ body{
         -webkit-transform-origin: right bottom;
                 transform-origin: right bottom;
         border-radius: 100px 100px 0 0;
+        cursor: pointer;
       }
 
       &::after{
@@ -62,36 +75,79 @@ body{
         -webkit-transform-origin: left bottom;
                 transform-origin: left bottom;
         border-radius: 100px 100px 0 0;
+        cursor: pointer;
       }
     }
 
     //heart bit animation
     @keyframes jump {
      0%, 60%, 75%, 90%, 100% {
-        -webkit-transform: scale(1);
-                transform: scale(1);
+        -webkit-transform: translateY(40vh) scale(1);
+                transform: translateY(40vh) scale(1);
        }
        15% {
-        -webkit-transform: scale(0.6);
-                transform: scale(0.6);
+        -webkit-transform: translateY(40vh) scale(0.6);
+                transform: translateY(40vh) scale(0.6);
        }
        30% {
-        -webkit-transform: scale(1);
-                transform: scale(1);
+        -webkit-transform: translateY(40vh) scale(1);
+                transform: translateY(40vh) scale(1);
        }
        45% {
-        -webkit-transform: scale(0.7);
-                transform: scale(0.7);
+        -webkit-transform: translateY(40vh) scale(0.7);
+                transform: translateY(40vh) scale(0.7);
       }
     }
 
     //heart fall animation
     @keyframes fall {
       0% {
-        transform: scale(0);
+        -webkit-transform: rotate(180deg) scale(0.3);
+                transform: rotate(180deg) scale(0.3);
       }
-      50%{
-        // transform: scale(1) translate(500px 0);
+      9%{
+        -webkit-transform: rotate(90deg) scale(0.35);
+                transform: rotate(90deg) scale(0.35)
+      }
+      18%{
+        -webkit-transform: rotate(-30deg) scale(0.4);
+                transform: rotate(-30deg) scale(0.4)
+      }
+      24%{
+        -webkit-transform: rotate(30deg) scale(0.45);
+                transform: rotate(30deg) scale(0.45)
+      }
+      30%{
+        -webkit-transform: rotate(-15deg) scale(0.5);
+                transform: rotate(-15deg) scale(0.5)
+      }
+      35%{
+        -webkit-transform: translateY(10vh) scale(0.5);
+                transform: translateY(10vh) scale(0.5)
+      }
+      45%{
+        -webkit-transform: translateY(70vh) rotate(20deg) scale(0.45);
+                transform: translateY(70vh) rotate(20deg) scale(0.45)
+      }
+      55%{
+        -webkit-transform: translateY(72vh) rotate(-20deg) scale(0.4);
+                transform: translateY(72vh) rotate(-20deg) scale(0.4)
+      }
+      65%{
+        -webkit-transform: translateY(74vh) rotate(20deg) scale(0.35);
+                transform: translateY(74vh) rotate(20deg) scale(0.35)
+      }
+      75%{
+        -webkit-transform: translateY(77vh) rotate(-20deg) scale(0.3);
+                transform: translateY(77vh) rotate(-20deg) scale(0.3)
+      }
+      85%{
+        -webkit-transform: translateY(80vh) rotate(0deg) scale(0.2);
+                transform: translateY(80vh) rotate(0deg) scale(0.2)
+      }
+      100%{
+        -webkit-transform: translateY(40vh) scale(1);
+                transform: translateY(40vh) scale(1)
       }
     }
   }

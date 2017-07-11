@@ -16,13 +16,15 @@
   </form>
 
   <button class="demobutton">点我点我！</button>
-
   <script type="text/javascript">
     $(function(){
       var data = {};
       $("button").on('click', function(event) {
         event.preventDefault();
         /* Act on the event */
+          console.log($("form").serialize());
+          console.log($("form").serializeArray());
+          
           $("form").serializeArray().map(function(x){
           	if (data[x.name] !== undefined) {
                   if (!data[x.name].push) {
