@@ -28,6 +28,64 @@ app.post('/addWashShopPost', function (req, res) {
    });
 });
 
+app.post('/changeWashShopPost', function (req, res) {
+   res.send({
+     "t":"vModifyDot",
+     "data":{
+         "dotId":"testid123"//洗衣点编号
+     },
+     "r": "00000",
+     "msg": "操作成功",
+     "sysTime": 1496390027969
+   });
+});
+
+app.post('/getDotList', function (req, res) {
+   res.send(
+     {
+    "t":"vDotList",
+    "data": [
+        {
+            "traderId": "88",//所属运营商
+            "dotId": "878",//洗衣点id
+            "dotName": "逗号公寓珠海柠溪路店",//洗衣点的名字
+            "address": "珠海市香洲区柠溪路338号莫泰酒店7楼",//地址信息
+            "location": "逗号公寓7楼",//位置信息，具体到几楼、房间号
+            "deviceAmount": "3",//洗衣机数量
+            "dryerDeviceAmount": "1",//洗干衣机数量
+            "spareDeviceNum": "4",//空闲设备数
+            "tel": "18888888888",//管理员联系电话
+            "isKeep": "0",//是否收藏
+            "latitude": "21.271008",//纬度
+            "longitude": "112.567912",//精度
+            "bookTime": "10"//预约可以保留时间
+        },
+        {
+            "traderId": "88",//所属运营商
+            "dotId": "878",//洗衣点id
+            "dotName": "逗号公寓珠海柠溪路店",//洗衣点的名字
+            "address": "珠海市香洲区柠溪路338号莫泰酒店7楼",//地址信息
+            "location": "逗号公寓7楼",//位置信息，具体到几楼、房间号
+            "deviceAmount": "3",//洗衣机数量
+            "dryerDeviceAmount": "1",//洗干衣机数量
+            "spareDeviceNum": "4",//空闲设备数
+            "tel": "18888888888",//管理员联系电话
+            "isKeep": "0",//是否收藏
+            "latitude": "22.271008",//纬度
+                  "longitude": "113.567912",//精度
+                  "bookTime": "10"//预约可以保留时间
+              }
+          ],
+          "r": "00000",
+          "msg": "操作成功",
+          "sysTime": 1496390027969
+      }
+   );
+});
+
+
+
+
 app.post('/washShopInfoPost', function (req, res) {
    res.send({
        "t":"vDotInfo",

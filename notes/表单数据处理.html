@@ -19,19 +19,22 @@
 
   <script type="text/javascript">
     $(function(){
-
+      var data = {};
       $("button").on('click', function(event) {
         event.preventDefault();
         /* Act on the event */
-        var array = $("#demo").serializeArray(),
-            temp  = {};
-        console.log(array);
-        $.map(array,function(value,index){
-          var key = value.name,
-              val = value.value;
-          temp.key = val;
-        })
-        console.log(temp);
+          $("form").serializeArray().map(function(x){
+          	if (data[x.name] !== undefined) {
+                  if (!data[x.name].push) {
+                      data[x.name] = [data[x.name]];
+                  }
+                  data[x.name].push(x.value || '');
+              } else {
+                  data[x.name] = x.value || '';
+              }
+          });
+          console.log(data);
+          console.log(JSON.stringify(data));
       });
     });
   </script>

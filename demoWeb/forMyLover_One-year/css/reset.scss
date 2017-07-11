@@ -1,19 +1,22 @@
 body, h1, h2, h3, h4, p, ul, ol, dl, dt, dd, form, input, textarea, select, span, p, strong, em, div {
   margin: 0;
-  padding: 0; }
+  padding: 0;
+}
 
 li {
-  list-style: none; }
+  list-style: none;
+}
 
 a {
   text-decoration: none;
   blr: expression(this.onFocus=this.blur());
   outline: none;
-  color: #000; }
-  a:focus {
-    outline: none; }
+  color: #000;
 
-div, aside {
-  box-sizing: border-box; }
-
-/*# sourceMappingURL=reset.css.map */
+  &:focus {
+    outline: none;
+  }
+}
+div,aside{
+  box-sizing: border-box;
+}

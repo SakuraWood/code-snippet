@@ -4,5 +4,64 @@ body canvas {
   left: 0;
   z-index: -1;
   cursor: pointer; }
+body .header-des {
+  text-align: center;
+  width: 100%; }
+body .disable {
+  display: none; }
+body .main-container .heart-wrapper {
+  margin: auto;
+  position: fixed;
+  left: 50%;
+  top: -250px;
+  margin-left: -140px;
+  height: 230px;
+  width: 280px;
+  -webkit-animation: jump 1s infinite 2s ease-out;
+  animation: jump 1s infinite 2s ease-out; }
+  body .main-container .heart-wrapper::before {
+    content: " ";
+    display: inline-block;
+    position: absolute;
+    left: 35%;
+    bottom: 88px;
+    width: 140px;
+    height: 230px;
+    background-color: red;
+    -webkit-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+    -webkit-transform-origin: right bottom;
+    transform-origin: right bottom;
+    border-radius: 100px 100px 0 0; }
+  body .main-container .heart-wrapper::after {
+    content: " ";
+    display: inline-block;
+    position: absolute;
+    bottom: 88px;
+    right: 35%;
+    width: 140px;
+    height: 230px;
+    background-color: red;
+    -webkit-transform: rotate(45deg);
+    transform: rotate(45deg);
+    -webkit-transform-origin: left bottom;
+    transform-origin: left bottom;
+    border-radius: 100px 100px 0 0; }
+@keyframes jump {
+  0%, 60%, 75%, 90%, 100% {
+    -webkit-transform: scale(1);
+    transform: scale(1); }
+  15% {
+    -webkit-transform: scale(0.6);
+    transform: scale(0.6); }
+  30% {
+    -webkit-transform: scale(1);
+    transform: scale(1); }
+  45% {
+    -webkit-transform: scale(0.7);
+    transform: scale(0.7); } }
+@keyframes fall {
+  0% {
+    transform: scale(0); } }
 
 /*# sourceMappingURL=style.css.map */
