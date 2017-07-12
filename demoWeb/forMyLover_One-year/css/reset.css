@@ -13,7 +13,7 @@ a {
   a:focus {
     outline: none; }
 
-div, aside {
+ul, div, aside {
   box-sizing: border-box; }
 
 /*# sourceMappingURL=reset.css.map */
