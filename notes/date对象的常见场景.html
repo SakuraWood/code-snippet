@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<style>
+  aside{
+    width: 70%;
+    margin: 0 auto;
+    padding-top: 200px;
+  }
+
+  aside section{
+    margin: 10px;
+    text-align: center;
+    height: 100px;
+    line-height: 100px;
+    background-color: #fff;
+    color: rgb(31, 117, 196)
+  }
+
+  span{
+    font-weight: bold;
+  }
+</style>
+<body>
+  <aside>
+    <section class="nowTime">
+        当前的时间是：<span></span>
+    </section>
+    <section class="countDownTime">
+        距2026.07.31还有：<span></span> 天
+    </section>
+    <section class="leftTime">
+        团购时间还剩余：<span></span>
+    </section>
+  </aside>
+
+
+  <script type="text/javascript">
+      var now = null;
+    window.onload = function(){
+      var target = new Date("2026.07.31");
+      var end = new Date("2017.07.31");
+
+      initPage(target,end);
+
+      // setInterval 第一个参数用function包裹
+      // window.setInterval(function(){
+      //   initPage(target,end);
+      // },500);
+    };
+
+    function initPage(target,end){
+      now = new Date();
+      console.log(now);
+
+      var nowDay = now.getDate(),
+          nowMonth = now.getMonth() + 1,       //month返回是从0开始，所以需要+1
+          nowYear = now.getFullYear(),
+          nowHour = now.getHours(),
+          nowMinute = now.getMinutes(),
+          nowSecond = now.getSeconds(),
+          nowWeek = now.getDay(),    //week返回是0-6 0对应周日
+
+          nowTime = now.getTime(),
+          targetTime = target.getTime(),
+          endTime = end.getTime(),
+          weekDays = ["星期日","星期一","星期二","星期三","星期四","星期五","星期六"];
+
+          //getTime()返回的是1970 年 1 月 1 日至今的毫秒数    做差可算出两个日期之间的毫秒差   再通过计算可得出天数，小时，分钟，秒等
+      var countDownTime = Math.ceil((targetTime - nowTime)/(24*60*60*1000)),
+          leftDay = Math.floor((endTime - nowTime)/(24*60*60*1000)),
+          leftHour = Math.floor((endTime-nowTime)/(60*60*1000)%24),
+          leftMin = Math.floor((endTime-nowTime)/(60*1000)%60),
+          leftSec = Math.floor((endTime-nowTime)/1000%60);
+
+      document.getElementsByClassName("nowTime")[0].getElementsByTagName('span')[0].innerHTML = nowYear + "年" + nowMonth + "月" + nowDay + "日" + " " + checkNum(nowHour) + " : " + checkNum(nowMinute) + " : " + checkNum(nowSecond) + " " + weekDays[nowWeek];
+      document.getElementsByClassName("countDownTime")[0].getElementsByTagName('span')[0].innerHTML = countDownTime;
+      document.getElementsByClassName("leftTime")[0].getElementsByTagName('span')[0].innerHTML = leftDay + "天 " + leftHour + "小时 " + checkNum(leftMin) + "分钟 " + checkNum(leftSec) + "秒";
+
+      //setTimeout回调函数要function包裹
+      window.setTimeout(function(){
+        initPage(target,end);
+      },500);
+    }
+
+    function checkNum(i){
+      if(i<10){
+        return "0"+i;
+      }else{
+        return i+'';
+      }
+    }
+  </script>
+</body>
+</html>
