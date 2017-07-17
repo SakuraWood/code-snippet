@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>多选框测试</title>
+    <script src="../src/jquery-3.2.1.js"></script>
+</head>
+    <div id="title_form" style="text-align: center;font-size: large">请选择你喜欢的水果</div>
+    <form id="div_form" style="text-align: center">
+        <p>
+            <label><input type="checkbox" class="fruit_class" name="fruit" value="apple"/>苹果</label>
+            <label><input type="checkbox" class="fruit_class" name="fruit" value="banlala"/>香蕉</label>
+            <label><input type="checkbox" class="fruit_class" name="fruit" value="orange"/>橘子</label>
+            <label><input type="checkbox" class="fruit_class" name="fruit" value="putao"/>葡萄</label>
+        </p>
+        <input type="button" class="CheckAll" value="全选">
+        <input type="button" class="CheckOp" value="反选">
+        <input type="button" class="NotCheck" value="全不选">
+        <input type="submit" class="CheckSubmit" value="提交">
+    </form>
+
+    <script type="text/javascript">
+    $(function(){
+        $("input.CheckAll").click(function(){
+            if($("[name=fruit]:checked").length == $("[name=fruit]").length){
+                alert("已选中全部元素");
+            }else{
+                $("[name=fruit]:checkbox").prop("checked",true);   //具有 true 和 false 两个属性的属性，如 checked, selected 或者 disabled 使用prop()，其他的使用 attr()
+            }
+        });
+
+        $("input.CheckOp").click(function(){
+            $("[name=fruit]").each(function(){
+                $(this).prop("checked",!$(this).prop("checked"));
+            })
+        });
+
+        $("input.NotCheck").click(function(){
+            if($(":checked").length == 0){
+                alert("没有选中任何选项");
+            }else{
+                $("[name=fruit]:checkbox").prop("checked",false);
+            }
+        });
+
+        $("#div_form").submit(function(){
+          console.log($(this).serialize());
+          console.log($(this).serializeArray());
+          console.log(JSON.stringify($(this).serializeArray()));
+          return false;
+        })
+    });
+    </script>
+<body>
+
+</body>
+</html>

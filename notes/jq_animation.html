@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>测试动画效果</title>
+    <script src="src/jquery-3.2.1.js"></script>
+    <style type="text/css" rel="stylesheet">
+        div.div_test{
+            position: relative;
+            display: block;
+            height: 100px;
+            width: 100px;
+            background-color: #1e1eff;
+        }
+    </style>
+</head>
+<body>
+    <p><button class="button_test">点击触发动画效果</button></p>
+    <div class="div_test"></div>
+
+    <script type="text/javascript">
+    $(function(){
+        $("button.button_test").click(function(){
+            //按照顺序执行多个动画
+            $(".div_test").animate({
+                left : "500px"
+            },2000).animate({
+                //同时执行多个动画 同时增加高度和宽度
+                height : "300px",
+                width : "300px"
+                },2000).animate({
+                height : "100px",
+                width : "100px"
+            },2000).animate({
+                left : 0,
+                opacity : "0.5"
+            },2000,function(){
+                $(this).css("border","5px solid red")
+            }); //对于不会加入动画队列的函数（eg:css()函数），需要写在回调函数中
+        })
+    });
+    </script>
+</body>
+</html>

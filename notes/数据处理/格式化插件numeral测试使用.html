@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script type="text/javascript" src="../src/jquery-3.2.0.min.js"></script>
+  <script type="text/javascript" src="../src/numeral.js"></script>
+  <title>numeral 插件测试使用</title>
+</head>
+<body>
+  <div>
+    <input type="text" class="inputNumber" placeholder="请输入数字！"><input type="text" class="inputFormat" placeholder="请输入格式；eg : '0.00'">
+    <button id="btn1">格式化</button><span class="source"></span>
+  </div>
+
+  <script type="text/javascript">
+
+    $(function(){
+      $("#btn1").click(function(){
+        var x = numeral($(".inputNumber").val());
+
+        $(".source").text(x.format($(".inputFormat").val()));
+      })
+    });
+    // var text = numeral(1000);
+    // numeral.defaultFormat('0.00');
+    // text.format();
+    //
+    // $("div").html(text);
+  </script>
+</body>
+</html>

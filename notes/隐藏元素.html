@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>通过使用bind函数对段落进行隐藏和展示的事件绑定</title>
+    <script src="src/jquery-3.2.1.js"></script>
+    <style type="text/css">
+        div{
+            margin-left: 10%;
+            text-align: left;
+        }
+
+        .content{
+            display: none;
+        }
+
+        .change{
+            color: #FF0000;
+        }
+
+    </style>
+</head>
+<body>
+    <div>
+        <h3 class="title">触发该标题事件来检查效果<span>测试冒泡</span></h3>
+        <p class="content">此段落默认隐藏，当触发标题事件时，会有状态的变化，隐藏时触发会展示，展示时触发会隐藏</p>
+    </div>
+
+<script type="text/javascript">
+/*$(function(){
+    $("div .title").bind("click",function(){
+        var $nextelement = $(this).next();   //将常用的元素定义成一个变量
+        //if($nextelement.css("display") == "none"){
+        //    $nextelement.show();
+        //}else{
+        //    $nextelement.hide();
+        //}
+
+        if($nextelement.is(":visible")){
+            $nextelement.hide();
+        }else{
+            $nextelement.show();
+        }
+    })
+})*/
+
+/*$(function(){
+    $("div .title").click(function(){
+        var $nextelement = $(this).next();
+        if($nextelement.is(":visible")){
+            $nextelement.hide();
+        }else{
+            $nextelement.show();
+        }
+    })
+});*/
+
+$(function(){
+    $("div span").click(function(event){
+        $("div span").css("color","red");
+        // event.stopPropagation();
+        console.log(1);
+
+    $("div .title").click(function(){
+        $("div .title").next().toggle();
+        //$("div .title").toggleClass("change");
+        console.log(2);
+    });
+    });
+
+    $("div").click(function(){
+        var $test = $("<p>div点击事件触发</p>");
+        $("div").append($test);
+        console.log(3);
+    });
+});
+
+//选择器 ":visible"是选择可见的元素
+//      ":hidden"是选择不可见的元素
+
+//不可见的元素有：
+//除以下几种情况之外的元素即是可见元素：
+//  设置为 display:none
+//  type="hidden" 的表单元素
+//  Width 和 height 设置为 0
+//  隐藏的父元素（同时隐藏所有子元素）
+</script>
+</body>
+</html>

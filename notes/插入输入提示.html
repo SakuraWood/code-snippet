@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>表单相关测试</title>
+    <script src="src/jquery-3.2.1.js"></script>
+    <script>
+        $(function(){
+            $("input.must,#msg").focus(function(){
+                $(":focus").parent().next("span").show();
+            }).blur(function(){
+                $("div span").hide();
+            });
+        })
+
+    </script>
+    <style type="text/css">
+        #div_form{
+            background-color: antiquewhite;
+            margin: 0 5%;
+        }
+
+        input{
+            width: 300px;
+        }
+
+        textarea{
+            height: 200px;
+            width: 300px;
+            resize: none;
+        }
+        span{
+            display: none;
+            font-size: small;
+            color: #ff1524;
+        }
+    </style>
+</head>
+<body>
+    <div id="div_form">
+        <form action="#" id="testForm">
+            <fieldset>
+                <legend>someone</legend>
+                <p><label for="username">username :<input type="text" class="must" id="username"></label>&nbsp;<span>请输入名称</span></p>
+                <p><label for="password">password :<input type="password" class="must" id="password"></label>&nbsp;<span>请输入密码</span></p>
+                <p><label for="msg">massage : <textarea id="msg"></textarea></label><span>请输入详情</span></p>
+            </fieldset>
+        </form>
+    </div>
+</body>
+</html>

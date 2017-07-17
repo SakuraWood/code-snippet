@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width= , initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script type="text/javascript" src="../src/jquery-3.2.1.js"></script>
+  <title>form表单数据处理</title>
+</head>
+<body>
+  <form class="form" action="#" method="post" id="demo">
+    <input type="text" name="username" value="">
+    <input type="text" name="password" value="">
+    <input type="text" name="tel" value="">
+    <input type="text" name="email" value="">
+  </form>
+
+  <button class="demobutton">点我点我！</button>
+  <script type="text/javascript">
+    $(function(){
+      var data = {};
+      $("button").on('click', function(event) {
+        event.preventDefault();
+        /* Act on the event */
+          console.log($("form").serialize());
+          console.log($("form").serializeArray());
+
+          $("form").serializeArray().map(function(x){
+          	if (data[x.name] !== undefined) {
+                  if (!data[x.name].push) {
+                      data[x.name] = [data[x.name]];
+                  }
+                  data[x.name].push(x.value || '');
+              } else {
+                  data[x.name] = x.value || '';
+              }
+          });
+          console.log(data);
+          console.log(JSON.stringify(data));
+      });
+    });
+  </script>
+</body>
+</html>
