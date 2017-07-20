@@ -17,6 +17,8 @@ a {
     outline: none;
   }
 }
-ul,div,aside{
+ul,div,aside,article{
+  margin: 0;
+  padding: 0;
   box-sizing: border-box;
 }
