@@ -55,7 +55,7 @@ app.post('/getDotList', function (req, res) {
      {
     "t":"vDotList",
     "data": [
-        {
+			 {
             "traderId": "88",//所属运营商
             "dotId": "871",//洗衣点id
             "dotName": "逗号公寓e",//洗衣点的名字
@@ -218,6 +218,18 @@ app.post('/washShopInfoPost', function (req, res) {
            {
                "uuid": "1478",//设备id
                "mid": "1010",//设备类型
+               "typeName": "无敌洗衣机",//机型名
+               "typeSerial": "SXB60-1U1",//机型编号
+               "snCode": "07F-U02",//洗衣机编号，在当前洗衣点，由用户输入
+               "washTimeLeft": "0",//当前洗衣剩余时间
+               "bookTimeLeft": "0",//当前预约剩余时间
+               "cleanTimeLeft":"0",//桶清洁剩余时间
+               "doClean":"0",
+               "washStatus":"002"
+           },
+		              {
+               "uuid": "1478",//设备id
+               "mid": "1010",//设备类型
                "typeName": "波轮洗衣机",//机型名
                "typeSerial": "SXB60-1U1",//机型编号
                "snCode": "07F-U02",//洗衣机编号，在当前洗衣点，由用户输入
@@ -226,6 +238,138 @@ app.post('/washShopInfoPost', function (req, res) {
                "cleanTimeLeft":"0",//桶清洁剩余时间
                "doClean":"0",
                "washStatus":"001"
+           },
+           {
+               "uuid": "1478",//设备id
+               "mid": "1010",//设备类型
+               "typeName": "无敌洗衣机",//机型名
+               "typeSerial": "SXB60-1U1",//机型编号
+               "snCode": "07F-U02",//洗衣机编号，在当前洗衣点，由用户输入
+               "washTimeLeft": "0",//当前洗衣剩余时间
+               "bookTimeLeft": "0",//当前预约剩余时间
+               "cleanTimeLeft":"0",//桶清洁剩余时间
+               "doClean":"0",
+               "washStatus":"002"
+           },
+		              {
+               "uuid": "1478",//设备id
+               "mid": "1010",//设备类型
+               "typeName": "波轮洗衣机",//机型名
+               "typeSerial": "SXB60-1U1",//机型编号
+               "snCode": "07F-U02",//洗衣机编号，在当前洗衣点，由用户输入
+               "washTimeLeft": "0",//当前洗衣剩余时间
+               "bookTimeLeft": "0",//当前预约剩余时间
+               "cleanTimeLeft":"0",//桶清洁剩余时间
+               "doClean":"0",
+               "washStatus":"001"
+           },
+           {
+               "uuid": "1478",//设备id
+               "mid": "1010",//设备类型
+               "typeName": "无敌洗衣机",//机型名
+               "typeSerial": "SXB60-1U1",//机型编号
+               "snCode": "07F-U02",//洗衣机编号，在当前洗衣点，由用户输入
+               "washTimeLeft": "0",//当前洗衣剩余时间
+               "bookTimeLeft": "0",//当前预约剩余时间
+               "cleanTimeLeft":"0",//桶清洁剩余时间
+               "doClean":"0",
+               "washStatus":"002"
+           },
+		              {
+               "uuid": "1478",//设备id
+               "mid": "1010",//设备类型
+               "typeName": "波轮洗衣机",//机型名
+               "typeSerial": "SXB60-1U1",//机型编号
+               "snCode": "07F-U02",//洗衣机编号，在当前洗衣点，由用户输入
+               "washTimeLeft": "0",//当前洗衣剩余时间
+               "bookTimeLeft": "0",//当前预约剩余时间
+               "cleanTimeLeft":"0",//桶清洁剩余时间
+               "doClean":"0",
+               "washStatus":"001"
+           },
+           {
+               "uuid": "1478",//设备id
+               "mid": "1010",//设备类型
+               "typeName": "无敌洗衣机",//机型名
+               "typeSerial": "SXB60-1U1",//机型编号
+               "snCode": "07F-U02",//洗衣机编号，在当前洗衣点，由用户输入
+               "washTimeLeft": "0",//当前洗衣剩余时间
+               "bookTimeLeft": "0",//当前预约剩余时间
+               "cleanTimeLeft":"0",//桶清洁剩余时间
+               "doClean":"0",
+               "washStatus":"002"
+           },
+		              {
+               "uuid": "1478",//设备id
+               "mid": "1010",//设备类型
+               "typeName": "波轮洗衣机",//机型名
+               "typeSerial": "SXB60-1U1",//机型编号
+               "snCode": "07F-U02",//洗衣机编号，在当前洗衣点，由用户输入
+               "washTimeLeft": "0",//当前洗衣剩余时间
+               "bookTimeLeft": "0",//当前预约剩余时间
+               "cleanTimeLeft":"0",//桶清洁剩余时间
+               "doClean":"0",
+               "washStatus":"001"
+           },
+           {
+               "uuid": "1478",//设备id
+               "mid": "1010",//设备类型
+               "typeName": "无敌洗衣机",//机型名
+               "typeSerial": "SXB60-1U1",//机型编号
+               "snCode": "07F-U02",//洗衣机编号，在当前洗衣点，由用户输入
+               "washTimeLeft": "0",//当前洗衣剩余时间
+               "bookTimeLeft": "0",//当前预约剩余时间
+               "cleanTimeLeft":"0",//桶清洁剩余时间
+               "doClean":"0",
+               "washStatus":"002"
+           },
+		              {
+               "uuid": "1478",//设备id
+               "mid": "1010",//设备类型
+               "typeName": "波轮洗衣机",//机型名
+               "typeSerial": "SXB60-1U1",//机型编号
+               "snCode": "07F-U02",//洗衣机编号，在当前洗衣点，由用户输入
+               "washTimeLeft": "0",//当前洗衣剩余时间
+               "bookTimeLeft": "0",//当前预约剩余时间
+               "cleanTimeLeft":"0",//桶清洁剩余时间
+               "doClean":"0",
+               "washStatus":"001"
+           },
+           {
+               "uuid": "1478",//设备id
+               "mid": "1010",//设备类型
+               "typeName": "无敌洗衣机",//机型名
+               "typeSerial": "SXB60-1U1",//机型编号
+               "snCode": "07F-U02",//洗衣机编号，在当前洗衣点，由用户输入
+               "washTimeLeft": "0",//当前洗衣剩余时间
+               "bookTimeLeft": "0",//当前预约剩余时间
+               "cleanTimeLeft":"0",//桶清洁剩余时间
+               "doClean":"0",
+               "washStatus":"002"
+           },
+		              {
+               "uuid": "1478",//设备id
+               "mid": "1010",//设备类型
+               "typeName": "波轮洗衣机",//机型名
+               "typeSerial": "SXB60-1U1",//机型编号
+               "snCode": "07F-U02",//洗衣机编号，在当前洗衣点，由用户输入
+               "washTimeLeft": "0",//当前洗衣剩余时间
+               "bookTimeLeft": "0",//当前预约剩余时间
+               "cleanTimeLeft":"0",//桶清洁剩余时间
+               "doClean":"0",
+               "washStatus":"001"
+           },
+           {
+               "uuid": "1478",//设备id
+               "mid": "1010",//设备类型
+               "typeName": "无敌洗衣机",//机型名
+               "typeSerial": "SXB60-1U1",//机型编号
+               "snCode": "07F-U02",//洗衣机编号，在当前洗衣点，由用户输入
+               "washTimeLeft": "0",//当前洗衣剩余时间
+               "bookTimeLeft": "0",//当前预约剩余时间
+               "cleanTimeLeft":"0",//桶清洁剩余时间
+               "doClean":"0",
+               "washStatus":"002"
            },
        ]
        },
