@@ -1,7 +1,16 @@
-vueNotes/vueWebApp/my-first-vue/.DS_Store
-vueNotes/vueWebApp/my-first-vue/node_modules/
-vueNotes/vueWebApp/my-first-vue/dist/
-vueNotes/vueWebApp/my-first-vue/npm-debug.log*
-vueNotes/vueWebApp/my-first-vue/yarn-debug.log*
-vueNotes/vueWebApp/my-first-vue/yarn-error.log*
 demoWeb/forMyLover_One-year/src/img/myLover
+
+vueNotes/vueWebApp/vueCliDemo/.DS_Store
+vueNotes/vueWebApp/vueCliDemo/node_modules/
+vueNotes/vueWebApp/vueCliDemo/dist/
+vueNotes/vueWebApp/vueCliDemo/npm-debug.log*
+vueNotes/vueWebApp/vueCliDemo/yarn-debug.log*
+vueNotes/vueWebApp/vueCliDemo/yarn-error.log*
+vueNotes/vueWebApp/vueCliDemo/test/unit/coverage
+
+# Editor directories and files
+.idea
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
