@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <ele-header></ele-header>
+    <ele-header :seller='seller'></ele-header>
     <div class="tab">
       <div class="tab-item">
         <router-link to="/goods">商品</router-link>
@@ -17,9 +17,28 @@
 </template>
 
 <script>
+import axios from 'axios'
 import header from './components/header/header'
+const OK = 1
 
 export default {
+  data () {
+    return {
+      seller: {}
+    }
+  },
+  created: function () {
+    // 请求数据
+    axios.get('/ele/seller').then(response => {
+      const res = response.data
+      if (res.code === OK) {
+        this.seller = res.data
+        console.log(this.seller)
+      }
+    }).catch(error => {
+      console.log(error)
+    })
+  },
   components: {
     'ele-header': header
   }

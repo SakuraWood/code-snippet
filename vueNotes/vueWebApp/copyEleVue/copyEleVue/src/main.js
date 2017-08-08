@@ -4,6 +4,9 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 
+// import语句会执行所加载的模块  拦截ajax请求，并模拟返回数据
+import './mock/mock-server'
+
 Vue.config.productionTip = false
 
 /* eslint-disable no-new */
