@@ -35,13 +35,17 @@
       author : {
         name : "leichangchun",
         age : 10
-      }
+      },
+      "0001" : "空闲",
+      "1001" :"运行中"
     }
 
     console.log(test1);
     //对象属性读取的方式有两种
     console.log(test1.title);
     console.log(test1["main title"]);
+    //key 为数字只能使用这种方式调用
+    console.log(test1["0001"]);
     //可新增属性
     test1.money = "$1000";
     test1.total = "$1000000";
