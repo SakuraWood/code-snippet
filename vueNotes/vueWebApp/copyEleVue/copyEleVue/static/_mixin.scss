@@ -4,3 +4,16 @@
     background-image: url('./'+ $name +'@3x.png');
   }
 }
+
+@mixin border-after($px,$color){
+  &::after{
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: $px;
+    background-color:$color;
+    transform: scaleY(0.5);
+  }
+}
