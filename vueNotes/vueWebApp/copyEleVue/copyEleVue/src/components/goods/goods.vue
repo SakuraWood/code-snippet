@@ -27,7 +27,6 @@
                   <span class="now">￥{{foodItem.price}}</span>
                   <span class="old" v-if="foodItem.oldPrice">￥{{foodItem.price}}</span>
                 </div>
-
               </div>
             </li>
           </ul>
