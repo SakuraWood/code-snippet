@@ -19,6 +19,10 @@ export default new Router({
     {
       path: '/seller',
       component: seller
+    },
+    {
+      path: '/',
+      redirect: '/goods'   // 主页重定向到goods
     }
   ]
 })

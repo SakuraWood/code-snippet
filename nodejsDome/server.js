@@ -379,6 +379,37 @@ app.post('/washShopInfoPost', function (req, res) {
    });
 });
 
+
+app.post('/msgSuspensed', function (req, res) {
+   res.send({
+      "t":" msgSus",
+      "data":{
+        "group0":{
+                    "susTime":"2017-08-13",//最早待处理的一条的时间
+                    "susCount":"2",//待处理的数量
+        },
+        "group1":{
+                    "susTime":"2017-08-12",//最早待处理的一条的时间
+                    "susCount":"3",//待处理的数量
+        },
+        "group2":{
+                    "susTime":"2017-07-13",//最早待处理的一条的时间
+                    "susCount":"1",//待处理的数量
+        },
+
+        "group3":{
+                    "susTime":"",//最早待处理的一条的时间
+                    "susCount":"",//待处理的数量
+        }
+      },
+      "r": "00000",
+      "msg": "操作成功",
+      "sysTime": 1496390027969
+      }
+    );
+});
+
+
 app.get('/testget', function (req, res) {
    res.send({
      "type" : "get",

@@ -13,6 +13,11 @@
       "dontLoad": "",
       "load": "",
       "modules": ""
+    },
+    "modules": {
+      "dontLoad": "",
+      "load": "",
+      "modules": ""
     }
   }
 }
