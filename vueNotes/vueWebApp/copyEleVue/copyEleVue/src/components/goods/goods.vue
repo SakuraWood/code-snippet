@@ -27,12 +27,14 @@
                   <span class="now">￥{{foodItem.price}}</span>
                   <span class="old" v-if="foodItem.oldPrice">￥{{foodItem.price}}</span>
                 </div>
+                <catcontrol :food="foodItem" :update-food-count="updateFoodCount"></catcontrol>
               </div>
             </li>
           </ul>
         </li>
       </ul>
     </section>
+    <shopcat :food-list="foodList" :min-price="seller.minPrice" :delivery-price="seller.deliveryPrice"></shopcat>
   </section>
 </template>
 
@@ -40,6 +42,8 @@
 import Vue from 'vue'
 import axios from 'axios'
 import BScroll from 'better-scroll'
+import catcontrol from './../cartcontrol/cartcontrol'
+import shopcat from './../shopcat/shopcat'
 
 const OK = 1
 export default {
@@ -58,6 +62,17 @@ export default {
       return tops.findIndex((top, index) => {
         return top <= scrollY && scrollY < tops[index + 1]
       })
+    },
+    foodList () {
+      const temp = []
+      this.goods.forEach((good, index) => {
+        good.foods.forEach((food, index) => {
+          if (food.count) {
+            temp.push(food)
+          }
+        })
+      })
+      return temp
     }
   },
   methods: {
@@ -68,6 +83,23 @@ export default {
       }
 
       this.foodScroll.scrollToElement(this.$refs.foodWrapper.getElementsByClassName('food-item')[index], 300)
+    },
+    updateFoodCount (food, isAdd, e) {
+      if (!e._constructed) {
+        return false
+      }
+
+      if (isAdd) {
+        if (food.count) {
+          food.count ++
+        } else {
+          this.$set(food, 'count', 1)
+        }
+      } else {
+        if (food.count > 0) {
+          food.count --
+        }
+      }
     },
     _initScroll () {
       this.menuScroll = new BScroll(this.$refs.menuWrapper, {
@@ -121,6 +153,10 @@ export default {
     }).catch(error => {
       console.log(error)
     })
+  },
+  components: {
+    catcontrol,
+    shopcat
   }
 }
 </script>
@@ -281,6 +317,12 @@ export default {
                 font-size: 10px;
                 color: rgb(147, 153, 159);
               }
+            }
+
+            .cat-control-wrapper{
+              position: absolute;
+              right: 0;
+              bottom: 12px;
             }
           }
 

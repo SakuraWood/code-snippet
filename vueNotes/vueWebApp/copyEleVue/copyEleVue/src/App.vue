@@ -12,19 +12,17 @@
         <router-link to="/seller">商家</router-link>
       </div>
     </div>
-
     <!-- <keep-alive> 包裹动态组件时，会缓存不活动的组件实例，而不是销毁它们 -->
     <keep-alive>
-      <router-view></router-view>
+      <router-view :seller='seller'></router-view>
     </keep-alive>
-    <shopcat :seller='seller'></shopcat>
   </div>
 </template>
 
 <script>
 import axios from 'axios'
 import header from './components/header/header'
-import shopcat from './components/shopcat/shopcat'
+
 const OK = 1
 
 export default {
@@ -46,8 +44,7 @@ export default {
     })
   },
   components: {
-    'ele-header': header,
-    shopcat
+    'ele-header': header
   }
 }
 </script>

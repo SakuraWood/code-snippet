@@ -7,15 +7,15 @@
         <div v-show="hasNum" class="num">{{count}}</div>
       </div>
       <div class="price">
-        {{price}}
+        ￥{{amount}}
       </div>
       <div class="des">
-        另需要配送费{{seller.deliveryPrice}}元
+        另需要配送费{{deliveryPrice}}元
       </div>
     </div>
     <div class="content-right">
       <div class="pay" :class="{'not-enough' : !isEnough,enough : isEnough}">
-        {{seller.minPrice}}起送
+        {{payText}}
       </div>
     </div>
   </div>
@@ -24,19 +24,49 @@
 
 <script>
 export default {
-  props: ['seller'],
+  props: ['minPrice', 'deliveryPrice', 'foodList'],
   data () {
     return {
-      price: 0,
-      count: 0
+
     }
   },
   computed: {
     isEnough () {
-      return this.price >= 20
+      return this.amount >= this.minPrice
     },
     hasNum () {
       return this.count > 0
+    },
+    count () {
+      let temp = 0
+      if (this.foodList.length) {
+        this.foodList.forEach(function (food, index) {
+          temp += food.count
+        })
+      }
+      return temp
+    },
+    amount () {
+      let temp = 0
+      if (this.foodList.length) {
+        this.foodList.forEach(function (food, index) {
+          temp += food.count * food.price
+        })
+      }
+      if (this.count > 0) {
+        return temp + this.deliveryPrice
+      } else {
+        return temp
+      }
+    },
+    payText () {
+      if (this.amount === this.deliveryPrice) {
+        return `${this.minPrice}元起送`
+      } else if (this.amount < this.minPrice) {
+        return `还差${this.minPrice - this.amount}元起送`
+      } else {
+        return '去结算'
+      }
     }
   }
 }
