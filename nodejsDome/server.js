@@ -409,6 +409,73 @@ app.post('/msgSuspensed', function (req, res) {
     );
 });
 
+app.post('/historyMsg', function (req, res) {
+   res.send(
+		   {
+			"t":"historyMsg",
+			"data":[
+				{
+					"type":"00",
+					"msg":"机器故障",
+					"msgId":"2",//
+					"msgTime":"2017.08.09",//推送发生的时间
+					"msgState":"0",//是否获取过该消息
+					"ext":{ 
+						"uuid":"61616a1d13z",
+						"mid":"3",
+						"errorMsg":[
+							{"code":"E1", "des":"感温包故障"}
+						],
+					},
+				},
+				{
+					"type":"01", 
+					"msg":"收入情况",
+					"msgId":"3",//一个账号主体下的信息计数
+					"msgTime":"2017.08.10",//推送发生的时间
+					"msgState":"0",//是否获取过该消息
+
+					"ext":{
+						"date":"2017年8月9日",
+						"income":"290元",
+					},
+				},
+				{
+					"type":"02", 
+					"msg":"收到了管理员申请",
+					"msgId":"4",//一个账号主体下的信息计数
+					"msgTime":"2017.08.10",//推送发生的时间
+					"msgState":"0",//是否获取过该消息
+
+					"ext":{
+						"venderName":"莲花分店",//推荐些写为xxx分店
+						"idCardName":"身份证名字",
+						"idCardNum":"123654788544125587",//身份证号
+						"tel":"18888888888",//默认是登录的手机号
+					},
+				},
+				{
+					"type":"03", 
+					"msg":"修改信息成功",
+					"msgId":"5",//一个账号主体下的信息计数
+					"msgTime":"2017.08.11",//推送发生的时间
+					"msgState":"0",//是否获取过该消息
+
+					"ext":{
+						"des":"莲花分店修改信息成功，手机号变更为：1234578943143"
+					},
+				},
+			],
+
+
+			"r": "00000",
+			"msg": "操作成功",
+			"sysTime": 1496390027969
+		}
+    );
+});
+
+
 
 app.get('/testget', function (req, res) {
    res.send({

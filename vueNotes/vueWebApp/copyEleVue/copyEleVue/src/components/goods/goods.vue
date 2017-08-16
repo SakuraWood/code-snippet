@@ -34,7 +34,7 @@
         </li>
       </ul>
     </section>
-    <shopcat :food-list="foodList" :min-price="seller.minPrice" :delivery-price="seller.deliveryPrice"></shopcat>
+    <shopcat :food-list="foodList" :min-price="seller.minPrice" :delivery-price="seller.deliveryPrice" :update-food-count='updateFoodCount' :clear-cart='clearCart'></shopcat>
   </section>
 </template>
 
@@ -50,7 +50,7 @@ export default {
   props: ['seller'],
   data () {
     return {
-      goods: {},
+      goods: [],
       styles: ['decrease', 'discount', 'special', 'invoice', 'guarantee'],
       scrollY: 0,
       tops: []
@@ -81,7 +81,6 @@ export default {
       if (!event._constructed) {
         return false
       }
-
       this.foodScroll.scrollToElement(this.$refs.foodWrapper.getElementsByClassName('food-item')[index], 300)
     },
     updateFoodCount (food, isAdd, e) {
@@ -100,6 +99,11 @@ export default {
           food.count --
         }
       }
+    },
+    clearCart () {
+      this.foodList.forEach(function (value, index) {
+        value.count = 0
+      })
     },
     _initScroll () {
       this.menuScroll = new BScroll(this.$refs.menuWrapper, {
