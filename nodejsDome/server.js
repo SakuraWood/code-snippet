@@ -420,13 +420,7 @@ app.post('/historyMsg', function (req, res) {
 					"msgId":"2",//
 					"msgTime":"2017.08.09",//推送发生的时间
 					"msgState":"0",//是否获取过该消息
-					"ext":{ 
-						"uuid":"61616a1d13z",
-						"mid":"3",
-						"errorMsg":[
-							{"code":"E1", "des":"感温包故障"}
-						],
-					},
+ 
 				},
 				{
 					"type":"01", 

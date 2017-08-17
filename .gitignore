@@ -8,6 +8,8 @@ vueNotes/vueWebApp/vueCliDemo/yarn-debug.log*
 vueNotes/vueWebApp/vueCliDemo/yarn-error.log*
 vueNotes/vueWebApp/vueCliDemo/test/unit/coverage
 
+vueNotes/vueWebApp/copyEleVue/node_modules/
+
 # Editor directories and files
 .idea
 *.suo
