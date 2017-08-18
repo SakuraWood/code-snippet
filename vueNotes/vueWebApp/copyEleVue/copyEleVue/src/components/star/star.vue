@@ -53,4 +53,44 @@ export default {
       @include bg-image(star36_off);
     }
   }
+
+  .star-24{
+    .star-item{
+      display : inline-block;
+      width : 10px;
+      height : 10px;
+      background-repeat: no-repeat;
+      background-size: 10px 10px;
+    }
+
+    .on{
+      @include bg-image(star24_on);
+    }
+    .half{
+      @include bg-image(star24_half);
+    }
+    .off{
+      @include bg-image(star24_off);
+    }
+  }
+
+  .star-48{
+    .star-item{
+      display : inline-block;
+      width : 20px;
+      height : 20px;
+      background-repeat: no-repeat;
+      background-size: 120x 20px;
+    }
+
+    .on{
+      @include bg-image(star48_on);
+    }
+    .half{
+      @include bg-image(star48_half);
+    }
+    .off{
+      @include bg-image(star48_off);
+    }
+  }
 </style>
