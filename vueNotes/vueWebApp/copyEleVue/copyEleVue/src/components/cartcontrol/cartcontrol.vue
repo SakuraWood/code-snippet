@@ -6,6 +6,7 @@
       </transition >
       <div class="cat-count" v-show="food.count">{{food.count}}</div>
       <div class="cat-add fa fa-plus-circle" @click="updateFoodCount(food,true,$event)"></div>
+      <!-- <div class="cat-add fa fa-plus-circle" @click="changeObject"></div> -->
     </div>
   </div>
 </template>
@@ -15,6 +16,15 @@ export default {
   props: {
     food: Object,
     updateFoodCount: Function
+  },
+  methods: {
+    // changeObject () {
+    //   if (this.testObject.age) {
+    //     this.testObject.age ++
+    //   } else {
+    //     this.$set(this.testObject, 'age', 18)
+    //   }
+    // }
   }
 }
 </script>

@@ -50,6 +50,7 @@ export default {
 </script>
 
 <style lang="scss">
+@import './../static/_mixin.scss';
 $tab-height : 40px;
 #app{
   width: 100%;
@@ -61,7 +62,8 @@ $tab-height : 40px;
     width: 100%;
     height:$tab-height;
     line-height:$tab-height;
-    border: 1px rgba(7,17,27,0.1);
+    position: relative;
+    @include border-after(1px,rgba(7,17,27,0.1));
 
     .tab-item{
       -webkit-box-flex: 1;
