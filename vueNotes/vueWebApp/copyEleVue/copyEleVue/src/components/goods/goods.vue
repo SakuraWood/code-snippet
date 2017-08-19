@@ -75,6 +75,9 @@ export default {
       return temp
     }
   },
+  updated () {
+    console.log('goods updated')
+  },
   methods: {
     clickMenu (index, event) {
       // _constructed时 better-scroll添加的属性   此处用来过滤掉原生的DOM事件
