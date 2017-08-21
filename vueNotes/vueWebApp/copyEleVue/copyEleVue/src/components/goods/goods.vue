@@ -24,8 +24,8 @@
                   <span>好评率{{foodItem.rating}}%</span>
                 </div>
                 <div class="price">
-                  <span class="now">￥{{foodItem.price}}</span>
-                  <span class="old" v-if="foodItem.oldPrice">￥{{foodItem.price}}</span>
+                  <span class="now">{{foodItem.price | price-format}}</span>
+                  <span class="old" v-if="foodItem.oldPrice">{{foodItem.price | price-format}}</span>
                 </div>
                 <catcontrol :food="foodItem" :update-food-count="updateFoodCount"></catcontrol>
               </div>
@@ -74,9 +74,6 @@ export default {
       })
       return temp
     }
-  },
-  updated () {
-    console.log('goods updated')
   },
   methods: {
     clickMenu (index, event) {

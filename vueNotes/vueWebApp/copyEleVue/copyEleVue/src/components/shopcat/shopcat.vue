@@ -8,7 +8,7 @@
             <div v-show="hasNum" class="num">{{count}}</div>
           </div>
           <div class="price">
-            ￥{{amount}}
+            {{amount | price-format}}
           </div>
           <div class="des">
             另需要配送费{{deliveryPrice}}元

@@ -16,6 +16,10 @@ Vue.filter('date-format', function (value) {
   return moment(value).format('YYYY MM DD HH:mm:ss')
 })
 
+Vue.filter('price-format', function (value) {
+  return `￥${value}`
+})
+
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
