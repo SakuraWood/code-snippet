@@ -10,6 +10,9 @@ vueNotes/vueWebApp/vueCliDemo/test/unit/coverage
 
 vueNotes/vueWebApp/copyEleVue/node_modules/
 
+webpackDemo/node_modules/
+webpackDemo/dist/
+
 # Editor directories and files
 .idea
 *.suo

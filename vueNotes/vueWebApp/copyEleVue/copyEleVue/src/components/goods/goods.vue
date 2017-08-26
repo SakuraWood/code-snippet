@@ -43,7 +43,7 @@ import Vue from 'vue'
 import axios from 'axios'
 import BScroll from 'better-scroll'
 import catcontrol from './../cartcontrol/cartcontrol'
-import shopcat from './../shopcat/shopcat'
+import shopcat from './../shopcat/shopcat.vue'
 
 const OK = 1
 export default {
@@ -89,7 +89,7 @@ export default {
       }
 
       if (isAdd) {
-        if (food.count) {
+        if ('count' in food) {
           food.count ++
         } else {
           this.$set(food, 'count', 1)
@@ -146,9 +146,9 @@ export default {
       if (response.data.code === OK) {
         this.goods = response.data.data
 
+        // 和DOM相关的操作 一定要等待DOM更新之后再进行操作
         Vue.nextTick(() => {
           this._initScroll()
-
           this._initTops()
         })
       } else {
