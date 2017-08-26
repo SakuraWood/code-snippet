@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script type="text/javascript" src="./lib/vue.js"></script>
+  <title>生命周期探索</title>
+</head>
+<body>
+  <ul>
+    <li>各个生命周期钩子触发时，data和$el 的情况见日志</li>
+    <li>在vue实例的mounted触发后 才会触发document的onload事件</li>
+
+  </ul>
+  <div id="app">{{msg}}</div>
+
+  <script type="text/javascript">
+   // mounted 之后才会触发onload事件
+    window.onload = function(){
+      console.log('onload');
+    }
+    var vm = new Vue({
+      el: '#app',
+      data: {
+        msg : 'this is a Vue demo!'
+      },
+      beforeCreate : function(){
+        console.log('===beforeCreate===');
+        console.log('data : ' + this.msg);
+        console.log(this.$el);
+      },
+      created : function(){
+        console.log('===created===');
+        console.log('data : ' + this.msg);
+        console.log(this.$el);
+
+        this.$nextTick(function(){
+          console.log('nextTick callback in created');
+        })
+      },
+      beforeMount : function(){
+        console.log('===beforeMount===');
+        console.log('data : ' + this.msg);
+        console.log(this.$el);
+      },
+      mounted : function(){
+        console.log('===mounted===');
+        console.log('data : ' + this.msg);
+        console.log(this.$el);
+      },
+      beforeUpdate : function(){
+        console.log('===beforeUpdate===');
+        console.log('data : ' + this.msg);
+        console.log(this.$el);
+      },
+      updated : function(){
+        console.log('===updated===');
+        console.log('data : ' + this.msg);
+        console.log(this.$el);
+      },
+      beforeDestroy : function(){
+        console.log('===beforeDestory===');
+        console.log('data : ' + this.msg);
+        console.log(this.$el);
+      },
+      destroyed : function(){
+        console.log('===created===');
+        console.log('data : ' + this.msg);
+        console.log(this.$el);
+      }
+    })
+  </script>
+</body>
+</html>

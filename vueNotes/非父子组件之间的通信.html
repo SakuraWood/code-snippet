@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script type="text/javascript" src="lib/vue.js"></script>
+  <title>空vue对象实现非父子组件间的通信</title>
+</head>
+<style>
+  .container{
+    margin: 0 auto;
+    width: 80%;
+    background-color: #ccc;
+  }
+  .left,.right{
+    display: inline-block;
+    width: 40%;
+    margin: 4%;
+    text-align: center;
+    background-color: #eee;
+  }
+  button{
+    display: block;
+    margin: 0 auto;
+  }
+  p{
+    color: red;
+    font-size: 15px;
+    line-height: 15px;
+  }
+</style>
+<body>
+  <div class="container">
+    <left></left>
+    <right></right>
+  </div>
+</body>
+<script type="text/javascript">
+  window.onload = function(){
+
+    //创建一个空的vue对象，用来触发和监听事件
+    var bus = new Vue();
+
+    var vue = new Vue({
+      el : '.container',
+      components : {
+        left : {
+          template : '<div class="left"><p>{{show}}</p><button type="button" name="button" @click="sendMsg">send</button></div>',
+          data : function(){
+            return {
+              msg : "this is components A!",
+              show : 'THIS IS A '
+            }
+          },
+          methods : {
+            sendMsg : function(){
+              alert('A');
+              bus.$emit('msg-a',this.msg);
+            }
+          },
+          mounted : function(){
+            var self = this;
+              bus.$on('msg-b',function(msg){
+                self.show = msg;
+                console.log(self.show);
+              });
+          }
+        },
+        right : {
+          template : '<div class="right"><p>{{show}}</p><button type="button" name="button" @click="sendMsg">send</button></div>',
+          data : function(){
+            return {
+              msg : "this is components B!",
+              show : 'this is B'
+            }
+          },
+          methods : {
+            sendMsg : function(){
+              alert('B');
+              bus.$emit('msg-b',this.msg);
+            }
+          },
+          mounted : function(){
+              // var self = this;
+              // bus.$on('msg-a',function(msg){
+              //   //此处的this  指向 bus ，所以需要在函数外先存下this
+              //   self.show = msg;
+              //   console.log(self.show);
+              // });
+
+              // 或者使用 bind 创建一个指向指定this的函数
+              bus.$on('msg-a',function(msg){
+                this.show = msg;
+                console.log(this.show);
+              }.bind(this));
+          }
+        }
+      }
+    });
+
+  }
+</script>
+</html>
