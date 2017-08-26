@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>json和Object</title>
+</head>
+<body>
+  <ul>
+    <li>JSON是基于JavaScript的字面量，是一种数据交换格式</li>
+    <li>JSON为JavaScript对象表示法，当他已JSON形式存在时，代表的是<b>以文本形式表示的一个对象</b>,为了让JSON变为真正的对象，需要进行反序列化 JSON.parse()  同样的可以进行序列化 JSON.stringify() 将对象序列化为JSON文本</li>
+    <li>JSON只是数据交换格式，不会涉及到函数，而JS对象中常常除了属性之外，还有函数</li>
+    <li>JSON的key 必须用 “双引号” 包裹  而JS对象则只有含特殊字符的key还必须需要引号，而且也可以是单引号</li>
+  </ul>
+
+  <script type="text/javascript">
+    window.onload = function(){
+      var test = {
+        name : 'lei',
+        age : 18
+      };
+
+      var myJson = JSON.stringify(test);
+      console.log(myJson);
+
+      var myObject = JSON.parse(myJson);
+      console.log(myObject);
+    }
+  </script>
+</body>
+</html>

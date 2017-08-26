@@ -19,3 +19,4 @@ webpackDemo/dist/
 *.ntvs*
 *.njsproj
 *.sln
+nodejsDome/npm-debug.log
