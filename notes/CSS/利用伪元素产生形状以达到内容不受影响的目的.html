@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>使用伪元素改变形状</title>
+  <style>
+  .container{
+    margin: 20px auto;
+  }
+  ul{
+    padding: 20px;
+    margin: 20px 0;
+    list-style: none;
+    background-color: #ccc;
+  }
+  .wrapper{
+    margin: 20px 0;
+    padding: 20px;
+  }
+
+  .test{
+    margin: 0 auto;
+    width: 200px;
+    height: 150px;
+    line-height: 150px;
+    text-align: center;
+    font-size: 25px;
+    font-weight: 600;
+    /*让伪元素以此元素进行绝对定位*/
+    position: relative;
+  }
+
+  /*test元素的伪元素*/
+  .test::after{
+    content: '';
+    /*绝对定位，且大小与元素完全一致*/
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background-color: rgb(73, 140, 74);
+    /*防止遮住元素内容*/
+    z-index: -1;
+
+    /*进行变形操作*/
+
+    transform: skewX(-30deg);
+  }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <ul>
+      <li>目的：改变元素的形状（倾斜 旋转等）,而元素的内容不受到影响</li>
+      <li>此时使用 伪元素   使伪元素的大小与元素完全一致，然后对伪元素进行变形以达到改变形状的目的（注意改变z-index），此时元素的内容不会收到影响也不会被遮盖</li>
+    </ul>
+
+    <div class="wrapper">
+      <div class="test">
+        CSS3技巧学习
+      </div>
+    </div>
+  </div>
+</body>
+</html>
