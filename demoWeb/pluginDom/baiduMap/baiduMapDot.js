@@ -148,7 +148,7 @@
               title : value.dotName,
               shadow : true
               });
-          if(self.settings.icon){
+          if(self.settings.icon.url){
             mark = new BMap.Marker(new BMap.Point(value.longitude,value.latitude),{
                 enableClicking : true,
                 title : value.dotName,
