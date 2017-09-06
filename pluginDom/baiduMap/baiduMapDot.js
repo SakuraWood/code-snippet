@@ -28,6 +28,12 @@
       data : [],
       mapLevel : 5,
       icon : {},
+      showInfo : true,
+      infoWindow : {
+        style : "font-size: 14px",
+        title : "详细信息"
+      },
+      markAnimation : 'dance',
       getLocation : false
     };
 
@@ -38,6 +44,9 @@
     //默认配置 已珠海总部为中心
     this.longitude = 113.5029;
     this.latitude =22.2407;
+
+    this.markShowType = this.settings.markAnimation === 'drop'?BMAP_ANIMATION_DROP:this.settings.markAnimation === 'dance'?BMAP_ANIMATION_BOUNCE:false;
+    console.log(this.markShowType);
 
     this._initMapContainer();
   };
@@ -124,16 +133,20 @@
       map.centerAndZoom(new BMap.Point(this.longitude, this.latitude), this.settings.mapLevel);
       map.enableScrollWheelZoom();
 
+      //平移缩放控件
       var navigationControl = new BMap.NavigationControl({
         anchor: BMAP_ANCHOR_TOP_LEFT,
         type: BMAP_NAVIGATION_CONTROL_LARGE,
-        enableGeolocation: true
+        enableGeolocation: true,
+        showZoomInfo:true
       });
       map.addControl(navigationControl);
 
+
+      //地图定位控件
       var geolocationControl = new BMap.GeolocationControl();
       geolocationControl.addEventListener("locationSuccess", function(e){
-
+        //定位成功后时间
       });
       geolocationControl.addEventListener("locationError",function(e){
         alert(e.message);
@@ -143,7 +156,10 @@
 
       if(this.settings.data.length > 0){
         this.settings.data.forEach(function(value,index){
-          var mark = new BMap.Marker(new BMap.Point(value.longitude,value.latitude),{
+
+          //mark 表示地图上的一个标注
+          var point = new BMap.Point(value.longitude,value.latitude);
+          var mark = new BMap.Marker(point,{
               enableClicking : true,
               title : value.dotName,
               shadow : true
@@ -153,10 +169,29 @@
                 enableClicking : true,
                 title : value.dotName,
                 shadow : true,
-                icon : new BMap.Icon(self.settings.icon.url,new BMap.Size(self.settings.icon.width,self.settings.icon.height))
+                icon : new BMap.Icon(self.settings.icon.url,new BMap.Size(self.settings.icon.width,self.settings.icon.height))  //自定义icon
                 });
           }
-          mark.setAnimation(BMAP_ANIMATION_DROP);
+
+          console.log(self);
+          if(self.markShowType){
+            console.log(1);
+            mark.setAnimation(self.markShowType);
+          }
+
+          if(self.settings.showInfo){
+            //信息窗
+            var div = document.createElement('div');
+            div.innerHTML = '<p><span>店名 ： </span>' + value.dotName +'</p><p><span>地址 ： </span>' + value.address + '</p><p><span>洗衣机数量 ： </span> ' + value.deviceAmount+ '</p><p><span>联系电话 ： </span>'+ value.tel +'</p><p><span>运营商ID ： </span>'+ value.traderId+'</p>';
+            div.style.cssText = self.settings.infoWindow.style;
+            var infoWindow = new BMap.InfoWindow(div,{
+              title : '<h3 style="text-align : center">'+self.settings.infoWindow.title+'</h3>'
+            });
+            mark.addEventListener('click',function(){
+              map.openInfoWindow(infoWindow,point);
+            });
+          }
+
           map.addOverlay(mark);
         });
       }
