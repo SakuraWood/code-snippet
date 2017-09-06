@@ -33,11 +33,31 @@
     }
 
     .tooltip{
-      display: inline-block;
       padding: 0 5px;
       color: rgb(49, 122, 189);
       text-decoration: underline;
       cursor: pointer;
+      position: relative;
+    }
+
+    .tooltip div{
+      display: none;
+      position: absolute;
+      top : 20px;
+      left: 5px;
+      width: 200px;
+      padding: 5px;
+      text-indent:0;
+      color: #fff;
+      background-color: rgba(173, 143, 152,1);
+      border-radius: 5px;
+      transition: all 0.5s ease;
+      z-index: 10;
+    }
+
+    .tooltip div img{
+      display: block;
+      width: 100%;
     }
 
     .goTopWrapper{
@@ -82,9 +102,9 @@
   <article class="container">
     <section>
       <h2>俄媒：中国正将经济实力转化为政治影响力！</h2>
-      <p>据俄罗斯卫星网9月1日报道，<span class="tooltip">金砖国家</span>领导人会晤，借助于中国轮值主席，将在国际事务中提高其角色，并可能成为解决双边尖锐问题的适当平台。</p>
-      <p>中国作为峰会组织方，邀请泰国、埃及、墨西哥、几内亚和塔吉克斯坦领袖参加金砖对话。<span class="tooltip">“金砖+”</span>这样的对话机制正在形成。中国在几个月时间里，一直都在主张“金砖+”机制。这样，可通过成员国增加的方式，来扩大金砖国家的潜在影响力。</p>
-      <p>报道称，毫无疑问，这是厦门会晤的关键性点之一。俄罗斯科学院远东所专家<span class="tooltip">亚历山大·拉林</span>这样认为。他说：“这是一个新创意。关键点是金砖国家地位在上升、行动范围在扩大。与此同时，通过这种方式，可从内部巩固原有架构，提升‘五国‘形象。我们看到，中国正将经济实力转化为全球政治影响力。其中包括，提出扩大金砖国家对话伙伴国的倡议。这是此次会晤的重要特性之一。”</p>
+      <p>据俄罗斯卫星网9月1日报道，<span class="tooltip" data-tip="中国、俄罗斯、巴西、印度、南非">金砖国家</span>领导人会晤，借助于中国轮值主席，将在国际事务中提高其角色，并可能成为解决双边尖锐问题的适当平台。</p>
+      <p>中国作为峰会组织方，邀请泰国、埃及、墨西哥、几内亚和塔吉克斯坦领袖参加金砖对话。<span class="tooltip" data-tip="通过金砖国家同其他发展中大国和发展中国家组织进行对话，扩大金砖的“朋友圈”，把金砖合作打造成为当今世界最有影响力的南南合作平台。">“金砖+”</span>这样的对话机制正在形成。中国在几个月时间里，一直都在主张“金砖+”机制。这样，可通过成员国增加的方式，来扩大金砖国家的潜在影响力。</p>
+      <p>报道称，毫无疑问，这是厦门会晤的关键性点之一。俄罗斯科学院远东所专家<span class="tooltip" data-tipimg = "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1504679316814&di=30167a0773330dd650beac419939bf9b&imgtype=0&src=http%3A%2F%2Fphotocdn.sohu.com%2F20150925%2FImg422057288.jpg">亚历山大·拉林</span>这样认为。他说：“这是一个新创意。关键点是金砖国家地位在上升、行动范围在扩大。与此同时，通过这种方式，可从内部巩固原有架构，提升‘五国‘形象。我们看到，中国正将经济实力转化为全球政治影响力。其中包括，提出扩大金砖国家对话伙伴国的倡议。这是此次会晤的重要特性之一。”</p>
       <p>有关厦门会晤的意义，外交学院外交学系副教授任远喆阐述了自己的看法。他说：“金砖国家领导人会晤是金砖合作机制发展过程中的一个极具代表性的安排。首先，这次厦门金砖国家领导人会晤的召开恰逢金砖合作即将进入第十个年头，十年可以说是一个机制发展的重要阶段。因为任何一个机制在成立之初的建设都不是很完善，所发挥作用也并不显著。如今中国已经是第二次担任轮值主席国，金砖国家较成立初期更加成熟，在国际上的影响力也更大。此次厦门会晤将会把金砖合作机制的发展水平推向一个新的层次。其次，2008年金融危机之后，世界经济形势一直不明朗，发达国家和发展中国家都面临很大挑战。金砖国家作为发展中国家和新兴经济体的代表，在全球治理中扮演非常重要的角色。本次厦门会晤有利于五国进一步增强共识，在推动全球治理体制改革以及提升发展中国家话语权方面发挥更重要的作用。第三，金砖国家是务实合作的代表，过去几年中取得了很多成果。这次会议上各国将对之前所取得的成果进行总结，深化合作内涵。” </p>
     </section>
 
@@ -159,10 +179,56 @@
 
     //在HTML中可以添加 title属性来设置提示，但是样式和形式单一
 
+    var containerDom = document.querySelector('.container');
+    var toolTips = document.querySelectorAll('.tooltip');
 
+    //toolTips是nodeList 不是数据 所以需要先转化为数组
+    var toolTipsArrey = [].slice.call(toolTips);
 
+    //用数组的foreach方式去遍历绑定事件
+    toolTipsArrey.forEach(function(value,index){
+      value.addEventListener('mouseenter',function(e){
 
-    }
+        var event = e||window.event;
+        var target = event.target || event.srcElement;
+
+        if(target.querySelector('div')){
+          target.querySelector('div').style.display = 'block';
+        }else {
+          if(target.getAttribute('data-tip')||target.getAttribute('data-tipimg')){
+            var div = document.createElement('div');
+            if(target.getAttribute('data-tipimg')){
+              var img = document.createElement('img');
+              img.setAttribute('src', target.getAttribute('data-tipimg'));
+              div.appendChild(img);
+            }else {
+              //textContent 会将其他的内容全部清空 包括子元素
+              div.textContent = target.getAttribute('data-tip')
+            }
+
+            target.appendChild(div);
+
+            //防止提示框溢出
+            if(target.offsetLeft + 200 >= window.innerWidth-50){
+              div.style.left = window.innerWidth - target.offsetLeft -250 + 'px';
+            }
+            div.style.display = 'block';
+          }
+        }
+      });
+    });
+    
+    toolTipsArrey.forEach(function(value,index){
+      value.addEventListener('mouseleave',function(e){
+
+        var event = e||window.event;
+        var target = event.target || event.srcElement;
+
+        target.querySelector('div').style.display = 'none';
+
+      });
+    });
+  }
   </script>
 </body>
 </html>
