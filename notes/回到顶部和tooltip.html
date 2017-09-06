@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>回到顶部-ToolTip-demo</title>
+  <style>
+    html,body{
+      margin: 0;
+      padding: 0;
+    }
+    .container{
+      width: 900px;
+      margin: 0 auto;
+      padding : 20px;
+      background-color: #eeeeee;
+      position: relative;
+    }
+
+    .container section:not(:first-of-type){
+      margin-top: 40px;
+    }
+    h2{
+      text-align: center;
+    }
+
+    p{
+      text-indent: 2rem;
+      line-height: 30px;
+      margin-top: 30px;
+      font-size: 16px;
+    }
+
+    .tooltip{
+      display: inline-block;
+      padding: 0 5px;
+      color: rgb(49, 122, 189);
+      text-decoration: underline;
+      cursor: pointer;
+    }
+
+    .goTopWrapper{
+      display: none;
+      width: 50px;
+      height: 50px;
+      position: fixed;
+      right: 50px;
+      bottom: 50px;
+      text-align: center;
+      line-height: 25px;
+      font-size: 20px;
+      overflow: hidden;
+      transition: all 0.5 ease-in-out;
+      cursor: pointer;
+    }
+
+    .goTop{
+      width: 100%;
+      height: 50px;
+      position: relative;
+      color: rgb(91, 166, 190);
+    }
+    .goTopWrapper:hover .goTop{
+      transform: translateY(-50px);
+    }
+    .goTop::after{
+      content: '';
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 50px;
+      height: 50px;
+      box-sizing: border-box;
+      border-top: 3px solid black;
+      border-right: 3px solid black;
+      transform: rotateZ(-45deg) scale(0.5);
+    }
+  </style>
+</head>
+<body>
+  <article class="container">
+    <section>
+      <h2>俄媒：中国正将经济实力转化为政治影响力！</h2>
+      <p>据俄罗斯卫星网9月1日报道，<span class="tooltip">金砖国家</span>领导人会晤，借助于中国轮值主席，将在国际事务中提高其角色，并可能成为解决双边尖锐问题的适当平台。</p>
+      <p>中国作为峰会组织方，邀请泰国、埃及、墨西哥、几内亚和塔吉克斯坦领袖参加金砖对话。<span class="tooltip">“金砖+”</span>这样的对话机制正在形成。中国在几个月时间里，一直都在主张“金砖+”机制。这样，可通过成员国增加的方式，来扩大金砖国家的潜在影响力。</p>
+      <p>报道称，毫无疑问，这是厦门会晤的关键性点之一。俄罗斯科学院远东所专家<span class="tooltip">亚历山大·拉林</span>这样认为。他说：“这是一个新创意。关键点是金砖国家地位在上升、行动范围在扩大。与此同时，通过这种方式，可从内部巩固原有架构，提升‘五国‘形象。我们看到，中国正将经济实力转化为全球政治影响力。其中包括，提出扩大金砖国家对话伙伴国的倡议。这是此次会晤的重要特性之一。”</p>
+      <p>有关厦门会晤的意义，外交学院外交学系副教授任远喆阐述了自己的看法。他说：“金砖国家领导人会晤是金砖合作机制发展过程中的一个极具代表性的安排。首先，这次厦门金砖国家领导人会晤的召开恰逢金砖合作即将进入第十个年头，十年可以说是一个机制发展的重要阶段。因为任何一个机制在成立之初的建设都不是很完善，所发挥作用也并不显著。如今中国已经是第二次担任轮值主席国，金砖国家较成立初期更加成熟，在国际上的影响力也更大。此次厦门会晤将会把金砖合作机制的发展水平推向一个新的层次。其次，2008年金融危机之后，世界经济形势一直不明朗，发达国家和发展中国家都面临很大挑战。金砖国家作为发展中国家和新兴经济体的代表，在全球治理中扮演非常重要的角色。本次厦门会晤有利于五国进一步增强共识，在推动全球治理体制改革以及提升发展中国家话语权方面发挥更重要的作用。第三，金砖国家是务实合作的代表，过去几年中取得了很多成果。这次会议上各国将对之前所取得的成果进行总结，深化合作内涵。” </p>
+    </section>
+
+    <section>
+      <h2>岳光：“有为政府”离不开市场磨砺 </h2>
+      <p>《环球时报》于8月22日刊登清华大学讲席教授文一题为《“自由”市场须由强大政府提供》的文章。该文以英国产业革命为例，阐述政府与市场的关系，观点立意新颖，启示性强。</p>
+      <p>然而，文中使用的部分概念及涉及中国的事实部分似乎需要进一步明辨，本文尝试就其有关观点与论据提供自己的粗浅之见，与文一先生及广大读者共同探讨。</p>
+      <p>首先，“三大非市场要素”有被夸大之嫌。文一认为，众多市场经济国家中只有英国发生了产业革命，原因是背后的三大非市场要素作用，即政治稳定和社会信任、作为公共品的统一大市场和完备的市场监管。文一认为，上述三要素的建立成本非常高昂，只有“有为政府”治理下的国家(比如工业革命时期的英国)，才能具备这些条件，否则就会被阻拦在工业革命以外。文一还举例说，“虽然私人产权保护制度和民主体制都已基本就位，但历史上的清政府和中华民国政府并没能在19世纪和20世纪上半叶引爆中国的工业革命”。</p>
+      <p>事实上，当时的中国和英国没有可比性。</p>
+      <p>一，社会分工体制的建立是工业革命的前夜。在明代，中国纺织业的社会大分工已经完成，“江南六(市)镇”就是典型——不需要海外扩张即可规模化，不需要抢占殖民地，就可将世界的白银赚到手。当时的政府在这方面几乎没有发挥任何作用。从这个角度看，“三大非市场要素”基本不存在，很大程度上是市场力量起了主要作用。 </p>
+      <p>二，诱发产业革命的“妙拳”是对科学技术的发现和对知识产权的保护，而中国当时并无这方面的概念。即便历代帝制时期，地方衙府有土地财产纠纷判例，但在皇权高于一切的专制体制下，连法理的“物权”概念都没有(清末民律草案即立即废，不足为证)，“知识产权”就更不用想，这是一个需要承认的历史事实。这并非讨论“物权保护”到底需要多高的社会成本，而是物权保护观念存在与否的问题。一念之差，相隔千里。</p>
+      <p>三，从现实情况看，工业发达国家在“三大非市场要素”建设方面做得都不错，但是工业革命何时、在何地、以何种形式到来，总体上不以人的意志为转移，是可遇而不可求的，因此最好将其视为“偶然因素”。比如，第二次(电)、第三次(计算机)、目前的第四次(信息)工业革命主体都是企业，创造者都是相对不起眼的个人。如果突出强调“三大非市场要素”的作用，容易产生误解，进而得出错误的判断，尤其对发展中国家会产生误导作用。 </p>
+      <p>其次，“有为政府”并非天然存在。文一认为，如果“意识到这三个高昂社会成本的存在……一个有为政府是有效市场得以出现和有效运作的前提和保障”。 </p>
+      <p>其实，“有为政府”本身就是一个含糊的概念。“有为政府”的反义词是“无为政府”，究竟“ 有为”好，还是“无为”好？答案是“不做不知道”，有为政府是个以结果为导向的概念。进一步说，在期待“有为政府”的同时，也要准备接受“无为政府”出现的结果，不能只预期“有为”一种可能性。 </p>
+      <p>人们可以期待政府是“有为的”，但这不能被等同为政府一定 “自动有为”。好比一个人怀着美好的愿望去做一件完全没有经历过的“好事”，可是结果却很不理想。文一说，必须承认“改革开放前30年对后30年的意义”。 这是毫无疑问的，从国家战略角度看，前30年为后30年奠定了工业化基础。但依作者的“非市场三要素”方法分析，前30年中“政治稳定和社会信任”“作为公共品的统一大市场”的一部分(如技术开发以及教育事业)可被涵盖进来，但还没有足够的解释力。 </p>
+      <p>总结改革开放前30年政府经济工作经验教训时，我们喜欢说“一放就乱，一管就死”。正是汲取了这些经验教训，才有后30年大刀阔斧的改革。用“非市场三要素”来看当今中国经济，可以说，过去30年里我们继承前30年的部分少，扬弃的部分多。因此严格来讲，我们审视这段历史时，更应关注过程，即政府“如何做”，这才是“有为”的真意，而非预先设定“有为政府”的前提。 </p>
+      <p>由于不能排除政府犯错误的可能，社会需要对政府行为进行监督，政府也应主动征求民意，掌握经济规律，这是经济治理能力提升的渐进过程。纵观全球，很多时候政府出于好意制定产业政策，但产业并没有按照政府预想的方向发展。如果不学习，同样的错误还会再犯。</p>
+      <p>再次，非市场要素并非一定是成本高昂的公共品。文一认为，“自由市场并不自由……它本质上是一种成本高昂的公共品”。</p>
+      <p>事实上，这是个滞后的判断。建“公共品”的目的，是为市场的安定，减少企业的盲目行为，进而减少社会成本的损失，因此“有效的公共品”是必需的，但其成本并不一定是高昂的。它的建立和有效行使，就像胚胎发育一样需要应有的时间积累，伴随着整个社会知识水平的提高和道德意识的深入人心，不可片面期待弯道超车。说“中国10年完成英国200年进程”是个善良的误解，它大概只是就经济规模而言，切不可认为整体国民素质10年提高的程度，可超人家两百年。(作者是旅日华人学者)</p>
+    </section>
+
+    <aside class="goTopWrapper">
+      <div class="goTop">回到顶部</div>
+    </aside>
+  </article>
+
+  <script type="text/javascript">
+    window.onload = function(){
+      //获取元素
+      var goTopDom = document.querySelector('.goTopWrapper');
+      var SrollTop = 0;
+
+      document.addEventListener('scroll',function(){
+        //chrome  document.body.scrollTop获取值    firefox/IE document.documentElement.scrollTop获取值
+        scrollDom = document.body.scrollTop ? document.body : document.documentElement;
+
+        if(scrollDom.scrollTop > window.innerHeight){
+          goTopDom.style.display = 'block';
+        }else{
+          goTopDom.style.display = 'none';
+        }
+      })
+      goTopDom.addEventListener('click',function(){
+        // requestAnimationFrame方法告诉浏览器您希望执行动画，并请求浏览器调用指定的函数在下一次重绘之前更新动画。该方法使用一个回调函数作为参数，这个回调函数会在浏览器重绘之前调用。。
+        window.requestAnimationFrame(function(){
+
+            var goback = setInterval(function(){
+
+              SrollTop = document.body.scrollTop || document.documentElement.scrollTop;
+
+              if(SrollTop < 10){
+                SrollTop *= 5;
+              }
+
+              if(SrollTop === 0){
+                //清除循环任务
+                clearInterval(goback);
+              }
+              if(document.body.scrollTop){
+                document.body.scrollTop -= SrollTop/5;
+              }else {
+                document.documentElement.scrollTop -= SrollTop/5;
+              }
+            }, 50)
+          }
+        )
+
+      })
+
+
+      /*************************************以下实现toolTip*******************************************/
+
+    //在HTML中可以添加 title属性来设置提示，但是样式和形式单一
+
+
+
+
+    }
+  </script>
+</body>
+</html>

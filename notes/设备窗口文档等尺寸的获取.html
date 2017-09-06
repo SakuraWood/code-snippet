@@ -6,6 +6,12 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <script type="text/javascript" src="src/jquery-3.2.0.min.js"></script>
   <title>屏幕/浏览器/页面等尺寸的获取</title>
+  <style>
+    body{
+      margin: 5px;
+      padding: 6px;
+    }
+  </style>
 </head>
 <body>
   <h3>屏幕尺寸</h3>
@@ -19,8 +25,8 @@
   <p>窗口的内部高度，不包含工具条与滚动条innerHeight : <span id="window-innerHeight"></span></p>
   <p>窗口的内部宽度，不包含滚动条innerWidth : <span id="window-innerWidth"></span></p>
   <h3>文档（body元素）尺寸</h3>
-  <p>可视高度（不包括边框，边距或滚动条) clientHeight : <span id="body-clientHeight"></span></p>
-  <p>可视宽度（不包括边框，边距或滚动条) clientWidth : <span id="body-clientWidth"></span></p>
+  <p>可视高度（不包括边框，外边距或滚动条) clientHeight : <span id="body-clientHeight"></span></p>
+  <p>可视宽度（不包括边框，外边距或滚动条) clientWidth : <span id="body-clientWidth"></span></p>
   <p>高度包括边框和填充 offsetHeight : <span id="body-offsetHeight"></span></p>
   <p>宽度包括边框和填充 offsetWidht : <span id="body-offsetWidth"></span></p>
   <p>页面的整个高度（包括带滚动条的隐蔽的地方）scrollHeight ： <span id="body-scrollHeight"></span></p>
