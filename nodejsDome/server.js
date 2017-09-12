@@ -409,25 +409,40 @@ app.post('/msgSuspensed', function (req, res) {
     );
 });
 
+app.post('/handleVerify', function (req, res) {
+	res.send({
+		"t":"handleVerify",
+		"data":{
+		},
+		"r": "00000",
+		"msg": "操作成功",
+		"sysTime": 1496390027969
+	})
+});
+
+
+
 app.post('/historyMsg', function (req, res) {
    res.send(
 		   {
 			"t":"historyMsg",
 			"data":[
 				{
-					"type":"00",
+					"type":"0",
 					"msg":"机器故障",
 					"msgId":"2",//
 					"msgTime":"2017.08.09",//推送发生的时间
 					"msgState":"0",//是否获取过该消息
 					
 					"ext":{
-						"des":"莲花分店有机器发生故障"
-					},
- 
+						"uuid":"432543321321325",
+						"mid":"gaedgae12313213a",
+						"errorMsg":[{"code":"E1", "des":"感温包故障"},
+									{"code":"E1", "des":"感温包故障"}],
+							},
 				},
 				{
-					"type":"01", 
+					"type":"1", 
 					"msg":"收入情况",
 					"msgId":"3",//一个账号主体下的信息计数
 					"msgTime":"2017.08.10",//推送发生的时间
@@ -436,11 +451,10 @@ app.post('/historyMsg', function (req, res) {
 					"ext":{
 						"date":"2017年8月9日",
 						"income":"290元",
-						"des":"2017.08.09 收入290元！"
 					},
 				},
 				{
-					"type":"02", 
+					"type":"2", 
 					"msg":"收到了管理员申请1",
 					"msgId":"4",//一个账号主体下的信息计数
 					"msgTime":"2017.08.10",//推送发生的时间
@@ -451,10 +465,11 @@ app.post('/historyMsg', function (req, res) {
 						"idCardName":"身份证名字",
 						"idCardNum":"123654788544125587",//身份证号
 						"tel":"18888888888",//默认是登录的手机号
+						"isHandle":"0/1",//是否处理过该消息
 					},
 				},
-								{
-					"type":"02", 
+				{
+					"type":"2", 
 					"msg":"收到了管理员申请2",
 					"msgId":"4",//一个账号主体下的信息计数
 					"msgTime":"2017.08.10",//推送发生的时间
@@ -467,8 +482,8 @@ app.post('/historyMsg', function (req, res) {
 						"tel":"18888888888",//默认是登录的手机号
 					},
 				},
-								{
-					"type":"02", 
+				{
+					"type":"2", 
 					"msg":"收到了管理员申请3",
 					"msgId":"4",//一个账号主体下的信息计数
 					"msgTime":"2017.08.10",//推送发生的时间
@@ -482,7 +497,7 @@ app.post('/historyMsg', function (req, res) {
 					},
 				},
 				{
-					"type":"03", 
+					"type":"3", 
 					"msg":"修改信息成功",
 					"msgId":"5",//一个账号主体下的信息计数
 					"msgTime":"2017.08.11",//推送发生的时间
@@ -493,8 +508,7 @@ app.post('/historyMsg', function (req, res) {
 					},
 				},
 			],
-
-
+			
 			"r": "00000",
 			"msg": "操作成功",
 			"sysTime": 1496390027969

@@ -38,7 +38,7 @@
     };
 
     //合并参数
-    this.settings = Object.assign({},defaultSetting,dotData);
+    this.settings = Object.assign({},defaultSetting,dotData);   //ES6方法 旧浏览器不支持
 
 
     //默认配置 已珠海总部为中心
