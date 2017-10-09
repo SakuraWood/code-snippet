@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>对象合并</title>
+</head>
+<body>
+  <h1>原生实现$.extend合并参数功能  见源码</h1>
+
+  <script type="text/javascript">
+    var test1 = {
+      a : 1,
+      b : {
+        c : 2,
+        d : 3
+      },
+      e : [1,'a']
+    },
+    test2 = {
+      b : {
+        c : 4,
+        d : 5,
+        f : 6
+      },
+      e : [1,'a'],
+      g : 7
+    }
+
+    /*
+    var test = Object.assign({},test1,test2);
+    console.log(JSON.stringify(test));
+
+    test2.b.d = 'x';
+    console.log(JSON.stringify(test));   //Object.assign() 是浅拷贝  当源对象的属性值是一个指向对象的引用，它也只拷贝那个引用值。
+    */
+
+    var test = extend({},test1,test2);
+    console.log(test.b.d);
+
+    test2.b.d = 'x';
+    console.log(test.b.d);
+
+    // /*
+    function extend() {  //extend 浅拷贝实现
+      var name,options,copy,
+          length = arguments.length,
+          i = 1,
+          target = arguments[0] || {};
+
+      if(['object','function'].indexOf(typeof target) < 0){
+        target = {};
+      }
+
+      for(;i<length;i++){
+
+        options = arguments[i]
+
+        if(options != null){
+
+          for(name in options){
+
+            copy = options[name];
+
+            if (copy !== undefined) {
+              target[name] = copy;
+            }
+          }
+        }
+      }
+
+      return target
+    }
+    // */
+
+
+  /*
+    function extend() {  //extend 深拷贝实现
+      var name,options,src,copy,
+          deep = false,  //是否深拷贝 默认为false
+          length = arguments.length,
+          i = 1,
+          target = arguments[0] || {};
+
+      //如果第一个参数为boolean类型,赋值给deep
+      if(typeof target  == 'boolean'){
+        deep = arguments[0];
+        target = arguments[i] || {};
+        i++;
+      }
+
+      //如果target不是对象数据类型的话  target赋值为 {}
+      if(['object','function'].indexOf(typeof target) < 0){
+        target = {};
+      }
+
+      for(;i<length;i++){
+
+        options = arguments[i];
+
+        if(options != null){
+
+          for(name in options){
+
+            copy = options[name];
+            src = target[name];
+
+            if(target === copy){  //避免重复循环
+
+              continue;
+            }
+
+            if(deep && copy && (typeof copy == 'object')){
+
+              src = Object.prototype.toString.call(copy) == '[object Array]' ? [] : {};
+              target[name] = extend(deep,src,copy);
+            }else {
+
+              if (copy !== undefined) {
+
+                target[name] = copy;
+              }
+            }
+          }
+        }
+      }
+
+      return target
+    }
+    */
+  </script>
+</body>
+</html>
