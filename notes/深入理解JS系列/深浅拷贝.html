@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>深浅拷贝</title>
+</head>
+<body>
+  <script type="text/javascript">
+  
+  /*
+  var x = 1;
+  var y = x;  //y获得了和x同样的值
+  y = 2;
+  console.log(x);  // 1
+
+  var m = [1,2]; //m存放的是指向[1,2]这个数组对象的引用地址
+  var n = m; //n也获得 [1,2]数组对象的引用地址
+  n[0] = 3;
+  console.log(m);  //[3,2]
+
+  //测试数据
+  var array1 = ['a',1,true,{name:'lei',age:18}];
+
+  //concat()  slice() 实现浅拷贝
+  var array2 = array1.concat()
+
+  //修改拷贝后的数据
+  array2[0] = 'b';            //array1[0]是原始数据类型 所以是直接赋值的
+  array2[3].name = 'zhang';   //array1[3]是对象数据类型 所以拷贝的是对象的引用，其实还是和原数组使用同一对象
+
+  console.log(array1);   //  ['a',1,true,{name:'zhang',age:18}]
+  */
+
+/*
+  //实现浅拷贝
+  function shallowCopy( target ){
+    if(typeof target !== 'object') return ;
+    //判断目标类型，来创建返回值
+    var newObj = target instanceof Array ? [] : {};
+
+    for(var item in target){
+      //只复制元素自身的属性，不复制原型链上的
+      if(target.hasOwnProperty(item)){
+        newObj[item] = target[item]
+      }
+    }
+
+    return newObj
+  }
+
+  //测试
+
+  var test = [1,'a',{name:'lei',age:18}];
+
+  var copy = shallowCopy(test);
+  console.log(copy[2].name);   //lei
+
+  copy[2].name = 'zhang';
+  console.log(test[2].name);   //zhang
+*/
+
+/*
+var test = [1,'a',{name:'lei',age:18}];
+
+var copy1 = JSON.parse(JSON.stringify(test));  //特殊方式
+
+console.log(copy1);
+
+copy1[2].name = 'zhang'
+console.log(test);   //[1,'a',{name:'lei',age:18}]  未受到影响
+
+*/
+
+//实现深拷贝
+function deepCopy( target ){
+  if(typeof target !== 'object') return ;
+  //判断目标类型，来创建返回值
+  var newObj = target instanceof Array ? [] : {};
+
+  for(var item in target){
+    //只复制元素自身的属性，不复制原型链上的
+    if(target.hasOwnProperty(item)){
+      newObj[item] = typeof target[item] == 'object' ? deepCopy(target[item]) : target[item]
+    }
+  }
+
+  return newObj
+}
+
+//测试
+var test = [1,'a',{name:'lei',age:18}];
+
+var copy2 = deepCopy(test);
+copy2[2].name = 'zhang'
+
+console.log(test);  ////[1,'a',{name:'lei',age:18}]  未受到影响
+
+  </script>
+</body>
+</html>

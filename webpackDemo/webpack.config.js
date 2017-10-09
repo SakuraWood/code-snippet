@@ -35,7 +35,10 @@ const config = {
 				exclude: /(node_modules|bower_components)/,
 				include: __dirname + '/app',
 				use:{
-					loader: 'babel-loader'
+					loader: 'babel-loader',
+					options: {
+						presets: ['env']
+					}
 				}
 			},
 			{

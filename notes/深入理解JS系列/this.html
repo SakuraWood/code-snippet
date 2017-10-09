@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>this 关键字</title>
+</head>
+<body>
+  <button class="test">点击我</button>
+
+  <script type="text/javascript">
+
+    var btn = document.querySelector('.test'),
+        testObj = {
+          forThis : function(){
+            console.log(this);
+
+            return function returnFunction(){
+              console.log(this);
+            }
+          }
+        }
+
+    // btn.addEventListener('click',testObj.forThis)   //注意这两种方式  forThis输出的this 的不同  第一个指向btn 因为是点击事件触发的   第二个指向testObj 因为是 testObj调用执行的
+    btn.addEventListener('click',testObj.forThis())
+
+  </script>
+</body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>boolean转换</title>
+</head>
+<body>
+  <p>只有 undefined null 0 -0 NaN "" 会转换为false</p>
+
+  <script type="text/javascript">
+    if(-1){
+      console.log('-1转换为true');
+    }
+    if({}){
+      console.log('{}转换为true');
+    }
+    if([]){
+      console.log('[]转换为true');
+    }
+    if(new Boolean(false)){
+      console.log('new Boolean(false)转换为true');
+    }
+  </script>
+</body>
+</html>
