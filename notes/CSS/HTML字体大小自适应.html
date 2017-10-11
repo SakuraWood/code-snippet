@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>HTML的字体大小自适应</title>
+</head>
+<style media="screen">
+  /*@media (max-width:767px) {
+    html{
+      font-size: 15px;
+      color: blue;
+    }
+  }
+  @media (min-width:768px) {
+    html{
+      font-size: 18px;
+      color: green;
+    }
+  }
+  @media (min-width:992px) {
+    html{
+      font-size: 20px;
+      color: red;
+    }
+  }*/
+
+
+
+  html{
+    font-size: calc(16/768*100vw);
+  }
+
+  .container{
+    padding: 1rem;
+  }
+  li{
+    font-size: 1rem;
+  }
+
+</style>
+<body>
+  <article class="container">
+    <ol>
+      <li>rem是相对于root元素(html)字体大小的一个单位。 eg:html默认font-size为16px  则1rem = 16px</li>
+      <li>若元素以rem为单位去设置字体、宽高、边距等。则修改html字体大小就能达到所有元素一起等比例修改的效果</li>
+      <li>所以要实现html字体在不同页面大小下自适应
+        <ol>
+          <li>@media  媒体查询</li>
+          <li>vw设置html字体大小</li>
+          <li>脚本控制</li>
+        </ol>
+      </li>
+    </ol>
+  </article>
+
+  <script type="text/javascript">
+    /*
+    (function(){
+      var doc = document.documentElement,
+          resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize';
+
+      function changeFontSize(){
+        var clietWidth = doc.offsetWidth,
+            scale = clietWidth/768;   //以768为标准
+
+        doc.style.fontSize = scale * 16 + 'px';
+      }
+
+      if (!doc.addEventListener) return;
+
+      window.addEventListener(resizeEvt,changeFontSize)  //窗口大小变化或者手机横屏
+      document.addEventListener('DOMContentLoaded',changeFontSize) //加载页面触发
+    })()
+    */
+  </script>
+</body>
+</html>

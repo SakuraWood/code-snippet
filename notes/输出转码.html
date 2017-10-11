@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>特殊字符转换为实体</title>
+  <style>
+    textarea{
+      display: block;
+      margin: 10px auto;
+    }
+    p{
+      text-align: center;
+    }
+    div{
+      width: 900px;
+      margin: 10px auto;
+    }
+  </style>
+</head>
+<body>
+  <div class="tip">
+    对于用户输入的数据，不仅需要做输入时的验证(验证数据是否符合该输入场景的规则),在输出到页面时，还需要做输出时的过滤，对敏感的字符(可用于 XSS攻击的字符 如 &lt; &rt; 等)可以转换为实体
+  </div>
+  <textarea name="name" rows="8" cols="80" placeholder="输入框" class="input"></textarea>
+  <p><button class="add">提交</button><button class="get">获取</button></p>
+  <div class="output">
+
+  </div>
+
+  <script type="text/javascript">
+
+    var input = document.querySelector('.input'),
+        add = document.querySelector('.add'),
+        get = document.querySelector('.get'),
+        output = document.querySelector('.output');
+
+    var value = '';
+
+    var checkReg = /^\s*$/;
+    add.addEventListener('click',function(e){
+      value = input.value;
+      if (!checkReg.test(value)) {
+
+        value = dealValue(value);
+        window.sessionStorage.setItem('value', value);
+      }else {
+        alert('输入为空！')
+      }
+    })
+
+    get.addEventListener('click',function(e){
+      if(window.sessionStorage.getItem('value')){
+        output.innerHTML = window.sessionStorage.getItem('value')
+      }else {
+        alert("没有可以获取的数据！")
+      }
+    })
+
+
+    function dealValue(value){
+
+      var result = value.replace(/</g,'&lt;');
+      result = result.replace(/>/g,'&gt;');
+
+      console.log(result);
+      return result;
+    }
+  </script>
+</body>
+</html>
