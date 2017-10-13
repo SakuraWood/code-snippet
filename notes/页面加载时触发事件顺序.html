@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="src/resolve.css">
+  <title>触发次序</title>
+</head>
+<body>
+  <p>见日志</p>
+  <h1>测试页面加载时，事件触发次序</h1>
+  <img src="http://c.hiphotos.baidu.com/image/pic/item/09fa513d269759eea79bc50abbfb43166c22df2c.jpg" alt="">
+  <h1>测试页面加载时，事件触发次序</h1>
+  <img src="http://h.hiphotos.baidu.com/image/pic/item/279759ee3d6d55fb75ed26e764224f4a21a4ddcc.jpg" alt="">
+  <h1>测试页面加载时，事件触发次序</h1>
+  <script type="text/javascript">
+    console.log('resolve body JavaScript');
+    var img = new Image();
+    img.onreadystatechange = function(){
+      console.log('img ' + img.readyState);
+    }
+
+    img.onload = function(){
+      console.log('img onload');
+    }
+
+    img.src = 'http://pic2.ooopic.com/12/22/94/37bOOOPICc7_1024.jpg';
+    document.querySelector('body').appendChild(img);
+    console.log('append img to body');
+
+    window.addEventListener('load',function(){
+      console.log('window load');
+    })
+
+    document.addEventListener('readystatechange',function(){
+      console.log('document ' + document.readyState);
+    })
+
+    document.addEventListener('DOMContentLoaded',function(){
+      console.log('document DOMContentLoaded');
+    })
+    //document 没有onload事件
+    document.addEventListener('load',function(){
+      console.log('document load');
+    })
+  </script>
+</body>
+</html>
