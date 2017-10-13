@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="css/style.css">
+  <title>图片加载进度和纯CSS3轮播图</title>
+</head>
+
+<body>
+  <div class="container">
+    <div class="title-container">
+      <h1>图片加载进度 + 纯CSS3轮播图</h1>
+    </div>
+    <div class="slide-box">
+      <ul>
+        <li class="slide-item slide1">
+          <a href="#">
+          <img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1507902583653&di=76ecab40b24b5e279a46f1ccd87d116b&imgtype=0&src=http%3A%2F%2Fa.hiphotos.baidu.com%2Fimage%2Fpic%2Fitem%2Fe7cd7b899e510fb3bf406f56d033c895d0430c91.jpg" alt="">
+          <div class="tooltip">
+            生活
+          </div>
+          </a>
+        </li>
+        <li class="slide-item slide2">
+          <a href="#">
+          <img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1507902583360&di=5d1301df17fce4b9e54e1225647d37c7&imgtype=0&src=http%3A%2F%2Fpic.uuhy.com%2Fuploads%2F2012%2F01%2F10%2FMacro_by_AstridT.jpg" alt="">
+          <div class="tooltip">
+            热情
+          </div>
+          </a>
+        </li>
+        <li class="slide-item slide3">
+          <a href="#">
+          <img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1507902591830&di=59afcf26abd9a4d863b7d732eb46a25c&imgtype=0&src=http%3A%2F%2Fc.hiphotos.baidu.com%2Fimage%2Fpic%2Fitem%2Feac4b74543a98226b54462e78382b9014b90eb6d.jpg" alt="">
+          <div class="tooltip">
+            乐观
+          </div>
+          </a>
+        </li>
+        <li class="slide-item slide4">
+          <a href="#">
+          <img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1507902595181&di=ea5a5af1a0f32844aabc7950b865fd35&imgtype=0&src=http%3A%2F%2Fimg5.wowsai.com%2Fhome%2Fattachment%2F2012%2F11%2Fimage%2F201211091044066815.jpg" alt="">
+          <div class="tooltip">
+            美好
+          </div>
+          </a>
+        </li>
+        <li class="slide-item slide5">
+          <a href="#">
+          <img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1507902599797&di=a3c3710ad0c6b80efc6c4f96f818d142&imgtype=0&src=http%3A%2F%2Fwww.gsly.gov.cn%2Fattachment%2Fwww%2Fmonth-1709%2F20170911-193947-9344.jpg" alt="">
+          <div class="tooltip">
+            意义
+          </div>
+          </a>
+        </li>
+      </ul>
+      <div class="progress">
+
+      </div>
+    </div>
+  </div>
+  <div class="mask">
+    <div class="loading">
+      <i class="circle"></i>
+      <span class="num">0%</span>
+    </div>
+  </div>
+
+
+  <script type="text/javascript">
+    document.addEventListener('DOMContentLoaded', function(){
+      var imgs = document.querySelectorAll('img'),
+          numDOM = document.querySelector('.num'),
+          num = 0;
+      var all = imgs.length;
+      [].slice.call(imgs).forEach(function(element,index){
+
+        element.onload = function(){
+          num++;
+          show = Math.floor(100*num/all);
+          showNum(numDOM,show);
+        }
+      })
+    })
+
+    window.onload = function(){
+      document.querySelector('.mask').classList.add('hide');
+    }
+
+    function showNum(target,show){
+      target.innerHTML = show + '%';
+    }
+  </script>
+</body>
+
+</html>
