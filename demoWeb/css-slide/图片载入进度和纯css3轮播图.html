@@ -6,13 +6,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <link rel="stylesheet" href="css/style.css">
-  <title>图片加载进度和纯CSS3轮播图</title>
+  <title>百分比loading和纯CSS3轮播图</title>
 </head>
 
 <body>
   <div class="container">
     <div class="title-container">
-      <h1>图片加载进度 + 纯CSS3轮播图</h1>
+      <h1>百分比loading + 纯CSS3轮播图</h1>
     </div>
     <div class="slide-box">
       <ul>
@@ -74,15 +74,22 @@
     document.addEventListener('DOMContentLoaded', function(){
       var imgs = document.querySelectorAll('img'),
           numDOM = document.querySelector('.num'),
+          show = 0;
           num = 0;
       var all = imgs.length;
       [].slice.call(imgs).forEach(function(element,index){
 
-        element.onload = function(){
+        element.addEventListener('load',function(){
           num++;
           show = Math.floor(100*num/all);
           showNum(numDOM,show);
-        }
+        })
+
+        element.addEventListener('error',function(){
+          num++;
+          show = Math.floor(100*num/all);
+          showNum(numDOM,show);
+        })
       })
     })
 
