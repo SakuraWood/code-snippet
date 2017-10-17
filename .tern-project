@@ -16,6 +16,12 @@
     },
     "complete_strings": {
       "maxLength": 15
-    }
+    },
+    "node": {
+      "dontLoad": "",
+      "load": "",
+      "modules": ""
+    },
+    "node_resolve": {}
   }
 }
