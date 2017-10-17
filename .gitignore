@@ -1,17 +1,7 @@
 demoWeb/forMyLover_One-year/src/img/myLover
-
-vueNotes/vueWebApp/vueCliDemo/.DS_Store
-vueNotes/vueWebApp/vueCliDemo/node_modules/
-vueNotes/vueWebApp/vueCliDemo/dist/
-vueNotes/vueWebApp/vueCliDemo/npm-debug.log*
-vueNotes/vueWebApp/vueCliDemo/yarn-debug.log*
-vueNotes/vueWebApp/vueCliDemo/yarn-error.log*
-vueNotes/vueWebApp/vueCliDemo/test/unit/coverage
-
-vueNotes/vueWebApp/copyEleVue/node_modules/
-
 webpackDemo/node_modules/
 webpackDemo/dist/
+node-server/node_modules/
 
 # Editor directories and files
 .idea
