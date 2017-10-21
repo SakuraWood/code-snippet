@@ -19,6 +19,7 @@
     function Person(){
       var test = "PersonVarTest";
     }
+    console.dir(Person);
     //Person中有属性test
     Person.test = "PersonTest";
 
@@ -26,7 +27,7 @@
     Person.prototype.test = "PersonPrototypeTest";
     var person = new Person();
 
-    //person中没有test属性 则去原型中找（而不是Person中找）
+    //person中没有test属性 则去原型中找（而不是Person中找,若原型上没有test，则会undefined ， person继承的是Person.prototype 而不是 Person）
     console.log(person.test);   //PersonPrototypeTest
   </script>
 </body>

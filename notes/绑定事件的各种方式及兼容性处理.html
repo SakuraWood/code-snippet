@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <style media="screen">
+    html,body{
+      height: 100%;
+    }
+    .container{
+      width: 1000px;
+      height: 100%;
+      margin: 0 auto;
+    }
+
+    .item{
+      width: 100%;
+      padding: 20px;
+      border-bottom: 1px solid #000000;
+    }
+  </style>
+  <title>事件</title>
+</head>
+<body>
+  <article class="container">
+
+    <button onclick="alert('HTML事件处理！')">点我</button>
+    <section class="item">
+      <h2>DOM0级事件绑定</h2>
+      <ol>
+        <li>绑定方式为为元素直接指定方法(eg : element.onclick=function(){...});同样取消绑方式为赋值为null(eg : element.onclick= null )</li>
+        <li>只能绑定一个事件，重复绑定会进行覆盖</li>
+        <li>只会在冒泡阶段触发</li>
+        <li>取消默认行为 ：所有浏览器都支持的方式 reture false ; event对象的方式 event.returnValue = false (IE8-IE5)  event.preventDefault()</li>
+        <li>阻止传播 ：event.cancelBubble = true (IE8-IE5)  event.stopPropagation()</li>
+      </ol>
+      <a href="http://www.baidu.com" class="a1">快点击我！</a>
+    </section>
+    <section class="item">
+      <h2>DOM2级事件监听</h2>
+      <ol>
+        <li>通过事件监听的方式来绑定事件，可以为同一个事件注册多个函数，依次触发</li>
+        <li>IE8-IE6 通过element.attachEvent(eventNameWithOn,function(){...})来监听事件 而且事件为 event对象为 window.event 只有目标阶段和冒泡阶段</li>
+        <li>其他浏览器 通过element.addEventListener(eventName,function(e){...},useCapture )来监听事件 而且事件为 event对象可在函数中传参 eg示例中的 e ,可在第三个参数控制在哪个阶段触发  false --- 冒泡阶段  true --- 捕获阶段</li>
+        <li>事件类型会有差异 attacheEvent绑定时事件类型都需要加on eg：‘onclick’ ，而addEventListener 不需要加 ‘on’ 直接为 click</li>
+        <li>对应的取消绑定为 element.removeEventListener(eventName,function(e){...},useCapture ) ; element.detachEvent(eventNameWithOn,function(){...})</li>
+        <li>取消默认行为和阻止传播 只能用 event对象方式</li>
+        <li>attacheEvent方式绑定的函数，会在全局作用域中运行，this === window ; DOM0级和addEventListener绑定的函数，会在他们所属元素的作用域中执行，this指向绑定元素</li>
+        <li>可通过event对象直接获取到触发元素，event = event || window.event  target = e.target || e.srcElement</li>
+        <li>封装通用方式  见源码</li>
+      </ol>
+      <a href="http://www.baidu.com" class="a2">点击后取消事件</a>
+    </section>
+    <section class="item item-3">
+      <h2>事件委托</h2>
+      <ol>
+        <li>因为事件可以冒泡，所以点击子元素会冒泡到父元素，如果多个子元素同个事件的处理程序类似；此时可以只监听父元素，就是事件委托</li>
+      </ol>
+      <button class="btn1">点击我1！</button><button class="btn1">点击我2！</button><button class="btn1">点击我3！</button>
+    </section>
+  </article>
+
+
+  <script type="text/javascript">
+    document.onclick = function(e){
+      e = e || window.event;  //event对象
+      var target = e.target || e.srcElement;  //触发对象
+      // console.log(this); //this  冒泡触发，this仍是指向绑定的document
+      // console.log(target);  //冒泡过来的target  为触发元素a2
+      alert('click--document');
+    }
+    document.querySelector('.a1').onclick = function(e){
+      alert('DOM0绑定--a');
+      e = e || window.event;
+      e.stopPropagation ? e.stopPropagation() : e.cancelBubble = true;
+      e.preventDefault ? e.preventDefault() : e.returnValue = false;
+      // return false;
+
+    }
+
+    document.querySelector('.a1').onclick = null;
+
+  /*
+    //可重复绑定
+    document.querySelector('.a2').addEventListener('click', function(e){
+      e.preventDefault();
+      e.stopPropagation();
+      alert('DOM2绑定--a2 -- 1')
+    }, false)
+
+    document.querySelector('.a2').addEventListener('click', function(e){
+      alert('DOM2绑定--a2 -- 2')
+    }, false)
+  */
+
+    addEvent(document.querySelector('.a2'),'click',test,false)
+
+    function test(e){
+      e = e || window.event;  //event对象
+      var target = e.target || e.srcElement;  //触发对象
+
+      console.log(this);  //IE8 指向window  其他指向元素对象
+      console.log(target); //元素对象
+
+      alert('addEvent then removeEvent!');
+      removeEvent(document.querySelector('.a2'),'click',test,false);  //取消绑定
+
+      e.stopPropagation ? e.stopPropagation() : e.cancelBubble = true;  //阻止传播
+      e.preventDefault ? e.preventDefault() : e.returnValue = false;    //取消默认行为
+    }
+
+    addEvent(document.querySelector('.item-3'),'click',function(e){
+      e = e || window.event;  //event对象
+      var target = e.target || e.srcElement;  //触发对象
+
+      if(target.nodeName === 'BUTTON'){
+        alert(target.innerText);
+      }
+    })
+
+    //通用方式
+      //绑定
+    function addEvent(targetElement,eventName,listener,useCapture){
+      if(targetElement.addEventListener){
+        targetElement.addEventListener(eventName,listener,useCapture);
+      }else if(targetElement.attachEvent){
+        targetElement.attachEvent('on' + eventName,listener);
+      }else {
+        targetElement['on' + eventName] = listener;
+      }
+    }
+      //解绑
+    function removeEvent(targetElement,eventName,listener,useCapture){
+      if(targetElement.addEventListener){
+        targetElement.removeEventListener(eventName,listener,useCapture);
+      }else if(targetElement.attachEvent){
+        targetElement.detachEvent('on' + eventName,listener);
+      }else {
+        targetElement['on' + eventName] = null;
+      }
+    }
+
+  </script>
+</body>
+</html>

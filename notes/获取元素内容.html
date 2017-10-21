@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>获取元素内容</title>
+  <style media="screen">
+    html.body{
+      height: 100;
+    }
+
+    .container{
+      width: 1000px;
+      margin: 0 auto;
+      padding: 10px;
+    }
+
+    input,button{
+      margin-right: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container" title="title-div">
+    没错，这是一个容器!
+
+    <div class="item1">
+      <input type="text" value="input1">
+      <input type="button" value="input-button">
+      <input type="submit" value="input-submit">
+      <button class="btn">button1</button>
+    </div>
+  </div>
+
+  <script type="text/javascript">
+    window.onload=function(){
+      var container = document.querySelector('.container');
+
+      var inputText = container.querySelector('input[type = "text"]');
+      var inputButton = container.querySelector('input[type = "button"]');
+      var inputSubmit= container.querySelector('input[type = "submit"]');
+      var button = container.querySelector('button');
+
+      console.log(container.innerHTML);
+      console.log(container.textContent); //子元素的文字内容也会被输出
+      console.log(inputText.innerHTML);  //空
+      console.log(inputText.value);  //获取input输入框的内容  按钮的话就是展示内容
+      console.log(inputButton.value);
+      console.log(inputSubmit.value);
+
+
+      console.log(button.innerHTML);  //button标签的按钮 没有value
+
+
+    }
+  </script>
+</body>
+</html>
