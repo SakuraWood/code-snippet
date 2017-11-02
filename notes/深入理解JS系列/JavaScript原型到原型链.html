@@ -18,10 +18,11 @@
   <script type="text/javascript">
     function Person(){
       var test = "PersonVarTest";
+      // this.test = 'selfTest'; //此处的this 在创建实例时，指向的是实例，所以实例会有自己的test属性
     }
     console.dir(Person);
     //Person中有属性test
-    Person.test = "PersonTest";
+    Person.test = "PersonTest";  //实例对象是不对集成构造函数的属性的
 
     //Person.prototype中也有属性test
     Person.prototype.test = "PersonPrototypeTest";
@@ -30,5 +31,31 @@
     //person中没有test属性 则去原型中找（而不是Person中找,若原型上没有test，则会undefined ， person继承的是Person.prototype 而不是 Person）
     console.log(person.test);   //PersonPrototypeTest
   </script>
+
+
+  <!-- <script type="text/javascript">
+    function test(){
+      var a = 1;
+      console.log(a)
+      this.a = 'b';  //this 指向创建的实例
+    }
+    test.prototype.a = 'a'
+    test.prototype.loga = function(){
+      console.log(this)  //this 指向创建的实例
+      console.log(this.a);
+    }
+
+    console.dir(test);
+
+    var x = new test(); //new x实例的时候，会生成自己的属性a
+    console.log(x);
+    console.log(x.a);  //自己有属性a就用属性a,没有的话就去原型上找
+    x.loga();
+    var y = new test();
+        console.log(y);
+    y.a = 'c'
+    console.log(x.a);  //自身的属性不会影响
+    console.log(y.a);
+  </script> -->
 </body>
 </html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <h1>定位最早出现指定次数的非空字符</h1>
+  <script type="text/javascript">
+    window.onload = function(){
+      var test = 'this is a test demo ! use es5 !', //指定字符串
+          count = 4, //指定次数
+          result = {};
+
+      test.split('').some(function(value,index){
+        if(value !== ' ' && result[value] === undefined){
+          result[value] = 1
+        }else {
+          result[value]++
+        }
+        if(result[value] === count){
+          console.log(value)
+          return true
+        }else {
+          return false
+        }
+      })
+    }
+  </script>
+</body>
+</html>

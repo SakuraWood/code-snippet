@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>图片地图</title>
+  <style media="screen">
+    .container{
+      margin: 100px auto;
+      width: 300px;
+    }
+
+    .container img{
+      width: 100%;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <aside class="container">
+    <img src="src/img_map.png" alt="导航图片" usemap="#nav_test">
+    <map name="nav_test">
+      <area shape="rect" coords="0 0 300 110" href="https://www.so.com/" target="_blank" alt="360搜索">
+      <area shape="rect" coords="0 110 300 212" href="https://www.baidu.com/" target="_blank" alt="百度搜索">
+    </map>
+  </aside>
+</body>
+</html>
