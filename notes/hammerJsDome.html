@@ -113,12 +113,15 @@
       */
 
       //监听事件，可同时监听多个事件
-      hammerTest.on("tap doubletap",function(ev){
+      hammerTest.get('swipe').set({
+        direction : Hammer.DIRECTION_ALL
+      });
+      hammerTest.on("tap doubletap swipe",function(ev){
       // console.log(ev);
       // console.log(hammerTest);
       // ev.target.style.backgroundColor = "#000";
       // hammerTest.element.style.backgroundColor = "#000";
-
+        console.log(ev)
         document.getElementsByClassName("result")[0].innerHTML= "触发了事件 ： " + ev.type ;
 
       });
