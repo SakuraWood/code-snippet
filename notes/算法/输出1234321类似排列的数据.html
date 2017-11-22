@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <h2>输出1234321类似的数据</h2>
+  <script type="text/javascript">
+    function outputData(n,m) { //n为起始数字 m为结束数字
+      var temp = '',
+          i = n;
+      for(;i < m; i++){
+        temp += i;
+      }
+      for(;i >= n; i--){
+        temp += i;
+      }
+
+      return window.parseInt(temp)
+    }
+
+    console.log(outputData(2,7));
+  </script>
+</body>
+</html>
