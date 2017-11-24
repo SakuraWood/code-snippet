@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>上传文件</title>
+  <style media="screen">
+    html,body{
+      height: 100%;
+    }
+    .container{
+      width: 900px;
+      height: 100%;
+      margin: 0 auto;
+    }
+
+    .container ul{
+      margin-bottom: 200px;
+    }
+    .test-area{
+      margin: 0 auto;
+      width: 300px;
+    }
+
+    .upload-file{
+      position: relative;
+      width: 100px;
+      padding: 10px 15px;
+      border: 1px solid rgb(119, 154, 80);
+      border-radius: 5px;
+      background-color: rgb(66, 215, 142);
+      color: #333333;
+      font-size: 14px;
+      text-align: center;
+      overflow: hidden;
+    }
+
+    .upload-file span{
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      overflow: hidden;
+    }
+
+    .upload-file:hover{
+      font-size: 15px;
+      border-color: rgb(39, 226, 81);
+    }
+
+    .upload-file input[type='file']{
+      height: 100%;
+      width: 100%;
+      position: absolute;
+      top: 0;
+      right: 0;
+      opacity: 0;
+      filter: alpha(opacity=0);
+      cursor: pointer;
+    }
+
+    .preview{
+      margin-top: 10px;
+      width: 150px;
+    }
+
+    .preview img{
+      margin: 5px 0;
+      width: 100%;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <ul>
+      <li>1.修改input上传文件按钮的样式？    将input[type = 'flle'] 的原始样式隐藏，然后用新的样式‘蒙在’上面</li>
+      <li>2.如何实现预览？  用fileReader读取dataUrl 再添加到预览区域 </li>
+      <li>3.如何上传图片？ FromData + ajax进行上传 </li>
+    </ul>
+
+    <div class="test-area">
+      <div class="upload-file">
+        <input type="file" class="input-file" multiple="true">
+        <span class="tip">点击上传图片</span>
+      </div>
+
+      <div class="preview">
+        <button type="button" name="button">预览</button>
+      </div>
+    </div>
+  </div>
+
+  <script type="text/javascript">
+    var fileInput = document.querySelector('.input-file');
+    var tip = document.querySelector('.tip');
+    var preview = document.querySelector('.preview')
+    var previewBtn = preview.children[0];
+
+    fileInput.addEventListener('change',function(e){
+      if(this.files.length === 1){ //处理文件名
+        tip.textContent = this.files[0].name;
+      }else {
+        tip.textContent = '已选择 ' + this.files.length + ' 个文件';
+      }
+    })
+
+    previewBtn.addEventListener('click',function(e){
+      var filelist = fileInput.files;
+      if(filelist.length < 1){
+        alert("未选择图片，无法预览");
+        return false;
+      }
+
+      [].slice.call(filelist).forEach(function(value,index){
+        var fileReader = new FileReader();
+        var img = new Image();
+        fileReader.readAsDataURL(value)
+        fileReader.onload = function(){
+          img.src = this.result;
+          preview.appendChild(img)
+        }
+      })
+    })
+  </script>
+</body>
+</html>
