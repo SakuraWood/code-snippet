@@ -90,7 +90,7 @@
         <span class="tip">点击选择图片</span>
       </div>
       <!-- </form> -->
-      <button class="testSubmit">提交</button>
+      <!-- <button class="testSubmit">提交</button> -->
 
       <div class="preview">
         <button type="button" name="button">预览</button><button type="button" class="upload-pic">上传</button>
@@ -145,22 +145,31 @@
         return false;
       }
 
-      var httpDemo = new XMLHttpRequest();
+      // var httpDemo = new XMLHttpRequest();
+      //
+      // httpDemo.open('post','/upload',true);
+      // httpDemo.onload = function(e){
+      //   console.log(e);
+      // }
+      //
+      // httpDemo.send(formData);
 
-      httpDemo.open('post','/upload',true);
-      httpDemo.onload = function(e){
-        console.log(e);
-      }
+      $.ajax({
+        url : '/upload',
+        type:'POST',
+        data: formData,
+        processData:false,
+        contentType:false,
+        headers: {
+          'Content-Type': 'multipart/form-data'
+        },
+        success:function(data,textStatus,jqXHR){
 
-      httpDemo.send(formData);
+        },
+        error:function(jqXHR,textStatus,error){
 
-      // $.ajax({
-      //   url : '/upload',
-      //   type:'POST',
-      //   data: formData,
-      //   processData:false,
-      //   contentType:false
-      // })
+        }
+      })
 
       // $('.testSubmit').click(function(){
       //   $('form').submit();
