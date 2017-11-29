@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>自定义事件</title>
+</head>
+<body>
+  <button type="button" name="button" class="test">点我</button>
+  <script type="text/javascript">
+    var button = document.querySelector('button');
+
+    //新建事件
+/*    // var selfEvent = new Event('self'); //IE不支持
+    var selfEvent = new Event('self',{
+      "bubbles" : true,
+      "cancelable" : false,
+      "composed" : false
+    });
+
+
+    //监听
+    document.addEventListener('self',function(e){
+      alert('事件顺利触发啦！')
+    })
+
+    //触发
+    button.addEventListener('click',function(){
+      document.dispatchEvent(selfEvent)
+    })
+
+    //IE不支持  可携带数据
+    var custom = new CustomEvent('custom',{
+      "detail" : {
+        age : 18
+      },
+      "bubbles" : true,
+      "cancelable" : false,
+    });
+
+    //监听
+    document.addEventListener('custom',function(e){
+      console.log(e);
+    })
+
+    //触发
+    button.addEventListener('click',function(){
+      document.dispatchEvent(custom)
+    })
+*/
+    //只能是document创建  事件被触发前，必须通过initEvent()初始化   兼容性好IE支持 但是已废弃
+    var create = document.createEvent('Event');
+    create.initEvent('create', false, false);
+
+    //监听
+    document.addEventListener('create',function(e){
+      console.log(e);
+    })
+
+    //触发
+    button.addEventListener('click',function(){
+      document.dispatchEvent(create)
+    })
+  </script>
+</body>
+</html>
