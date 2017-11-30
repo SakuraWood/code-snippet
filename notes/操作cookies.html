@@ -16,11 +16,43 @@
 
   <script type="text/javascript">
 
-    function setCookies(name,value,days){
-      let day = new Date(Date.now() + days * 24 * 60 * 60);
-      let value = encodeURIComponent(value);
-      document.cookie = `${name}=${value};expires=${day.toUTCString()}`
+    // setCookies('name', 'lei', 2);
+    // setCookies('age', '18', 1);
+    // console.log(getCookieByName('name'));
+    // removeCookie('name');
+    // console.log(getCookieByName('name'));
+    /**
+     * 新增或者修改cookie
+     * key cookie名
+     * value cookie value值
+     * days 有效天数，以新增或者修改时计
+     */
+    function setCookies(key,value,days){
+      let day = new Date(Date.now() + days * 24 * 60 * 60 * 1000);
+      let valueTemp = encodeURIComponent(value); //编码（cookie值不支持 ; , 空白符 等，所以需要编码）
+      document.cookie = `${key}=${valueTemp};expires=${day.toUTCString()}` //expires值为UTC格式的
     }
+
+    /**
+     * 通过key获取cookie value值
+     * key cookie名
+     * @return 返回value 没有则返回null
+     */
+    function getCookieByName(key){
+      let target = document.cookie.split(';').find(function(value,index){
+        return value.split('=')[0].trim() === key  //发现有时获取的key前面有空格，所以使用trim处理一下
+      })
+      return target ? decodeURIComponent(target.split("=")[1]) : null;
+    }
+
+    /**
+     * 通过key删除对应cookie，即将对于cookie设置为过期
+     * key cookie名
+     */
+    function removeCookie(key){
+      setCookies(key,'0',-1)
+    }
+
 
   </script>
 </body>
