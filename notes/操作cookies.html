@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>cookies</title>
+  <style media="screen">
+    h1{
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <h1>cookies的设置，读取，删除</h1>
+
+  <script type="text/javascript">
+
+    function setCookies(name,value,days){
+      let day = new Date(Date.now() + days * 24 * 60 * 60);
+      let value = encodeURIComponent(value);
+      document.cookie = `${name}=${value};expires=${day.toUTCString()}`
+    }
+
+  </script>
+</body>
+</html>
