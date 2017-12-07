@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style media="screen">
+    .container{
+      position: relative;
+      margin: 100px auto;
+      padding: 20px;
+      height: 100px;
+      width: 100px;
+      border : 10px solid green;
+      background-color: red;
+    }
+    /*absolute元素的百分比宽高是以父元素的 content + padding为基准计算的*/
+    /*relative元素的百分比宽高是以父元素的 content 为基准计算的*/
+    .test{
+      height: 20%;
+      width: 20%;
+      position: absolute;
+      top: 0;
+      left: 0;
+      background-color: #000000;
+    }
+
+    /*float 外边距不会合并*/
+   /*.test{
+      width: 10px;
+      height: 10px;
+      float: left;
+      margin: 10px;
+      background-color: #000000;
+    }*/
+  </style>
+</head>
+<body>
+  <aside class="container">
+    <div class="test">
+
+    </div>
+    <!-- <div class="test">
+
+    </div> -->
+  </aside>
+</body>
+</html>
