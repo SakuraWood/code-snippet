@@ -236,6 +236,44 @@ app.post('/checkPre', function(req, res) {
   });
 });
 
+app.post('/historyMsg', function(req, res) {
+  res.send({
+    "data":[
+      {
+        "type":"manage",
+        "msg":"收到了管理员申请",
+        "msgId":"123",//一个账号主体下的信息计数
+        "msgTime":"324213421414",//推送发生的时间
+        "msgState":"5",//是否获取过该消息
+        "ext":{
+          //*******************************
+            //02表示管理员申请提醒，只是针对运营商的
+            "venderName":"xxxx分店",//推荐些写为xxx分店
+            "idCardName":"身份证名字",
+            "idCardNum":"123654788544125587",//身份证号
+            "tel":"18888888888",//默认是登录的手机号
+            "isHandle":"1",//是否处理过该消息
+        },
+      }
+    ],
+    "r": "00000",
+    "msg": "操作成功",
+    "sysTime": 1496390027969
+  });
+});
+
+app.post('/handleVerify', function(req, res) {
+  setTimeout(function(){
+    res.send({
+      "r": "00000",
+      "msg": "操作成功",
+      "sysTime": 1496390027969
+    });
+  },2000)
+});
+
+
+
 var server = app.listen(8081, function() {
   console.log('服务器已启动!');
 });

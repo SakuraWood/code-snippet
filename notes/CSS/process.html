@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>进度条</title>
+  <style media="screen">
+    body{
+      min-height: 100%;
+      background-color: #111;
+    }
+
+    .progress-bg{
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translateY(-50%) translateX(-50%);
+      height: 40px;
+      width: 500px;
+      background-color: rgb(156, 154, 159);
+      border-radius: 20px;
+      overflow: hidden;
+    }
+
+    .progress-bg .progress{
+      height: 100%;
+      width: 0%;
+      background-color: rgb(144, 173, 1);
+      animation: all 1s ease;
+    }
+
+    .progress-bg .desc{
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translateY(-50%) translateX(-50%);
+      color: rgb(60, 210, 125);
+      font-size: 18px;
+    }
+  </style>
+</head>
+<body>
+  <aside class="progress-bg">
+    <div class="progress">
+    </div>
+    <span class="desc">已加载<span class="num">0</span>%，请耐心等待！</span>
+  </aside>
+</body>
+<script type="text/javascript">
+  window.onload = function(){
+    var progressDom = document.querySelector('.progress'),
+        span = document.querySelector('.num'),
+        flag = 1;
+
+    progress(1);
+
+    var temp = setInterval(function(){
+      if (flag >= 100) {
+        clearInterval(temp);
+        document.querySelector('.progress-bg').style.display = 'none';
+      }
+      progress(flag);
+      flag += 10;
+    },1000)
+
+    function progress(num){
+      progressDom.style.width =  num + '%';
+      span.textContent = num;
+    }
+  }
+</script>
+</html>
