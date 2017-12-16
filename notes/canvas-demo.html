@@ -26,7 +26,7 @@
 </style>
 <body>
   <aside class="canvas-container">
-    <canvas id="canvas" width="300" height="300"></canvas>
+    <canvas id="canvas" width="300" height="300"><p>在不支持canvas的浏览器上将会显示这段文字</p></canvas>
   </aside>
 
   <script type="text/javascript">
@@ -38,12 +38,31 @@
       if (canvas.getContext) {
         let ctx = canvas.getContext('2d');
 
-        ctx.strokeStyle = '#ff0000'
-        ctx.strokeRect(50,50,100,100)
+        //canvas只有一种原生的图形绘制：矩形；所有其他的图形绘制都至少需要生成一条路径
+        // ctx.strokeStyle = '#ff0000'
+        // ctx.strokeRect(50,50,100,100) //绘制一个矩形边框
+        //
+        // ctx.fillStyle = '#111111'
+        // ctx.fillRect(70, 70, 50, 50)  //填充一个矩形区域
+        //
+        // ctx.clearRect(80, 80, 20, 20) //清除一个矩形区域
 
-        ctx.fillStyle = '#111111'
-        ctx.fillRect(70, 70, 20, 20)
+        // ctx.moveTo(20, 20)
+        // ctx.lineTo(20, 50)
+        // ctx.lineTo(50,20)
+        // ctx.fill()  //默认填充黑色   fill会自动闭合路径  stock不会自动闭合路径
 
+
+        var r = 100,
+            s = Math.PI /180 * 30;
+        ctx.moveTo(0,0)
+        ctx.lineTo(r,0)
+        ctx.arc(0,0,r,0,s)
+        ctx.fill()
+        ctx.moveTo(100,0)
+        ctx.lineTo(200,0)
+        ctx.arc(100,0,r,0,s)
+        ctx.fill()
       }
     }
   </script>

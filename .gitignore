@@ -1,6 +1,6 @@
 scene-demos/forMyLover_One-year/src/img/myLover
-webpack-demo/node_modules/
-webpack-demo/dist/
+webpack-demo/*/node_modules/
+webpack-demo/*/dist/
 node-server/node_modules/
 
 # Editor directories and files
