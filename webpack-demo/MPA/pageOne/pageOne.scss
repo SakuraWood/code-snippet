@@ -1,0 +1,25 @@
+html{
+  body{
+
+    background-image: url('../public/images/timg.jpg');
+
+    h1{
+      margin: 20px auto;
+      font-size: 25px;
+    }
+
+    p{
+      font-size: 20px;
+    }
+
+    button{
+      display: block;
+      padding: 5px 15px;
+      margin: 10 auto;
+      border-radius: 5px;
+      background-color: red;
+      color: #ffffff;
+      font-size: 16px;
+    }
+  }
+}
