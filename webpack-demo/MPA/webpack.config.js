@@ -86,16 +86,11 @@ const config = {
     //   filename : 'js/common.[hash].js',
     //   chunks: ['vendor']
     // }),
-    new webpack.optimize.CommonsChunkPlugin({
-      name : 'common',
+    new webpack.optimize.CommonsChunkPlugin({  //只需要一个实例，提取多个公共文件时在name中设置多个即可
+      name : ['common','lib'],
       filename : 'js/[name].js'
-      // chunks: ['pageOne','pageTwo']
-    }),
-    new webpack.optimize.CommonsChunkPlugin({
-      name : 'lib',
-      filename : 'js/[name].js'
-      // chunks: ['pageOne','pageTwo']
-    }),
+      // chunks: ['pageOne','pageTwo'] //设置从哪些文件中提取
+     }),
     //提取css为单独文件
     new ExtractTextPlugin({
      filename: 'css/[name].[hash].css'
