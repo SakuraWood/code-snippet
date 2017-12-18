@@ -29,7 +29,7 @@ const config = {
   },
   //入口文件    本项目需配置多个入口
 	entry: {
-    lib : ['jquery','hammerjs'],
+    lib : ['jquery','hammerjs','@/js/jquery.validate.js'],
     common : '@/js/common.js',
 		pageOne : './pageOne/pageOne.js',
     pageTwo : './pageTwo/pageTwo.js'
@@ -87,9 +87,14 @@ const config = {
     //   chunks: ['vendor']
     // }),
     new webpack.optimize.CommonsChunkPlugin({
+      name : 'common',
+      filename : 'js/[name].js'
+      // chunks: ['pageOne','pageTwo']
+    }),
+    new webpack.optimize.CommonsChunkPlugin({
       name : 'lib',
-      filename : 'js/[name].[hash].js',
-      chunks: ['lib']
+      filename : 'js/[name].js'
+      // chunks: ['pageOne','pageTwo']
     }),
     //提取css为单独文件
     new ExtractTextPlugin({
